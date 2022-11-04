@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import SlateEditor from '../../components/Slate/SlateEditor';
 import Post from '../../components/Post';
+import ThreadTitle from '../../components/ThreadTitle';
 
 export async function getServerSideProps(context) {
   const thread = await prisma.thread.findUnique({
@@ -53,6 +54,10 @@ const Thread = ({ thread }) => {
       <Head>
         <title>{thread.subject}</title>
       </Head>
+      <ThreadTitle 
+        title={thread.subject}
+        date={thread.createdAt}
+      />
       <h1>{thread.subject}</h1>
       <div>
         {thread.posts.map((post, i) => (
