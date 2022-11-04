@@ -58,7 +58,6 @@ const Thread = ({ thread }) => {
         title={thread.subject}
         date={thread.createdAt}
       />
-      <h1>{thread.subject}</h1>
       <div>
         {thread.posts.map((post, i) => (
           <Post content={post} key={`post-${i}`} />
