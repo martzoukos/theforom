@@ -1,0 +1,25 @@
+.red {
+  display: block;
+  width: 30px;
+  height: 10px;
+  border-radius: 10px;
+  margin-bottom: 3px;
+  background-color: red;
+}
+
+.green {
+  display: block;
+  width: 30px;
+  height: 10px;
+  border-radius: 20px;
+  margin-bottom: 3px;
+  background-color: green;
+}
+
+.blue {
+  display: block;
+  width: 15px;
+  height: 10px;
+  border-radius: 20px;
+  background-color: blue;
+}
