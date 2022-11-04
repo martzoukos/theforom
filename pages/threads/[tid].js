@@ -60,7 +60,11 @@ const Thread = ({ thread }) => {
       />
       <div>
         {thread.posts.map((post, i) => (
-          <Post content={post} key={`post-${i}`} />
+          <Post
+            content={post}
+            key={`post-${i}`}
+            showCreatedBy={i>0}  
+          />
         ))}
       </div>
       <div style={{ border: '1px solid #CCC' }}>
