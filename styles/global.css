@@ -9,12 +9,14 @@ body {
   font-size: 18px;
 }
 
-* {
-  box-sizing: border-box;
+@media screen and (min-width: 800px) {
+  body {
+    font-size: 20px;
+  }
 }
 
 a {
-  color: #0070f3;
+  color: #98adc5;
   text-decoration: none;
 }
 

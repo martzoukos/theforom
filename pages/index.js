@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
+import Layout, { siteTitle } from '../components/Layout';
 import prisma from '../lib/prisma'
 import Link from 'next/link'
 
@@ -26,7 +26,7 @@ export async function getServerSideProps() {
 
 export default function Home({ allThreads }) {
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
       </Head>

@@ -1,10 +1,10 @@
 import prisma from '../../lib/prisma'
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import Head from 'next/head';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import SlateEditor from '../../components/slate/slateEditor';
-import Post from '../../components/post';
+import SlateEditor from '../../components/Slate/SlateEditor';
+import Post from '../../components/Post';
 
 export async function getServerSideProps(context) {
   const thread = await prisma.thread.findUnique({
