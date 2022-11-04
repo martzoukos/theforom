@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import Layout from '../../components/layout'
+import Layout from '../../components/Layout'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Editor from '../../components/slate/slateEditor';
+import Editor from '../../components/Slate/SlateEditor';
 
 export default function Thread() {
   const [title, setTitle] = useState('')

@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import styles from './Layout.module.css';
-import Link from 'next/link';
 import LogInBtn from './LoginBtn';
 import Logo from './Logo';
 
-export const siteTitle = 'The Foroum';
+export const siteTitle = 'The Forom';
 
 export default function Layout({ children }) {
   return (

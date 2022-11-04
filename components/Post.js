@@ -1,10 +1,10 @@
-import documentToHtmlString from "../lib/documentToHtmlString"
+import documentToContentBlocks from "../lib/documentToContentBlocks"
 
 const Post = ({content, showCreatedBy}) => {
   const createdAtDate = new Date(content.createdAt)
   return (
     <div style={{ marginBottom: '2em' }}>
-      <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(content.content) }} />
+      <div>{documentToContentBlocks(content.content) }</div>
       {showCreatedBy &&
         <>
           <time style={{ 
