@@ -1,0 +1,36 @@
+.postCreator {
+  font-family: 'Source Sans Pro', sans-serif;
+  max-width: 40rem;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  border-bottom: 1px solid #EFEFEF;
+}
+
+.avatar {
+  border-radius: 100%;
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+  margin-left: -4rem;
+}
+
+.metaContent {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.name {
+  font-size: 1.2rem;
+}
+
+.shortBio {
+  font-size: 0.8em;
+}
+
+.createdDate {
+  font-size: 0.8em;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import isUrl from 'is-url'
 import imageExtensions from'image-extensions'
 import {
@@ -67,6 +68,7 @@ export const Image = ({ attributes, children, element }) => {
       >
         <img
           src={element.url}
+          alt=''
           style={{
             display: 'block',
             maxWidth: '100%',

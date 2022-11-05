@@ -29,8 +29,11 @@ export async function getServerSideProps(context) {
             select: {
               name: true,
               image: true,
-              email: true,
-            }
+              shortBio: true,
+              _count: {
+                select: { posts: true }
+              }
+            },
           }
         }
       }
@@ -79,6 +82,7 @@ const Thread = ({ thread }) => {
             content={post}
             key={`post-${i}`}
             showCreatedBy={i>0}  
+            withBackground={i%2 === 1}
           />
         ))}
       </div>

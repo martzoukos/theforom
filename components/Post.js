@@ -1,24 +1,24 @@
+import styles from './Post.module.css'
 import documentToContentBlocks from "../lib/documentToContentBlocks"
+import PostCreator from './PostCreator'
 
-const Post = ({content, showCreatedBy}) => {
-  const createdAtDate = new Date(content.createdAt)
+const Post = ({content, showCreatedBy, withBackground}) => {
+  const user = content.User
   return (
-    <div style={{ marginBottom: '2em' }}>
-      <div>{documentToContentBlocks(content.content) }</div>
+    <div className={`
+        ${styles.post}
+        ${withBackground && styles.withBackground}
+      `}>
       {showCreatedBy &&
-        <>
-          <time style={{ 
-            backgroundColor: '#EFEFEF',
-            display: 'block',
-            fontSize: '0.7em',
-            padding: '1em'
-          }}>
-            Created at: {createdAtDate.toLocaleString()}
-          </time>
-          by &nbsp;
-          {content.User.email}
-        </>
+        <PostCreator 
+          avatar={user.image}
+          name={user.name}
+          shortBio={user.shortBio}
+          postCount={user._count.posts}
+          postCreatedAt={content.createdAt}
+        />
       }
+      <div>{documentToContentBlocks(content.content) }</div>
     </div>
   )
 }
