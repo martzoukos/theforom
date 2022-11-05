@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import SlateEditor from '../../components/Slate/SlateEditor';
 import Post from '../../components/Post';
 import ThreadTitle from '../../components/ThreadTitle';
+import ThreadCreator from '../../components/ThreadCreator';
 
 export async function getServerSideProps(context) {
   const thread = await prisma.thread.findUnique({
@@ -13,6 +14,13 @@ export async function getServerSideProps(context) {
       id: parseInt(context.params.tid)
     },
     include: {
+      User: {
+        include: {
+          _count: {
+            select: { posts: true }
+          }
+        },
+      },
       posts: {
         select: {
           content: true,
@@ -20,6 +28,7 @@ export async function getServerSideProps(context) {
           User: {
             select: {
               name: true,
+              image: true,
               email: true,
             }
           }
@@ -48,12 +57,18 @@ const Thread = ({ thread }) => {
     });
     await router.reload()
   }
-
+  
   return (
     <Layout>
       <Head>
         <title>{thread.subject}</title>
       </Head>
+      <ThreadCreator 
+        avatar={thread.User.image}
+        name={thread.User.name}
+        shortBio={thread.User.shortBio}
+        postCount={thread.User._count.posts}
+      />
       <ThreadTitle 
         title={thread.subject}
         date={thread.createdAt}
