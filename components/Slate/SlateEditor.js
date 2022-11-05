@@ -54,8 +54,13 @@ const SlateEditor = ({ setValue }) => {
         <MarkButton format="bold">b</MarkButton> &nbsp;
         <MarkButton format="italic">i</MarkButton> &nbsp;
         <MarkButton format="underline">u</MarkButton> &nbsp;
+        <MarkButton format="strikethrough">S̵</MarkButton> &nbsp;
         <BlockButton format="heading-one">H1</BlockButton> &nbsp;
         <BlockButton format="heading-two">H2</BlockButton> &nbsp;
+        <BlockButton format="heading-three">H3</BlockButton> &nbsp;
+        <BlockButton format="heading-four">H4</BlockButton> &nbsp;
+        <BlockButton format="heading-five">H5</BlockButton> &nbsp;
+        <BlockButton format="heading-six">H6</BlockButton> &nbsp;
         <BlockButton format="block-quote">Quote</BlockButton> &nbsp;
         <BlockButton format="numbered-list">ol</BlockButton> &nbsp;
         <BlockButton format="bulleted-list">ul</BlockButton> &nbsp;
@@ -76,7 +81,7 @@ const SlateEditor = ({ setValue }) => {
             if (isHotkey(hotkey, event)) {
               event.preventDefault()
               const mark = HOTKEYS[hotkey]
-              if (['bold', 'italic', 'underline'].includes(mark)) {
+              if (['bold', 'italic', 'underline', 'strikethrough'].includes(mark)) {
                 toggleMark(editor, mark)
               } else {
                 toggleBlock(editor, mark)
@@ -232,6 +237,30 @@ const Element = ({ attributes, children, element }) => {
           {children}
         </h2>
       )
+    case 'heading-three':
+      return (
+        <h3 style={style} {...attributes}>
+          {children}
+        </h3>
+      )
+    case 'heading-four':
+      return (
+        <h4 style={style} {...attributes}>
+          {children}
+        </h4>
+      )
+    case 'heading-five':
+      return (
+        <h5 style={style} {...attributes}>
+          {children}
+        </h5>
+      )
+    case 'heading-six':
+      return (
+        <h6 style={style} {...attributes}>
+          {children}
+        </h6>
+      )
     case 'list-item':
       return (
         <li style={style} {...attributes}>
@@ -274,6 +303,10 @@ const Leaf = ({ attributes, children, leaf }) => {
 
   if (leaf.underline) {
     children = <u>{children}</u>
+  }
+
+  if (leaf.strikethrough) {
+    children = <s>{children}</s>
   }
 
   return(
