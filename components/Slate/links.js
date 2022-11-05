@@ -9,6 +9,7 @@ import {
   useSelected 
 } from "slate-react"
 import isUrl from 'is-url'
+import styles from './SlateEditor.module.css';
 
 // Use this in the initialization createEditor() function
 export const withInlines = editor => {
@@ -125,6 +126,7 @@ export const AddLinkButton = () => {
   return (
     <button
       type="button"
+      className={styles.button}
       active={isLinkActive(editor).toString()}
       onMouseDown={event => {
         event.preventDefault()
@@ -145,6 +147,7 @@ export const RemoveLinkButton = () => {
   return (
     <button
       type="button"
+      className={styles.button}
       active={isLinkActive(editor).toString()}
       onMouseDown={event => {
         if (isLinkActive(editor)) {

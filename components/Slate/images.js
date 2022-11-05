@@ -10,6 +10,7 @@ import {
 import {
   Transforms
 } from 'slate'
+import styles from './SlateEditor.module.css';
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
@@ -100,6 +101,7 @@ export const InsertImageButton = () => {
   return (
     <button
       type="button"
+      className={styles.button}
       onMouseDown={event => {
         event.preventDefault()
         const url = window.prompt('Enter the URL of the image:')

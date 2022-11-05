@@ -2,12 +2,11 @@ import urlParser from "js-video-url-parser";
 import {
   useSlateStatic,
   ReactEditor,
-  useSelected,
-  useFocused,
 } from 'slate-react'
 import {
   Transforms
 } from 'slate'
+import styles from './SlateEditor.module.css';
 
 export const withVideos = editor => {
   const { insertData, isVoid } = editor
@@ -79,6 +78,7 @@ export const InsertVideoButton = () => {
   return (
     <button
       type="button"
+      className={styles.button}
       onMouseDown={event => {
         event.preventDefault()
         const url = window.prompt('Enter the URL of the video:')

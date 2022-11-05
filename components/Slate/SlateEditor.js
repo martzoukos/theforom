@@ -24,6 +24,22 @@ import {
   InsertVideoButton,
   withVideos,
 } from './videos'
+import styles from './SlateEditor.module.css'
+import { 
+  Heading1, 
+  Heading2, 
+  Heading3, 
+  Heading4, 
+  Heading5, 
+  Heading6, 
+  Bold,
+  Italic,
+  Underline,
+  Strikethrough,
+  Quote,
+  List,
+  ListOrdered,
+} from 'lucide-react';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -49,33 +65,65 @@ const SlateEditor = ({ setValue }) => {
       editor={editor}
       value={initialValue}
       onChange={setValue}
+      className={styles.slateEditor}
     >
       <Toolbar>
-        <MarkButton format="bold">b</MarkButton> &nbsp;
-        <MarkButton format="italic">i</MarkButton> &nbsp;
-        <MarkButton format="underline">u</MarkButton> &nbsp;
-        <MarkButton format="strikethrough">S̵</MarkButton> &nbsp;
-        <BlockButton format="heading-one">H1</BlockButton> &nbsp;
-        <BlockButton format="heading-two">H2</BlockButton> &nbsp;
-        <BlockButton format="heading-three">H3</BlockButton> &nbsp;
-        <BlockButton format="heading-four">H4</BlockButton> &nbsp;
-        <BlockButton format="heading-five">H5</BlockButton> &nbsp;
-        <BlockButton format="heading-six">H6</BlockButton> &nbsp;
-        <BlockButton format="block-quote">Quote</BlockButton> &nbsp;
-        <BlockButton format="numbered-list">ol</BlockButton> &nbsp;
-        <BlockButton format="bulleted-list">ul</BlockButton> &nbsp;
-        <BlockButton format="left">left</BlockButton> &nbsp;
-        <BlockButton format="center">center</BlockButton> &nbsp;
-        <BlockButton format="right">right</BlockButton> &nbsp;
-        <BlockButton format="justify">justify</BlockButton> &nbsp;
-        <AddLinkButton /> &nbsp;
-        <RemoveLinkButton /> &nbsp;
-        <InsertImageButton />&nbsp;
+        <MarkButton format="bold">
+          <Bold />
+        </MarkButton>
+        <MarkButton format="italic">
+          <Italic />
+        </MarkButton>
+        <MarkButton format="underline">
+          <Underline />
+        </MarkButton>
+        <MarkButton format="strikethrough">
+          <Strikethrough />
+        </MarkButton>
+        <BlockButton format="heading-one">
+          <Heading1 />
+        </BlockButton>
+        <BlockButton format="heading-two">
+          <Heading2 />
+        </BlockButton>
+        <BlockButton format="heading-three">
+          <Heading3 />
+        </BlockButton>
+        <BlockButton format="heading-four">
+          <Heading4 />
+        </BlockButton>
+        <BlockButton format="heading-five">
+          <Heading5 />
+        </BlockButton>
+        <BlockButton format="heading-six">
+          <Heading6 />
+        </BlockButton>
+        <BlockButton format="block-quote">
+          <Quote />
+        </BlockButton>
+        <BlockButton format="bulleted-list">
+          <List />
+        </BlockButton>
+        <BlockButton format="numbered-list">
+          <ListOrdered />
+        </BlockButton>
+        <BlockButton format="left">left
+        </BlockButton>
+        <BlockButton format="center">center
+        </BlockButton>
+        <BlockButton format="right">right
+        </BlockButton>
+        <BlockButton format="justify">justify
+        </BlockButton>
+        <AddLinkButton />
+        <RemoveLinkButton />
+        <InsertImageButton />
         <InsertVideoButton />
       </Toolbar>
       <Editable 
         renderLeaf={renderLeaf} 
         renderElement={renderElement}
+        className={styles.editable}
         onKeyDown={event => {
           for (const hotkey in HOTKEYS) {
             if (isHotkey(hotkey, event)) {
@@ -108,6 +156,7 @@ const MarkButton = ({ format, children }) => {
         event.preventDefault()
         toggleMark(editor, format)
       }}
+      className={styles.button}
       style={{
         fontWeight: isActive ? 'bold' : 'normal'
       }}
@@ -149,6 +198,7 @@ const BlockButton = ({ format, children }) => {
         event.preventDefault()
         toggleBlock(editor, format)
       }}
+      className={styles.button}
       style={{
         fontWeight: isActive ? 'bold' : 'normal'
       }}
@@ -331,10 +381,7 @@ const Leaf = ({ attributes, children, leaf }) => {
 const Toolbar =({children}) => {
   const editor = useSlate()
   return (
-    <div style={{
-      backgroundColor: '#efefef',
-      padding: '1em'
-    }}>
+    <div className={styles.toolbar}>
       {children}
     </div>
   )

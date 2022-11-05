@@ -1,0 +1,9 @@
+.form {
+  max-width: 40rem;
+  margin: 2rem auto;
+}
+
+.header {
+  font-size: 1.6em;
+  font-weight: 400;
+}
