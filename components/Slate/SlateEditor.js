@@ -40,6 +40,8 @@ import {
   List,
   ListOrdered,
 } from 'lucide-react';
+import Sticky from 'react-sticky-el';
+import { Button, ButtonGroup } from '@mui/material';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -51,7 +53,6 @@ const HOTKEYS = {
 }
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
-const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
 
 const SlateEditor = ({ setValue }) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
@@ -68,57 +69,59 @@ const SlateEditor = ({ setValue }) => {
       className={styles.slateEditor}
     >
       <Toolbar>
-        <MarkButton format="bold">
-          <Bold />
-        </MarkButton>
-        <MarkButton format="italic">
-          <Italic />
-        </MarkButton>
-        <MarkButton format="underline">
-          <Underline />
-        </MarkButton>
-        <MarkButton format="strikethrough">
-          <Strikethrough />
-        </MarkButton>
-        <BlockButton format="heading-one">
-          <Heading1 />
-        </BlockButton>
-        <BlockButton format="heading-two">
-          <Heading2 />
-        </BlockButton>
-        <BlockButton format="heading-three">
-          <Heading3 />
-        </BlockButton>
-        <BlockButton format="heading-four">
-          <Heading4 />
-        </BlockButton>
-        <BlockButton format="heading-five">
-          <Heading5 />
-        </BlockButton>
-        <BlockButton format="heading-six">
-          <Heading6 />
-        </BlockButton>
-        <BlockButton format="block-quote">
-          <Quote />
-        </BlockButton>
-        <BlockButton format="bulleted-list">
-          <List />
-        </BlockButton>
-        <BlockButton format="numbered-list">
-          <ListOrdered />
-        </BlockButton>
-        <BlockButton format="left">left
-        </BlockButton>
-        <BlockButton format="center">center
-        </BlockButton>
-        <BlockButton format="right">right
-        </BlockButton>
-        <BlockButton format="justify">justify
-        </BlockButton>
-        <AddLinkButton />
-        <RemoveLinkButton />
-        <InsertImageButton />
-        <InsertVideoButton />
+        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
+          <MarkButton format="bold">
+            <Bold size={18} />
+          </MarkButton>
+          <MarkButton format="italic">
+            <Italic size={18} />
+          </MarkButton>
+          <MarkButton format="underline">
+            <Underline size={18} />
+          </MarkButton>
+          <MarkButton format="strikethrough">
+            <Strikethrough size={18} />
+          </MarkButton>
+        </ButtonGroup>
+        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
+          <BlockButton format="heading-one">
+            <Heading1 size={18} />
+          </BlockButton>
+          <BlockButton format="heading-two">
+            <Heading2 size={18} />
+          </BlockButton>
+          <BlockButton format="heading-three">
+            <Heading3 size={18} />
+          </BlockButton>
+          <BlockButton format="heading-four">
+            <Heading4 size={18} />
+          </BlockButton>
+          <BlockButton format="heading-five">
+            <Heading5 size={18} />
+          </BlockButton>
+          <BlockButton format="heading-six">
+            <Heading6 size={18} />
+          </BlockButton>
+        </ButtonGroup>
+        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
+          <BlockButton format="block-quote">
+            <Quote size={18} />
+          </BlockButton>
+          <BlockButton format="bulleted-list">
+            <List size={18} />
+          </BlockButton>
+          <BlockButton format="numbered-list">
+            <ListOrdered size={18} />
+          </BlockButton>
+        </ButtonGroup>
+        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
+          <AddLinkButton />
+          <RemoveLinkButton />
+        </ButtonGroup>
+        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
+          <InsertImageButton />
+          <InsertVideoButton />
+        </ButtonGroup>
       </Toolbar>
       <Editable 
         renderLeaf={renderLeaf} 
@@ -149,20 +152,18 @@ const MarkButton = ({ format, children }) => {
   const editor = useSlate()
   const isActive = isMarkActive(editor, format)
   return (
-    <button
+    <Button
       type="button"
+      variant={isActive ? 'contained' : 'outlined'}
+      size='small'
       active={isActive.toString()}
       onMouseDown={event => {
         event.preventDefault()
         toggleMark(editor, format)
       }}
-      className={styles.button}
-      style={{
-        fontWeight: isActive ? 'bold' : 'normal'
-      }}
     >
       {children}
-    </button>
+    </Button>
   )
 }
 
@@ -188,23 +189,20 @@ const BlockButton = ({ format, children }) => {
   const isActive = isBlockActive(
     editor,
     format,
-    TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type'
   )
   return (
-    <button
+    <Button
       type='button'
+      variant={isActive ? 'contained' : 'outlined'}
+      size='small'
       active={isActive.toString()}
       onMouseDown={event => {
         event.preventDefault()
         toggleBlock(editor, format)
       }}
-      className={styles.button}
-      style={{
-        fontWeight: isActive ? 'bold' : 'normal'
-      }}
     >
       {children}
-    </button>
+    </Button>
   )
 }
 
@@ -227,7 +225,6 @@ const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(
     editor,
     format,
-    TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type'
   )
   const isList = LIST_TYPES.includes(format)
 
@@ -235,19 +232,11 @@ const toggleBlock = (editor, format) => {
     match: n =>
       !Editor.isEditor(n) &&
       SlateElement.isElement(n) &&
-      LIST_TYPES.includes(n.type) &&
-      !TEXT_ALIGN_TYPES.includes(format),
+      LIST_TYPES.includes(n.type),
     split: true,
   })
-  let newProperties
-  if (TEXT_ALIGN_TYPES.includes(format)) {
-    newProperties = {
-      align: isActive ? undefined : format,
-    }
-  } else {
-    newProperties = {
-      type: isActive ? 'paragraph' : isList ? 'list-item' : format,
-    }
+  let newProperties = {
+    type: isActive ? 'paragraph' : isList ? 'list-item' : format,
   }
   Transforms.setNodes(editor, newProperties)
 
@@ -379,11 +368,12 @@ const Leaf = ({ attributes, children, leaf }) => {
 }
 
 const Toolbar =({children}) => {
-  const editor = useSlate()
   return (
-    <div className={styles.toolbar}>
-      {children}
-    </div>
+    <Sticky className={styles.toolbar}>
+      <div className={styles.toolbar}>
+        {children}
+      </div>
+    </Sticky>
   )
 }
 

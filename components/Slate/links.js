@@ -9,7 +9,8 @@ import {
   useSelected 
 } from "slate-react"
 import isUrl from 'is-url'
-import styles from './SlateEditor.module.css';
+import { Link as Linkicon, Unlink } from 'lucide-react';
+import { Button } from '@mui/material';
 
 // Use this in the initialization createEditor() function
 export const withInlines = editor => {
@@ -124,9 +125,10 @@ export const LinkComponent = ({ attributes, children, element }) => {
 export const AddLinkButton = () => {
   const editor = useSlate()
   return (
-    <button
-      type="button"
-      className={styles.button}
+    <Button
+      type='button'
+      variant={isLinkActive(editor) ? 'contained' : 'outlined'}
+      size='small'
       active={isLinkActive(editor).toString()}
       onMouseDown={event => {
         event.preventDefault()
@@ -135,8 +137,8 @@ export const AddLinkButton = () => {
         insertLink(editor, url)
       }}
     >
-    🔗
-    </button>
+      <Linkicon size={18} />
+    </Button>
   )
 }
 
@@ -145,9 +147,10 @@ export const RemoveLinkButton = () => {
   const editor = useSlate()
 
   return (
-    <button
-      type="button"
-      className={styles.button}
+    <Button
+      type='button'
+      variant={isLinkActive(editor) ? 'contained' : 'outlined'}
+      size='small'
       active={isLinkActive(editor).toString()}
       onMouseDown={event => {
         if (isLinkActive(editor)) {
@@ -155,7 +158,7 @@ export const RemoveLinkButton = () => {
         }
       }}
     >
-      x🔗
-    </button>
+      <Unlink size={18} />
+    </Button>
   )
 }

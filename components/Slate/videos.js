@@ -7,6 +7,8 @@ import {
   Transforms
 } from 'slate'
 import styles from './SlateEditor.module.css';
+import { Video as VideoIcon } from "lucide-react";
+import { Button } from "@mui/material";
 
 export const withVideos = editor => {
   const { insertData, isVoid } = editor
@@ -76,9 +78,10 @@ export const Video = ({ attributes, children, element }) => {
 export const InsertVideoButton = () => {
   const editor = useSlateStatic()
   return (
-    <button
-      type="button"
-      className={styles.button}
+    <Button
+      type='button'
+      variant='outlined'
+      size='small'
       onMouseDown={event => {
         event.preventDefault()
         const url = window.prompt('Enter the URL of the video:')
@@ -89,8 +92,8 @@ export const InsertVideoButton = () => {
         url && insertVideo(editor, url)
       }}
     >
-      🎥
-    </button>
+      <VideoIcon size={18} />
+    </Button>
   )
 }
 

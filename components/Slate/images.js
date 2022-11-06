@@ -11,6 +11,8 @@ import {
   Transforms
 } from 'slate'
 import styles from './SlateEditor.module.css';
+import { Image as ImageIcon } from 'lucide-react';
+import { Button } from '@mui/material';
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
@@ -99,9 +101,10 @@ export const Image = ({ attributes, children, element }) => {
 export const InsertImageButton = () => {
   const editor = useSlateStatic()
   return (
-    <button
-      type="button"
-      className={styles.button}
+    <Button
+      type='button'
+      variant='outlined'
+      size='small'
       onMouseDown={event => {
         event.preventDefault()
         const url = window.prompt('Enter the URL of the image:')
@@ -112,8 +115,8 @@ export const InsertImageButton = () => {
         url && insertImage(editor, url)
       }}
     >
-      🖼️
-    </button>
+      <ImageIcon size={18} />
+    </Button>
   )
 }
 

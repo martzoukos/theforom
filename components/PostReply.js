@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import SlateEditor from "./Slate/SlateEditor"
 import styles from './PostReply.module.css'
+import { Button } from '@mui/material';
 
 export const PostReply = ({thread}) => {
   const [post, setPost] = useState('')
@@ -26,8 +27,16 @@ export const PostReply = ({thread}) => {
       className={styles.form}
     >
       <h2 className={styles.header}>Reply to this thread</h2>
-      <SlateEditor value={post} setValue={setPost}/>
-      <button type='submit'>Add a Post</button>
+      <div className={styles.editor}>
+        <SlateEditor value={post} setValue={setPost} />
+      </div>
+      <Button
+        type='submit'
+        color='primary'
+        variant='contained'
+      >
+        Add a post
+      </Button>
     </form>
   )
 }
