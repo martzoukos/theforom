@@ -25,55 +25,54 @@ import { AddLinkButton, RemoveLinkButton, addLink } from './links'
 import { InsertImageButton } from './images'
 import { InsertVideoButton } from './videos'
 import styles from './SlateEditor.module.css'
-
-const LIST_TYPES = ['numbered-list', 'bulleted-list']
+import { BLOCK, INLINE, LIST_TYPES } from './constants';
 
 export const SlateToolbar =() => {
   return (
     <Sticky className={styles.toolbar}>
       <div className={styles.toolbar}>
         <ButtonGroup variant='outlined' className={styles.buttonGroup}>
-          <ToolbarButton format="bold" type='mark'>
+          <ToolbarButton format={INLINE.BOLD} type='mark'>
             <Bold size={18} />
           </ToolbarButton>
-          <ToolbarButton format="italic" type='mark'>
+          <ToolbarButton format={INLINE.ITALIC} type='mark'>
             <Italic size={18} />
           </ToolbarButton>
-          <ToolbarButton format="underline" type='mark'>
+          <ToolbarButton format={INLINE.UNDERLINE} type='mark'>
             <Underline size={18} />
           </ToolbarButton>
-          <ToolbarButton format="strikethrough" type='mark'>
+          <ToolbarButton format={INLINE.STRIKETHROUGH} type='mark'>
             <Strikethrough size={18} />
           </ToolbarButton>
         </ButtonGroup>
         <ButtonGroup variant='outlined' className={styles.buttonGroup}>
-          <ToolbarButton format="heading-one" type='block'>
+          <ToolbarButton format={INLINE.H1} type='block'>
             <Heading1 size={18} />
           </ToolbarButton>
-          <ToolbarButton format="heading-two" type='block'>
+          <ToolbarButton format={INLINE.H2} type='block'>
             <Heading2 size={18} />
           </ToolbarButton>
-          <ToolbarButton format="heading-three" type='block'>
+          <ToolbarButton format={INLINE.H3} type='block'>
             <Heading3 size={18} />
           </ToolbarButton>
-          <ToolbarButton format="heading-four" type='block'>
+          <ToolbarButton format={INLINE.H4} type='block'>
             <Heading4 size={18} />
           </ToolbarButton>
-          <ToolbarButton format="heading-five" type='block'>
+          <ToolbarButton format={INLINE.H5} type='block'>
             <Heading5 size={18} />
           </ToolbarButton>
-          <ToolbarButton format="heading-six" type='block'>
+          <ToolbarButton format={INLINE.H6} type='block'>
             <Heading6 size={18} />
           </ToolbarButton>
         </ButtonGroup>
         <ButtonGroup variant='outlined' className={styles.buttonGroup}>
-          <ToolbarButton format="block-quote" type='block'>
+          <ToolbarButton format={BLOCK.BLOCKQUOTE} type='block'>
             <Quote size={18} />
           </ToolbarButton>
-          <ToolbarButton format="bulleted-list" type='block'>
+          <ToolbarButton format={BLOCK.UL} type='block'>
             <List size={18} />
           </ToolbarButton>
-          <ToolbarButton format="numbered-list" type='block'>
+          <ToolbarButton format={BLOCK.OL} type='block'>
             <ListOrdered size={18} />
           </ToolbarButton>
         </ButtonGroup>
@@ -168,10 +167,10 @@ export const toggleBlock = (editor, format) => {
   })
 
   let newProperties = {
-    type: isActive ? 'paragraph' : isList ? 'list-item' : format,
+    type: isActive ? BLOCK.PARAGRAPH : isList ? BLOCK.LI : format,
   }
 
-  if (format === 'link') {
+  if (format === INLINE.LINK) {
     addLink(editor)
   } else {
     Transforms.setNodes(editor, newProperties)

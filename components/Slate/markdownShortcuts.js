@@ -5,19 +5,7 @@ import {
   Element,
   Point, 
 } from "slate"
-
-const MARKDOWN_SHORTCUTS = {
-  '*': 'list-item',
-  '-': 'list-item',
-  '+': 'list-item',
-  '>': 'block-quote',
-  '#': 'heading-one',
-  '##': 'heading-two',
-  '###': 'heading-three',
-  '####': 'heading-four',
-  '#####': 'heading-five',
-  '######': 'heading-six',
-}
+import { BLOCK, MARKDOWN_SHORTCUTS } from "./constants"
 
 export const withShortcuts = editor => {
   const { deleteBackward, insertText } = editor
@@ -50,16 +38,16 @@ export const withShortcuts = editor => {
           match: n => Editor.isBlock(editor, n),
         })
 
-        if (type === 'list-item') {
+        if (type === BLOCK.LI) {
           const list = {
-            type: 'bulleted-list',
+            type: BLOCK.UL,
             children: [],
           }
           Transforms.wrapNodes(editor, list, {
             match: n =>
               !Editor.isEditor(n) &&
               Element.isElement(n) &&
-              n.type === 'list-item',
+              n.type === BLOCK.LI,
           })
         }
 
@@ -87,20 +75,20 @@ export const withShortcuts = editor => {
         if (
           !Editor.isEditor(block) &&
           Element.isElement(block) &&
-          block.type !== 'paragraph' &&
+          block.type !== BLOCK.PARAGRAPH &&
           Point.equals(selection.anchor, start)
         ) {
           const newProperties = {
-            type: 'paragraph',
+            type: BLOCK.PARAGRAPH,
           }
           Transforms.setNodes(editor, newProperties)
 
-          if (block.type === 'list-item') {
+          if (block.type === BLOCK.LI) {
             Transforms.unwrapNodes(editor, {
               match: n =>
                 !Editor.isEditor(n) &&
                 Element.isElement(n) &&
-                n.type === 'bulleted-list',
+                n.type === BLOCK.UL,
               split: true,
             })
           }

@@ -11,13 +11,14 @@ import {
 import isUrl from 'is-url'
 import { Link as Linkicon, Unlink } from 'lucide-react';
 import { Button } from '@mui/material';
+import { INLINE } from './constants';
 
 // Use this in the initialization createEditor() function
 export const withInlines = editor => {
   const { insertData, insertText, isInline } = editor
 
   editor.isInline = element =>
-    ['link', 'button'].includes(element.type) || isInline(element)
+    element.type === INLINE.LINK || isInline(element)
 
   editor.insertText = text => {
     if (text && isUrl(text)) {
@@ -41,7 +42,6 @@ export const withInlines = editor => {
 
 // Utility function to insert the link when the toolbar button is clicked
 const insertLink = (editor, url) => {
-  console.log(editor.selection)
   if (editor.selection) {
     wrapLink(editor, url)
   }
@@ -51,7 +51,7 @@ const insertLink = (editor, url) => {
 const isLinkActive = editor => {
   const [link] = Editor.nodes(editor, {
     match: n =>
-      !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === 'link',
+      !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === INLINE.LINK,
   })
   return !!link
 }
@@ -60,7 +60,7 @@ const isLinkActive = editor => {
 const unwrapLink = editor => {
   Transforms.unwrapNodes(editor, {
     match: n =>
-      !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === 'link',
+      !Editor.isEditor(n) && SlateElement.isElement(n) && n.type === INLINE.LINK,
   })
 }
 
@@ -73,7 +73,7 @@ const wrapLink = (editor, url) => {
   const { selection } = editor
   const isCollapsed = selection && Range.isCollapsed(selection)
   const link = {
-    type: 'link',
+    type: INLINE.LINK,
     url,
     children: isCollapsed ? [{ text: url }] : [],
   }

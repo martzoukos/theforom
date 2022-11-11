@@ -6,15 +6,15 @@ import {
 import {
   Transforms
 } from 'slate'
-import styles from './SlateEditor.module.css';
 import { Video as VideoIcon } from "lucide-react";
 import { Button } from "@mui/material";
+import { BLOCK } from "./constants";
 
 export const withVideos = editor => {
   const { insertData, isVoid } = editor
 
   editor.isVoid = element => {
-    return element.type === 'video' ? true : isVoid(element)
+    return element.type === BLOCK.VIDEO ? true : isVoid(element)
   }
 
   // This is the paste a youtube URL and embed functionality
@@ -33,7 +33,7 @@ export const withVideos = editor => {
 
 const insertVideo = (editor, url) => {
   const text = { text: '' }
-  const video = { type: 'video', url, children: [text] }
+  const video = { type: BLOCK.VIDEO, url, children: [text] }
   Transforms.insertNodes(editor, video)
 }
 

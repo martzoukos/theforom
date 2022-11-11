@@ -12,12 +12,13 @@ import {
 } from 'slate'
 import { Image as ImageIcon } from 'lucide-react';
 import { Button } from '@mui/material';
+import { BLOCK } from './constants';
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
 
   editor.isVoid = element => {
-    return element.type === 'image' ? true : isVoid(element)
+    return element.type === BLOCK.IMG ? true : isVoid(element)
   }
 
   // This is the paste an image URL and embed functionality
@@ -51,7 +52,7 @@ export const withImages = editor => {
 
 const insertImage = (editor, url) => {
   const text = { text: '' }
-  const image = { type: 'image', url, children: [text] }
+  const image = { type: BLOCK.IMG, url, children: [text] }
   Transforms.insertNodes(editor, image)
 }
 

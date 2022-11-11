@@ -9,6 +9,7 @@ import { withShortcuts } from './markdownShortcuts';
 import styles from './SlateEditor.module.css'
 import { SlateToolbar } from './SlateToolbar';
 import { SlateTextarea } from './SlateTextarea';
+import { BLOCK } from './constants';
 
 const SlateEditor = ({ setValue }) => {
   const editor = useMemo(
@@ -44,7 +45,7 @@ const SlateEditor = ({ setValue }) => {
 /////////////
 const initialValue = [
   {
-    type: 'paragraph',
+    type: BLOCK.PARAGRAPH,
     children: [
       { text: '' },
     ],

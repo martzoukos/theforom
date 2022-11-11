@@ -10,33 +10,7 @@ import {
 } from './SlateToolbar';
 import { Editable, ReactEditor } from "slate-react"
 import { Editor, Node } from 'slate';
-
-const HOTKEYS = {
-  'mod+b': 'bold',
-  'mod+i': 'italic',
-  'mod+u': 'underline',
-  'mod+k': 'link',
-  'mod+shift+s': 'strikethrough',
-  'mod+shift+1': 'heading-one',
-  'mod+shift+2': 'heading-two',
-  'mod+shift+3': 'heading-three',
-  'mod+shift+4': 'heading-four',
-  'mod+shift+5': 'heading-five',
-  'mod+shift+6': 'heading-six',
-}
-
-const MARKDOWN_SHORTCUTS = {
-  '*': 'list-item',
-  '-': 'list-item',
-  '+': 'list-item',
-  '>': 'block-quote',
-  '#': 'heading-one',
-  '##': 'heading-two',
-  '###': 'heading-three',
-  '####': 'heading-four',
-  '#####': 'heading-five',
-  '######': 'heading-six',
-}
+import { BLOCK, HOTKEYS, INLINE, MARKDOWN_SHORTCUTS } from './constants'
 
 export const SlateTextarea = ({editor}) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
@@ -86,7 +60,12 @@ export const SlateTextarea = ({editor}) => {
         if (isHotkey(hotkey, event)) {
           event.preventDefault()
           const mark = HOTKEYS[hotkey]
-          if (['bold', 'italic', 'underline', 'strikethrough'].includes(mark)) {
+          if ([
+            INLINE.BOLD, 
+            INLINE.ITALIC, 
+            INLINE.UNDERLINE, 
+            INLINE.STRIKETHROUGH,
+          ].includes(mark)) {
             toggleMark(editor, mark)
           } else {
             toggleBlock(editor, mark)
@@ -104,71 +83,71 @@ export const SlateTextarea = ({editor}) => {
 const Element = ({ attributes, children, element }) => {
   const style = { textAlign: element.align }
   switch (element.type) {
-    case 'block-quote':
+    case BLOCK.BLOCKQUOTE:
       return (
         <blockquote style={style} {...attributes}>
           {children}
         </blockquote>
       )
-    case 'bulleted-list':
+    case BLOCK.UL:
       return (
         <ul style={style} {...attributes}>
           {children}
         </ul>
       )
-    case 'heading-one':
-      return (
-        <h1 style={style} {...attributes}>
-          {children}
-        </h1>
-      )
-    case 'heading-two':
-      return (
-        <h2 style={style} {...attributes}>
-          {children}
-        </h2>
-      )
-    case 'heading-three':
-      return (
-        <h3 style={style} {...attributes}>
-          {children}
-        </h3>
-      )
-    case 'heading-four':
-      return (
-        <h4 style={style} {...attributes}>
-          {children}
-        </h4>
-      )
-    case 'heading-five':
-      return (
-        <h5 style={style} {...attributes}>
-          {children}
-        </h5>
-      )
-    case 'heading-six':
-      return (
-        <h6 style={style} {...attributes}>
-          {children}
-        </h6>
-      )
-    case 'list-item':
-      return (
-        <li style={style} {...attributes}>
-          {children}
-        </li>
-      )
-    case 'numbered-list':
+    case BLOCK.OL:
       return (
         <ol style={style} {...attributes}>
           {children}
         </ol>
       )
-    case 'link':
+    case BLOCK.LI:
+      return (
+        <li style={style} {...attributes}>
+          {children}
+        </li>
+      )
+    case BLOCK.H1:
+      return (
+        <h1 style={style} {...attributes}>
+          {children}
+        </h1>
+      )
+    case BLOCK.H2:
+      return (
+        <h2 style={style} {...attributes}>
+          {children}
+        </h2>
+      )
+    case BLOCK.H3:
+      return (
+        <h3 style={style} {...attributes}>
+          {children}
+        </h3>
+      )
+    case BLOCK.H4:
+      return (
+        <h4 style={style} {...attributes}>
+          {children}
+        </h4>
+      )
+    case BLOCK.H5:
+      return (
+        <h5 style={style} {...attributes}>
+          {children}
+        </h5>
+      )
+    case BLOCK.H6:
+      return (
+        <h6 style={style} {...attributes}>
+          {children}
+        </h6>
+      )
+    case INLINE.LINK:
       return <LinkComponent {...{ attributes, children, element }} />
-    case 'image':
+    case BLOCK.IMG:
       return <Image {...{ attributes, children, element }} />
-    case 'video':
+    case BLOCK.VIDEO:
       return <Video {...{ attributes, children, element }} />
     default:
       return (
@@ -180,23 +159,19 @@ const Element = ({ attributes, children, element }) => {
 }
 
 const Leaf = ({ attributes, children, leaf }) => {
-  if (leaf.bold) {
+  if (leaf[INLINE.BOLD]) {
     children = <strong>{children}</strong>
   }
 
-  if (leaf.code) {
-    children = <code>{children}</code>
-  }
-
-  if (leaf.italic) {
+  if (leaf[INLINE.ITALIC]) {
     children = <em>{children}</em>
   }
 
-  if (leaf.underline) {
+  if (leaf[INLINE.UNDERLINE]) {
     children = <u>{children}</u>
   }
 
-  if (leaf.strikethrough) {
+  if (leaf[INLINE.STRIKETHROUGH]) {
     children = <s>{children}</s>
   }
 
