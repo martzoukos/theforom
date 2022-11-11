@@ -41,6 +41,7 @@ export const withInlines = editor => {
 
 // Utility function to insert the link when the toolbar button is clicked
 const insertLink = (editor, url) => {
+  console.log(editor.selection)
   if (editor.selection) {
     wrapLink(editor, url)
   }
@@ -132,14 +133,19 @@ export const AddLinkButton = () => {
       active={isLinkActive(editor).toString()}
       onMouseDown={event => {
         event.preventDefault()
-        const url = window.prompt('Enter the URL of the link:')
-        if (!url) return
-        insertLink(editor, url)
+        addLink(editor)
       }}
     >
       <Linkicon size={18} />
     </Button>
   )
+}
+
+// The function to trigger the Add link flow
+export const addLink = (editor) => {
+  const url = window.prompt('Enter the URL of the link:')
+  if (!url) return
+  insertLink(editor, url)
 }
 
 // The Toolbar button to remove the link

@@ -15,6 +15,7 @@ const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
   'mod+u': 'underline',
+  'mod+k': 'link',
   'mod+shift+s': 'strikethrough',
   'mod+shift+1': 'heading-one',
   'mod+shift+2': 'heading-two',

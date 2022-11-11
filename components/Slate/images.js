@@ -10,7 +10,6 @@ import {
 import {
   Transforms
 } from 'slate'
-import styles from './SlateEditor.module.css';
 import { Image as ImageIcon } from 'lucide-react';
 import { Button } from '@mui/material';
 

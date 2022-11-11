@@ -21,7 +21,7 @@ import {
   List,
   ListOrdered,
 } from "lucide-react"
-import { AddLinkButton, RemoveLinkButton } from './links'
+import { AddLinkButton, RemoveLinkButton, addLink } from './links'
 import { InsertImageButton } from './images'
 import { InsertVideoButton } from './videos'
 import styles from './SlateEditor.module.css'
@@ -171,7 +171,11 @@ export const toggleBlock = (editor, format) => {
     type: isActive ? 'paragraph' : isList ? 'list-item' : format,
   }
 
-  Transforms.setNodes(editor, newProperties)
+  if (format === 'link') {
+    addLink(editor)
+  } else {
+    Transforms.setNodes(editor, newProperties)
+  }
 
   if (!isActive && isList) {
     const block = { type: format, children: [] }
