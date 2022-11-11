@@ -5,14 +5,26 @@ import { withHistory } from 'slate-history';
 import { withInlines } from './links'
 import { withImages } from './images'
 import { withVideos } from './videos'
+import { withShortcuts } from './markdownShortcuts';
 import styles from './SlateEditor.module.css'
 import { SlateToolbar } from './SlateToolbar';
 import { SlateTextarea } from './SlateTextarea';
 
 const SlateEditor = ({ setValue }) => {
   const editor = useMemo(
-    () => withVideos(withImages(withInlines(withHistory(withReact(createEditor()))))), 
-    []
+    () => withVideos(
+      withShortcuts(
+        withImages(
+          withInlines(
+            withHistory(
+              withReact(
+                createEditor()
+              )
+            )
+          )
+        )
+      )
+    ), []
   );  
   return (
     <Slate
@@ -38,5 +50,6 @@ const initialValue = [
     ],
   },
 ];
+
 
 export default SlateEditor;

@@ -8,8 +8,8 @@ import {
   toggleBlock,
   toggleMark,
 } from './SlateToolbar';
-import { Editable, useEditor } from "slate-react"
-import { Editor, Range, Transforms } from 'slate';
+import { Editable, ReactEditor } from "slate-react"
+import { Editor, Node } from 'slate';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -24,30 +24,63 @@ const HOTKEYS = {
   'mod+shift+6': 'heading-six',
 }
 
+const MARKDOWN_SHORTCUTS = {
+  '*': 'list-item',
+  '-': 'list-item',
+  '+': 'list-item',
+  '>': 'block-quote',
+  '#': 'heading-one',
+  '##': 'heading-two',
+  '###': 'heading-three',
+  '####': 'heading-four',
+  '#####': 'heading-five',
+  '######': 'heading-six',
+}
+
 export const SlateTextarea = ({editor}) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
+
+  // This is to avoid an Android input bug
+  // PR: https://github.com/ianstormtaylor/slate/pull/4988
+  const handleDomBeforeInput = useCallback((e) => {
+    queueMicrotask(() => {
+      const pendingDiffs = ReactEditor.androidPendingDiffs(editor)
+      const scheduleFlush = pendingDiffs?.some(({ diff, path }) => {
+        if (!diff.text.endsWith(' ')) {
+          return false
+        }
+  
+        const { text } = Node.leaf(editor, path)
+        const beforeText = text.slice(0, diff.start) + diff.text.slice(0, -1)
+        if (!(beforeText in MARKDOWN_SHORTCUTS)) {
+          return
+        }
+  
+        const blockEntry = Editor.above(editor, {
+          at: path,
+          match: n => Editor.isBlock(editor, n),
+        })
+        if (!blockEntry) {
+          return false
+        }
+  
+        const [, blockPath] = blockEntry
+        return Editor.isStart(editor, Editor.start(editor, path), blockPath)
+      })
+  
+      if (scheduleFlush) {
+        ReactEditor.androidScheduleFlush(editor)
+      }
+    })
+  }, [editor])
 
   return <Editable 
     renderLeaf={renderLeaf} 
     renderElement={renderElement}
     className={styles.editable}
-    onKeyDown={event => {
-      // Markdown like shortcut
-      // Better use this: https://github.com/ianstormtaylor/slate/blob/main/site/examples/markdown-shortcuts.tsx
-      if (event.key === ' ' && editor.selection && Range.isCollapsed(editor.selection)) {
-        const { selection } = editor
-        // If space is entered on the:
-        // - second character in the line (so after the modifier char)
-        // - first leaf node in this line (so not towards the end of the line)
-        if (selection.focus.offset === 1 && selection.focus.path[1] === 0) {
-          const anchorText = Editor.leaf(editor, selection.focus)
-          if (anchorText[0].text === '-') {
-            toggleBlock(editor, 'bulleted-list')
-          }
-        }
-      }
-      
+    onDOMBeforeInput={handleDomBeforeInput}
+    onKeyDown={event => {      
       for (const hotkey in HOTKEYS) {
         if (isHotkey(hotkey, event)) {
           event.preventDefault()
@@ -62,6 +95,7 @@ export const SlateTextarea = ({editor}) => {
     }}
   />
 }
+
 
 /////////////
 // REACT COMPONENTS
