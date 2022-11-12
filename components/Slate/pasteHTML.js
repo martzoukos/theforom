@@ -91,7 +91,6 @@ export const withHTML = editor => {
     if (html) {
       const parsed = new DOMParser().parseFromString(html, 'text/html')
       const fragment = deserialize(parsed.body)
-      console.log(fragment)
       Transforms.insertFragment(editor, fragment)
       return
     }

@@ -21,10 +21,12 @@ export async function getServerSideProps(context) {
       },
       posts: {
         select: {
+          id: true,
           content: true,
           createdAt: true,
           User: {
             select: {
+              id: true,
               name: true,
               image: true,
               shortBio: true,
@@ -52,6 +54,7 @@ const Thread = ({ thread }) => {
       </Head>
       <ThreadCreator 
         avatar={thread.User.image}
+        id={thread.User.id}
         name={thread.User.name}
         shortBio={thread.User.shortBio}
         postCount={thread.User._count.posts}
@@ -61,12 +64,13 @@ const Thread = ({ thread }) => {
         date={thread.createdAt}
       />
       {thread.posts.map((post, i) => (
-        <Post
+        <div id={`post-${post.id}`} key={`post-${i}`}>
+          <Post
           content={post}
-          key={`post-${i}`}
           showCreatedBy={i>0}  
           withBackground={i%2 === 1}
         />
+        </div>
       ))}
       <PostReply thread={thread}/>
     </Layout>

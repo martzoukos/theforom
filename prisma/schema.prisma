@@ -45,6 +45,10 @@ model User {
   emailVerified DateTime?
   image         String?
   shortBio      String?
+  longBio       String?
+  twitterURL    String?
+  facebookURL   String?
+  linkedInURL   String?
   threads       Thread[]
   posts         Post[]
   accounts      Account[]

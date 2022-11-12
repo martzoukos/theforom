@@ -9,11 +9,14 @@
 }
 
 .avatar {
+  margin-right: 1rem;
+  margin-left: -4rem;
+}
+
+.avatarImage {
   border-radius: 100%;
   width: 3rem;
   height: 3rem;
-  margin-right: 1rem;
-  margin-left: -4rem;
 }
 
 .metaContent {
