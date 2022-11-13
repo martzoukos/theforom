@@ -5,6 +5,8 @@ import Post from '../../components/Post';
 import ThreadTitle from '../../components/ThreadTitle';
 import ThreadCreator from '../../components/ThreadCreator';
 import { PostReply } from '../../components/PostReply';
+import { useSession, signIn } from 'next-auth/react';
+import { Button, Container } from '@mui/material';
 
 export async function getServerSideProps(context) {
   const thread = await prisma.thread.findUnique({
@@ -47,6 +49,7 @@ export async function getServerSideProps(context) {
 }
 
 const Thread = ({ thread }) => {  
+  const { data: session } = useSession()
   return (
     <Layout>
       <Head>
@@ -72,7 +75,13 @@ const Thread = ({ thread }) => {
         />
         </div>
       ))}
-      <PostReply thread={thread}/>
+      {session ?
+        <PostReply thread={thread}/>
+      :
+        <Container>
+          <Button variant='contained' onClick={() => signIn()}>Connect to post a reply</Button>
+        </Container>
+      }
     </Layout>
   )
 }

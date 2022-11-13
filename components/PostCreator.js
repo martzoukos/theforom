@@ -11,7 +11,6 @@ const PostCreator = ({
   postCreatedAt,
 }) => {
   const createdAtDate = new Date(postCreatedAt).toLocaleString()
-  console.log(id)
   return (
     <div className={styles.postCreator}>
       <Link href={`/users/${id}`} className={styles.avatar}>

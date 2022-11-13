@@ -3,11 +3,14 @@ import Layout from '../../components/Layout'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Editor from '../../components/Slate/SlateEditor';
+import { useSession, signIn } from 'next-auth/react';
+import { Container, Button } from '@mui/material';
 
 export default function Thread() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const router = useRouter()
+  const { data: session } = useSession()
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -21,26 +24,34 @@ export default function Thread() {
     await router.push(`/threads/${data.id}`)
   }
 
-  return (
-    <Layout>
-      <Head>
-        <title>Create your first thread</title>
-      </Head>
-      <form action='/api/thread' method='post' onSubmit={handleSubmit}>
-        <label htmlFor='title'>Title</label>
-        <input 
-          type='text' 
-          name='title' 
-          id='title'
-          placeholder='Thread title'
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-        />
-        <br/>
-        <Editor value={content} setValue={setContent}/>
-        <br/>
-        <button type='submit'>Publish your Thread</button>
-      </form>
-    </Layout>
-  );
+  if (session) {
+    return (
+      <Layout>
+        <Head>
+          <title>Create your first thread</title>
+        </Head>
+        <form action='/api/thread' method='post' onSubmit={handleSubmit}>
+          <label htmlFor='title'>Title</label>
+          <input 
+            type='text' 
+            name='title' 
+            id='title'
+            placeholder='Thread title'
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+          />
+          <br/>
+          <Editor value={content} setValue={setContent}/>
+          <br/>
+          <button type='submit'>Publish your Thread</button>
+        </form>
+      </Layout>
+    )
+  } else {
+    return(
+      <Container>          
+        <Button variant='contained' onClick={() => signIn()}>Connect to create a Thread</Button>
+      </Container>
+    )
+  }
 }

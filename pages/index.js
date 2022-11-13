@@ -2,7 +2,8 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/Layout';
 import prisma from '../lib/prisma'
 import Link from 'next/link'
-import { List, ListItem, Container, Avatar } from '@mui/material';
+import { List, ListItem, Container, Avatar, Button } from '@mui/material';
+import { useSession, signIn } from 'next-auth/react';
 
 export async function getServerSideProps() {
   const threads = await prisma.thread.findMany({
@@ -26,6 +27,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ allThreads }) {
+  const { data: session } = useSession()
   return (
     <Layout>
       <Head>
@@ -46,7 +48,13 @@ export default function Home({ allThreads }) {
             </Link>
             ))}
         </List>
-        <Link href='/threads/new'>Create a new Thread</Link>
+        {session ?
+          <Link href='/threads/new'>Create a new Thread</Link>
+          :
+          <Container>          
+            <Button variant='contained' onClick={() => signIn()}>Connect to create a Thread</Button>
+          </Container>
+        }
       </Container>
     </Layout>
   );
