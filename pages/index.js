@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/Layout';
 import prisma from '../lib/prisma'
 import Link from 'next/link'
+import { List, ListItem, Container, Avatar } from '@mui/material';
 
 export async function getServerSideProps() {
   const threads = await prisma.thread.findMany({
@@ -9,7 +10,7 @@ export async function getServerSideProps() {
       User:{
         select: {
           name: true,
-          email: true,
+          image: true,
         }
       },
       _count: {
@@ -30,20 +31,23 @@ export default function Home({ allThreads }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section>
+      <Container>
         <h1>Threads </h1>
-        <ul>
+        <List>
           {allThreads.map((thread, i) => (
-            <li key={`thread-${i}`}>
-              <Link href={`/threads/${thread.id}`}>{thread.subject}</Link>
-              ({thread._count.posts} posts)
-              by &nbsp;
-              {thread.User.email}
-            </li>
+            <Link href={`/threads/${thread.id}`} key={`thread-${i}`}>
+              <ListItem>
+                {thread.User.image &&
+                  <Avatar alt={thread.User.name} src={thread.User.image} />
+                }
+                {thread.subject}
+                ({thread._count.posts} posts)
+              </ListItem>
+            </Link>
             ))}
-        </ul>
+        </List>
         <Link href='/threads/new'>Create a new Thread</Link>
-      </section>
+      </Container>
     </Layout>
   );
 }
