@@ -1,15 +1,15 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/Layout';
-// import prisma from '../lib/prisma'
-import Link from 'next/link'
-import { List, ListItem, Container, Avatar, Button, Paper, TextField, InputAdornment, Snackbar } from '@mui/material';
-import { useSession, signIn } from 'next-auth/react';
+import Layout from '../components/Layout';
+import prisma from '../lib/prisma'
+import { Container, Avatar, TextField, InputAdornment, Card, CardContent, Button } from '@mui/material';
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { Stack } from '@mui/system';
 import { useState } from 'react';
 import { Facebook, Linkedin, Twitter } from 'lucide-react';
 import { LoadingButton } from '@mui/lab';
+import { useS3Upload } from 'next-s3-upload';
+import { stringAvatar } from '../lib/stringAvatar';
 
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(
@@ -33,6 +33,7 @@ export async function getServerSideProps(context) {
 
 export default function Home({ user }) {
   const [loading, setLoading] = useState(false)
+  const [avatarLoading, setAvatarLoading] = useState(false)
   const [name, setName] = useState(user.name)
   const [image, setImage] = useState(user.image)
   const [shortBio, setShortBio] = useState(user.shortBio)
@@ -40,7 +41,28 @@ export default function Home({ user }) {
   const [twitterURL, setTwitterURL] = useState(user.twitterURL)
   const [facebookURL, setFacebookURL] = useState(user.facebookURL)
   const [linkedInURL, setLinkedInURL] = useState(user.linkedInURL)
+  const { FileInput, openFileDialog, uploadToS3 } = useS3Upload()
 
+  const handleAvatarUpload = async file => {
+    setAvatarLoading(true)
+    const { url } = await uploadToS3(file)
+    const result = await fetch(`/api/users/${user.id}/avatar`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        uid: user.id,
+        image: url,
+      }),
+    });
+    setAvatarLoading(false)
+    switch (result.status) {
+      case 200:
+        setImage(url)
+        break;
+      default:
+        alert('There was an issue with your request, please try again.')
+    }
+  }
 
   const handleSubmit = async event => {
     setLoading(true)
@@ -81,6 +103,22 @@ export default function Home({ user }) {
           <form onSubmit={handleSubmit}>
             <Stack spacing={2}>
               <h1>My Settings</h1>
+              <Card>
+                <CardContent>
+                  {image ?
+                    <Avatar src={image} />
+                  : <Avatar sx={{ bgcolor: 'blue' }} {...stringAvatar(name)} />
+                  }
+                  <FileInput onChange={handleAvatarUpload} />
+                  <LoadingButton 
+                    onClick={openFileDialog}
+                    variant="contained"
+                    loading={avatarLoading} 
+                  >
+                    Upload a new Avatar
+                  </LoadingButton>
+                </CardContent>
+              </Card>
               <TextField 
                 label='Name' 
                 value={name} 
