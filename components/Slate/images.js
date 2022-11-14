@@ -10,7 +10,7 @@ import {
 import {
   Transforms
 } from 'slate'
-import { Image as ImageIcon } from 'lucide-react';
+import { Image as ImageIcon, Trash } from 'lucide-react';
 import { Button } from '@mui/material';
 import { BLOCK } from './constants';
 
@@ -34,6 +34,7 @@ export const withImages = editor => {
         if (mime === 'image') {
           reader.addEventListener('load', () => {
             const url = reader.result
+            //@TODO: upload the image here and then add
             insertImage(editor, url)
           })
 
@@ -79,20 +80,21 @@ export const Image = ({ attributes, children, element }) => {
             boxShadow: `${selected && focused ? '0 0 0 3px #B4D5FF' : 'none'}`
           }}
         />
-        <button
+        <Button
           type="button"
+          size='small'
           active="true"
-          onClick={() => Transforms.removeNodes(editor, { at: path })}
+          variant='contained'
+          onMouseDown={() => { Transforms.removeNodes(editor, { at: path })} }
           style={{
             display: `${selected && focused ? 'inline' : 'none'}`,
             position: 'absolute',
             top: '0.5em',
             left: '0.5em',
-            backgroundColor: 'white',
           }}
         >
-          X
-        </button>
+          <Trash size={18} />
+        </Button>
       </div>
     </div>
   )
