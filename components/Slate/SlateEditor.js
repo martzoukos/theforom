@@ -11,6 +11,22 @@ import styles from './SlateEditor.module.css'
 import { SlateToolbar } from './SlateToolbar';
 import { SlateTextarea } from './SlateTextarea';
 import { BLOCK } from './constants';
+import create from 'zustand'
+
+export const useStore = create(set => ({
+  entities: {
+    e1: {
+      url: "https://placekitten.com/400/300",
+    }
+  },
+  upsertEntity: (id, entity) =>
+    set((state) => ({
+      entities: {
+        ...state.entities,
+        [id]: entity,
+      },
+    })),
+}))
 
 const SlateEditor = ({ setValue }) => {
   const editor = useMemo(
@@ -53,6 +69,10 @@ const initialValue = [
       { text: '' },
     ],
   },
+  {
+    id: 'e1',
+    children: [{ text: '' },]
+  }
 ];
 
 

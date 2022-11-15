@@ -11,6 +11,7 @@ import {
 import { Editable, ReactEditor } from "slate-react"
 import { Editor, Node } from 'slate';
 import { BLOCK, HOTKEYS, INLINE, MARKDOWN_SHORTCUTS } from './constants'
+import { useStore } from './SlateEditor';
 
 export const SlateTextarea = ({editor}) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
@@ -82,6 +83,19 @@ export const SlateTextarea = ({editor}) => {
 /////////////
 const Element = ({ attributes, children, element }) => {
   const style = { textAlign: element.align }
+  const entity = useStore(
+    (state) => element.id != null && state.entities[element.id]
+  )
+  if (entity) {
+    return (
+      <figure {...attributes} contentEditable={false}>
+        <img src={entity.url} />
+        loading
+        {children}
+      </figure>
+    );
+  }
+
   switch (element.type) {
     case BLOCK.BLOCKQUOTE:
       return (

@@ -13,6 +13,7 @@ import {
 import { Image as ImageIcon, Trash } from 'lucide-react';
 import { Button } from '@mui/material';
 import { BLOCK } from './constants';
+import { useStore } from './SlateEditor';
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
@@ -35,7 +36,14 @@ export const withImages = editor => {
           reader.addEventListener('load', () => {
             const url = reader.result
             //@TODO: upload the image here and then add
-            insertImage(editor, url)
+            const entityState = useStore.getState()
+            entityState.upsertEntity('e2', {});
+            Transforms.insertNodes(editor, { id: 'e2', children: [{ text: "" }] });
+            setTimeout(()=> {
+
+              entityState.upsertEntity('e2', { url: url });
+            }, 2000)
+            // insertImage(editor, url)
           })
 
           reader.readAsDataURL(file)
