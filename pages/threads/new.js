@@ -30,21 +30,23 @@ export default function Thread() {
         <Head>
           <title>Create your first thread</title>
         </Head>
-        <form action='/api/thread' method='post' onSubmit={handleSubmit}>
-          <label htmlFor='title'>Title</label>
-          <input 
-            type='text' 
-            name='title' 
-            id='title'
-            placeholder='Thread title'
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-          <br/>
-          <Editor value={content} setValue={setContent}/>
-          <br/>
-          <button type='submit'>Publish your Thread</button>
-        </form>
+        <Container maxWidth='md'>
+          <form action='/api/thread' method='post' onSubmit={handleSubmit}>
+            <label htmlFor='title'>Title</label>
+            <input 
+              type='text' 
+              name='title' 
+              id='title'
+              placeholder='Thread title'
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
+            />
+            <br/>
+            <Editor value={content} setValue={setContent}/>
+            <br/>
+            <button type='submit'>Publish your Thread</button>
+          </form>
+        </Container>
       </Layout>
     )
   } else {
