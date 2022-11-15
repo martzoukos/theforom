@@ -10,6 +10,7 @@ import { Facebook, Linkedin, Twitter } from 'lucide-react';
 import { LoadingButton } from '@mui/lab';
 import { useS3Upload } from 'next-s3-upload';
 import { stringAvatar } from '../lib/stringAvatar';
+import { resizeImage } from '../lib/resizeImage';
 
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(
@@ -45,7 +46,8 @@ export default function Home({ user }) {
 
   const handleAvatarUpload = async file => {
     setAvatarLoading(true)
-    const { url } = await uploadToS3(file)
+    const resizedFile = await resizeImage(file, 400, 400, 'jpg')
+    const { url } = await uploadToS3(resizedFile)
     const result = await fetch(`/api/users/${user.id}/avatar`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
