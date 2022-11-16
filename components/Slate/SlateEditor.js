@@ -14,11 +14,7 @@ import { BLOCK } from './constants';
 import create from 'zustand'
 
 export const useStore = create(set => ({
-  entities: {
-    e1: {
-      url: "https://placekitten.com/400/300",
-    }
-  },
+  entities: {},
   upsertEntity: (id, entity) =>
     set((state) => ({
       entities: {
@@ -69,10 +65,6 @@ const initialValue = [
       { text: '' },
     ],
   },
-  {
-    id: 'e1',
-    children: [{ text: '' },]
-  }
 ];
 
 

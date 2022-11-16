@@ -12,6 +12,8 @@ import { Editable, ReactEditor } from "slate-react"
 import { Editor, Node } from 'slate';
 import { BLOCK, HOTKEYS, INLINE, MARKDOWN_SHORTCUTS } from './constants'
 import { useStore } from './SlateEditor';
+import isUrl from 'is-url';
+import { LinearProgress } from '@mui/material';
 
 export const SlateTextarea = ({editor}) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
@@ -89,8 +91,10 @@ const Element = ({ attributes, children, element }) => {
   if (entity) {
     return (
       <figure {...attributes} contentEditable={false}>
-        <img src={entity.url} />
-        loading
+        <img alt='' src={entity.url} />
+        { !isUrl(entity.url) &&
+          <LinearProgress size={20} />
+        }
         {children}
       </figure>
     );

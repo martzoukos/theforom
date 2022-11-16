@@ -14,6 +14,9 @@ import { Image as ImageIcon, Trash } from 'lucide-react';
 import { Button } from '@mui/material';
 import { BLOCK } from './constants';
 import { useStore } from './SlateEditor';
+import { nanoid } from 'nanoid';
+import { resizeImage } from '../../lib/resizeImage';
+import axios from 'axios';
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
@@ -23,7 +26,7 @@ export const withImages = editor => {
   }
 
   // This is the paste an image URL and embed functionality
-  editor.insertData = data => {
+  editor.insertData = async data => {
     const text = data.getData('text/plain')
     const { files } = data
 
@@ -33,20 +36,34 @@ export const withImages = editor => {
         const [mime] = file.type.split('/')
 
         if (mime === 'image') {
-          reader.addEventListener('load', () => {
-            const url = reader.result
-            //@TODO: upload the image here and then add
+          const resizedFile = await resizeImage(file, 1920, 1080, 'jpg')
+          reader.readAsDataURL(resizedFile)
+          reader.addEventListener('load', async () => {
+            // Add the base64 first to keep the editor UI snappy
+            const base64Img = reader.result
             const entityState = useStore.getState()
-            entityState.upsertEntity('e2', {});
-            Transforms.insertNodes(editor, { id: 'e2', children: [{ text: "" }] });
-            setTimeout(()=> {
+            const id = nanoid()
+            entityState.upsertEntity(id, { url: base64Img });
+            Transforms.insertNodes(editor, { id, children: [{ text: '' }] });
 
-              entityState.upsertEntity('e2', { url: url });
-            }, 2000)
-            // insertImage(editor, url)
+            //Upload to S3 and then replace the url
+            const { data } = await axios.post('/api/s3/uploadFile', {
+              name: resizedFile.name,
+              type: resizedFile.type,
+            })
+            const url = data.url
+            const res = await axios.put(data.url, file, {
+              headers: {
+                'Content-type': file.type,
+                'Access-Control-Allow-Origin': '*',
+              }
+            })
+            if (res.status === 200) {
+              entityState.upsertEntity(id, { url: process.env.NEXT_PUBLIC_S3_BUCKET_URL + file.name });
+            } else {
+              Transforms.removeNodes(editor);
+            }
           })
-
-          reader.readAsDataURL(file)
         }
       }
     } else if (isImageUrl(text)) {
