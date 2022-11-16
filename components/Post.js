@@ -19,7 +19,7 @@ const Post = ({content, showCreatedBy, withBackground}) => {
           postCreatedAt={content.createdAt}
         />
       }
-      <div>{documentToContentBlocks(content.content) }</div>
+      <div>{documentToContentBlocks(content.content, content.uploadedMedia) }</div>
     </div>
   )
 }

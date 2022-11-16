@@ -11,6 +11,7 @@ export const BLOCK = {
   OL: 'numbered-list',
   LI: 'list-item',
   IMG: 'image',
+  UPLOADEDIMG: 'uploaded-image',
   VIDEO: 'video',
 }
 

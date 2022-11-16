@@ -25,6 +25,7 @@ export async function getServerSideProps(context) {
         select: {
           id: true,
           content: true,
+          uploadedMedia: true,
           createdAt: true,
           User: {
             select: {
@@ -69,10 +70,10 @@ const Thread = ({ thread }) => {
       {thread.posts.map((post, i) => (
         <div id={`post-${post.id}`} key={`post-${i}`}>
           <Post
-          content={post}
-          showCreatedBy={i>0}  
-          withBackground={i%2 === 1}
-        />
+            content={post}
+            showCreatedBy={i>0}  
+            withBackground={i%2 === 1}
+          />
         </div>
       ))}
       {session ?

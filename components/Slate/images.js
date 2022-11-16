@@ -47,7 +47,7 @@ export const withImages = editor => {
             uploadedMedia.upsertUploadedMedia(id, { url: base64Img });
             const uploadedImageEmpty = { 
               id, 
-              type: 'uploaded-image',
+              type: BLOCK.UPLOADEDIMG,
               children: [{ text: '' }] 
             }
             Transforms.insertNodes(editor, uploadedImageEmpty);
@@ -110,14 +110,6 @@ export const Image = ({ attributes, children, element }) => {
             boxShadow: `${selected && focused ? '0 0 0 3px #B4D5FF' : 'none'}`
           }}
         />
-        <UploadCloud 
-          size={18} 
-          style={{
-            position: 'absolute',
-            bottom: '0.5em',
-            left: '0.5em',
-          }}
-        />
         <Button
           type="button"
           size='small'
@@ -152,18 +144,24 @@ export const UploadedImage = ({ attributes, children, element }) => {
           contentEditable={false}
           style={{ position: 'relative' }}
         >
-          {/* <Tooltip title='Uploaded to S3'> */}
-            <img 
-              alt='' 
-              src={uploadedMedia.url}
-              style={{
-                display: 'block',
-                maxWidth: '100%',
-                maxHeight: '20em',
-                boxShadow: `${selected && focused ? '0 0 0 3px #B4D5FF' : 'none'}`
-              }} 
-            />
-          {/* </Tooltip> */}
+          <img 
+            alt='' 
+            src={uploadedMedia.url}
+            style={{
+              display: 'block',
+              maxWidth: '100%',
+              maxHeight: '20em',
+              boxShadow: `${selected && focused ? '0 0 0 3px #B4D5FF' : 'none'}`
+            }} 
+          />
+          <UploadCloud 
+            size={18} 
+            style={{
+              position: 'absolute',
+              bottom: '0.5em',
+              left: '0.5em',
+            }}
+          />
           { uploadedMedia.url.startsWith('data:image') &&
             <LinearProgress size={20} />
           }

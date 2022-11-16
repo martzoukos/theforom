@@ -149,7 +149,7 @@ const Element = ({ attributes, children, element }) => {
       return <LinkComponent {...{ attributes, children, element }} />
     case BLOCK.IMG:
       return <Image {...{ attributes, children, element }} />
-    case 'uploaded-image':
+    case BLOCK.UPLOADEDIMG:
       return <UploadedImage {...{ attributes, children, element }} />
     case BLOCK.VIDEO:
       return <Video {...{ attributes, children, element }} />
