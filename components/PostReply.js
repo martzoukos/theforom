@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import SlateEditor from "./Slate/SlateEditor"
+import SlateEditor, { useUploadedMedia } from "./Slate/SlateEditor"
 import styles from './PostReply.module.css'
 import { Button } from '@mui/material';
 
 export const PostReply = ({thread}) => {
   const [post, setPost] = useState('')
   const router = useRouter()
+  const uploadedMedia = useUploadedMedia()
 
   const handleSubmit = async event => {
     event.preventDefault()
-    const body = { tid: thread.id, post };
+    const body = { 
+      tid: thread.id, 
+      post,
+      uploadedMedia: uploadedMedia.uploadedMedia
+    };
     await fetch('/api/post', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

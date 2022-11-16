@@ -13,13 +13,13 @@ import { SlateTextarea } from './SlateTextarea';
 import { BLOCK } from './constants';
 import create from 'zustand'
 
-export const useStore = create(set => ({
-  entities: {},
-  upsertEntity: (id, entity) =>
+export const useUploadedMedia = create(set => ({
+  uploadedMedia: {},
+  upsertUploadedMedia: (id, media) =>
     set((state) => ({
-      entities: {
-        ...state.entities,
-        [id]: entity,
+      uploadedMedia: {
+        ...state.uploadedMedia,
+        [id]: media,
       },
     })),
 }))

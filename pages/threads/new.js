@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Layout from '../../components/Layout'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Editor from '../../components/Slate/SlateEditor';
+import Editor, { useUploadedMedia } from '../../components/Slate/SlateEditor';
 import { useSession, signIn } from 'next-auth/react';
 import { Container, Button } from '@mui/material';
 
@@ -11,10 +11,15 @@ export default function Thread() {
   const [content, setContent] = useState('')
   const router = useRouter()
   const { data: session } = useSession()
+  const uploadedMedia = useUploadedMedia()
 
   const handleSubmit = async event => {
     event.preventDefault()
-    const body = { title, content };
+    const body = { 
+      title, 
+      content,
+      uploadedMedia: uploadedMedia.uploadedMedia
+    };
     const res = await fetch('/api/thread', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -10,10 +10,10 @@ import {
 import {
   Transforms
 } from 'slate'
-import { Image as ImageIcon, Trash } from 'lucide-react';
-import { Button } from '@mui/material';
+import { Image as ImageIcon, Trash, UploadCloud } from 'lucide-react';
+import { Button, LinearProgress } from '@mui/material';
 import { BLOCK } from './constants';
-import { useStore } from './SlateEditor';
+import { useUploadedMedia } from './SlateEditor';
 import { nanoid } from 'nanoid';
 import { resizeImage } from '../../lib/resizeImage';
 import axios from 'axios';
@@ -22,7 +22,7 @@ export const withImages = editor => {
   const { insertData, isVoid } = editor
 
   editor.isVoid = element => {
-    return element.type === BLOCK.IMG ? true : isVoid(element)
+    return (element.type === BLOCK.IMG || element.type === 'uploaded-image') ? true : isVoid(element)
   }
 
   // This is the paste an image URL and embed functionality
@@ -36,22 +36,27 @@ export const withImages = editor => {
         const [mime] = file.type.split('/')
 
         if (mime === 'image') {
-          const resizedFile = await resizeImage(file, 1920, 1080, 'jpg')
+          const extension = file.name.split('.').pop()
+          const resizedFile = await resizeImage(file, 1920, 1080, extension)
           reader.readAsDataURL(resizedFile)
           reader.addEventListener('load', async () => {
             // Add the base64 first to keep the editor UI snappy
             const base64Img = reader.result
-            const entityState = useStore.getState()
+            const uploadedMedia = useUploadedMedia.getState()
             const id = nanoid()
-            entityState.upsertEntity(id, { url: base64Img });
-            Transforms.insertNodes(editor, { id, children: [{ text: '' }] });
+            uploadedMedia.upsertUploadedMedia(id, { url: base64Img });
+            const uploadedImageEmpty = { 
+              id, 
+              type: 'uploaded-image',
+              children: [{ text: '' }] 
+            }
+            Transforms.insertNodes(editor, uploadedImageEmpty);
 
             //Upload to S3 and then replace the url
             const { data } = await axios.post('/api/s3/uploadFile', {
               name: resizedFile.name,
               type: resizedFile.type,
             })
-            const url = data.url
             const res = await axios.put(data.url, file, {
               headers: {
                 'Content-type': file.type,
@@ -59,7 +64,7 @@ export const withImages = editor => {
               }
             })
             if (res.status === 200) {
-              entityState.upsertEntity(id, { url: process.env.NEXT_PUBLIC_S3_BUCKET_URL + file.name });
+              uploadedMedia.upsertUploadedMedia(id, { url: process.env.NEXT_PUBLIC_S3_BUCKET_URL + file.name });
             } else {
               Transforms.removeNodes(editor);
             }
@@ -105,6 +110,14 @@ export const Image = ({ attributes, children, element }) => {
             boxShadow: `${selected && focused ? '0 0 0 3px #B4D5FF' : 'none'}`
           }}
         />
+        <UploadCloud 
+          size={18} 
+          style={{
+            position: 'absolute',
+            bottom: '0.5em',
+            left: '0.5em',
+          }}
+        />
         <Button
           type="button"
           size='small'
@@ -123,6 +136,60 @@ export const Image = ({ attributes, children, element }) => {
       </div>
     </div>
   )
+}
+
+export const UploadedImage = ({ attributes, children, element }) => {
+  const editor = useSlateStatic()
+  const path = ReactEditor.findPath(editor, element)
+  const uploadedMedia = useUploadedMedia.getState().uploadedMedia[element.id]
+  const selected = useSelected()
+  const focused = useFocused()
+  if (uploadedMedia) {
+    return (
+      <div {...attributes}>
+        {children}
+        <div
+          contentEditable={false}
+          style={{ position: 'relative' }}
+        >
+          {/* <Tooltip title='Uploaded to S3'> */}
+            <img 
+              alt='' 
+              src={uploadedMedia.url}
+              style={{
+                display: 'block',
+                maxWidth: '100%',
+                maxHeight: '20em',
+                boxShadow: `${selected && focused ? '0 0 0 3px #B4D5FF' : 'none'}`
+              }} 
+            />
+          {/* </Tooltip> */}
+          { uploadedMedia.url.startsWith('data:image') &&
+            <LinearProgress size={20} />
+          }
+          <Button
+            type="button"
+            size='small'
+            active="true"
+            variant='contained'
+            onMouseDown={() => { Transforms.removeNodes(editor, { at: path })} }
+            style={{
+              display: `${selected && focused ? 'inline' : 'none'}`,
+              position: 'absolute',
+              top: '0.5em',
+              left: '0.5em',
+            }}
+          >
+            <Trash size={18} />
+          </Button>
+        </div>
+      </div>
+    )
+  } else {
+    return <p {...attributes}>
+      {children}
+    </p>
+  }
 }
 
 export const InsertImageButton = () => {

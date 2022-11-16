@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { isHotkey } from 'is-hotkey'
 import { LinkComponent } from './links'
-import { Image } from './images'
+import { Image, UploadedImage } from './images'
 import { Video } from './videos'
 import styles from './SlateEditor.module.css'
 import { 
@@ -11,7 +11,7 @@ import {
 import { Editable, ReactEditor } from "slate-react"
 import { Editor, Node } from 'slate';
 import { BLOCK, HOTKEYS, INLINE, MARKDOWN_SHORTCUTS } from './constants'
-import { useStore } from './SlateEditor';
+import { useUploadedMedia } from './SlateEditor';
 import isUrl from 'is-url';
 import { LinearProgress } from '@mui/material';
 
@@ -84,80 +84,64 @@ export const SlateTextarea = ({editor}) => {
 // REACT COMPONENTS
 /////////////
 const Element = ({ attributes, children, element }) => {
-  const style = { textAlign: element.align }
-  const entity = useStore(
-    (state) => element.id != null && state.entities[element.id]
-  )
-  if (entity) {
-    return (
-      <figure {...attributes} contentEditable={false}>
-        <img alt='' src={entity.url} />
-        { !isUrl(entity.url) &&
-          <LinearProgress size={20} />
-        }
-        {children}
-      </figure>
-    );
-  }
-
   switch (element.type) {
     case BLOCK.BLOCKQUOTE:
       return (
-        <blockquote style={style} {...attributes}>
+        <blockquote {...attributes}>
           {children}
         </blockquote>
       )
     case BLOCK.UL:
       return (
-        <ul style={style} {...attributes}>
+        <ul {...attributes}>
           {children}
         </ul>
       )
     case BLOCK.OL:
       return (
-        <ol style={style} {...attributes}>
+        <ol {...attributes}>
           {children}
         </ol>
       )
     case BLOCK.LI:
       return (
-        <li style={style} {...attributes}>
+        <li {...attributes}>
           {children}
         </li>
       )
     case BLOCK.H1:
       return (
-        <h1 style={style} {...attributes}>
+        <h1 {...attributes}>
           {children}
         </h1>
       )
     case BLOCK.H2:
       return (
-        <h2 style={style} {...attributes}>
+        <h2 {...attributes}>
           {children}
         </h2>
       )
     case BLOCK.H3:
       return (
-        <h3 style={style} {...attributes}>
+        <h3 {...attributes}>
           {children}
         </h3>
       )
     case BLOCK.H4:
       return (
-        <h4 style={style} {...attributes}>
+        <h4 {...attributes}>
           {children}
         </h4>
       )
     case BLOCK.H5:
       return (
-        <h5 style={style} {...attributes}>
+        <h5 {...attributes}>
           {children}
         </h5>
       )
     case BLOCK.H6:
       return (
-        <h6 style={style} {...attributes}>
+        <h6 {...attributes}>
           {children}
         </h6>
       )
@@ -165,11 +149,13 @@ const Element = ({ attributes, children, element }) => {
       return <LinkComponent {...{ attributes, children, element }} />
     case BLOCK.IMG:
       return <Image {...{ attributes, children, element }} />
+    case 'uploaded-image':
+      return <UploadedImage {...{ attributes, children, element }} />
     case BLOCK.VIDEO:
       return <Video {...{ attributes, children, element }} />
     default:
       return (
-        <p style={style} {...attributes}>
+        <p {...attributes}>
           {children}
         </p>
       )

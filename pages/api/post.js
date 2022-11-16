@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     return
   }
 
-  const { tid, post } = req.body
+  const { tid, post, uploadedMedia } = req.body
   const connectUser = { id: session?.user?.id }
   const result = await prisma.thread.update({
     where: {
@@ -18,6 +18,7 @@ export default async function handler(req, res) {
       posts: {
         create: {
           content: post,
+          uploadedMedia: uploadedMedia,
           User: { connect: connectUser }
         },
       },
