@@ -112,12 +112,6 @@ export default function Home({ user }) {
                   : <Avatar sx={{ bgcolor: 'blue' }} {...stringAvatar(name)} />
                   }
                   <input type='file' onChange={handleAvatarUpload} />
-                  {/* <LoadingButton 
-                    variant="contained"
-                    loading={avatarLoading} 
-                  >
-                    Upload a new Avatar
-                  </LoadingButton> */}
                 </CardContent>
               </Card>
               <TextField 
