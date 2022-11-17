@@ -8,7 +8,7 @@ import { Stack } from '@mui/system';
 import { useState } from 'react';
 import { Facebook, Linkedin, Twitter } from 'lucide-react';
 import { LoadingButton } from '@mui/lab';
-import { useS3Upload } from 'next-s3-upload';
+import { uploadFile } from '../lib/uploadFile';
 import { stringAvatar } from '../lib/stringAvatar';
 import { resizeImage } from '../lib/resizeImage';
 
@@ -42,24 +42,24 @@ export default function Home({ user }) {
   const [twitterURL, setTwitterURL] = useState(user.twitterURL)
   const [facebookURL, setFacebookURL] = useState(user.facebookURL)
   const [linkedInURL, setLinkedInURL] = useState(user.linkedInURL)
-  const { FileInput, openFileDialog, uploadToS3 } = useS3Upload()
 
-  const handleAvatarUpload = async file => {
+  const handleAvatarUpload = async event => {
     setAvatarLoading(true)
+    const file = event.target.files[0]
     const resizedFile = await resizeImage(file, 400, 400, 'jpg')
-    const { url } = await uploadToS3(resizedFile)
+    const imageURL = await uploadFile(resizedFile, 'settings')
     const result = await fetch(`/api/users/${user.id}/avatar`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         uid: user.id,
-        image: url,
+        image: imageURL,
       }),
     });
     setAvatarLoading(false)
     switch (result.status) {
       case 200:
-        setImage(url)
+        setImage(imageURL)
         break;
       default:
         alert('There was an issue with your request, please try again.')
@@ -111,14 +111,13 @@ export default function Home({ user }) {
                     <Avatar src={image} />
                   : <Avatar sx={{ bgcolor: 'blue' }} {...stringAvatar(name)} />
                   }
-                  <FileInput onChange={handleAvatarUpload} />
-                  <LoadingButton 
-                    onClick={openFileDialog}
+                  <input type='file' onChange={handleAvatarUpload} />
+                  {/* <LoadingButton 
                     variant="contained"
                     loading={avatarLoading} 
                   >
                     Upload a new Avatar
-                  </LoadingButton>
+                  </LoadingButton> */}
                 </CardContent>
               </Card>
               <TextField 
