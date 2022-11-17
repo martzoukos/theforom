@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
       user: user
     },
   }
-}
+} 
 
 export default function Home({ user }) {
   const [loading, setLoading] = useState(false)
