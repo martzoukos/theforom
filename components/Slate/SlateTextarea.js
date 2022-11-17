@@ -11,9 +11,6 @@ import {
 import { Editable, ReactEditor } from "slate-react"
 import { Editor, Node } from 'slate';
 import { BLOCK, HOTKEYS, INLINE, MARKDOWN_SHORTCUTS } from './constants'
-import { useUploadedMedia } from './SlateEditor';
-import isUrl from 'is-url';
-import { LinearProgress } from '@mui/material';
 
 export const SlateTextarea = ({editor}) => {
   const renderElement = useCallback(props => <Element {...props} />, [])

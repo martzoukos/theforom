@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     return
   }
 
-  const { title, content } = req.body
+  const { title, content, uploadedMedia } = req.body
   const connectUser = { id: session?.user?.id }
   const result = await prisma.thread.create({
     data: {
@@ -16,6 +16,7 @@ export default async function handler(req, res) {
       posts: {
         create: {
           content: content,
+          uploadedMedia: uploadedMedia,
           User: { connect: connectUser }
         },
       },

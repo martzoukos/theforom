@@ -13,15 +13,17 @@ import { SlateTextarea } from './SlateTextarea';
 import { BLOCK } from './constants';
 import create from 'zustand'
 
-export const useUploadedMedia = create(set => ({
+export const useUploadedMedia = create((set) => ({
   uploadedMedia: {},
-  upsertUploadedMedia: (id, media) =>
+  upsertUploadedMedia: (id, media) => {
     set((state) => ({
       uploadedMedia: {
         ...state.uploadedMedia,
         [id]: media,
       },
-    })),
+    }), false)
+  }
+  ,
 }))
 
 const SlateEditor = ({ setValue }) => {

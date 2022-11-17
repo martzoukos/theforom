@@ -16,60 +16,22 @@ import { BLOCK } from './constants';
 import { useUploadedMedia } from './SlateEditor';
 import { nanoid } from 'nanoid';
 import { resizeImage } from '../../lib/resizeImage';
-import axios from 'axios';
+import { uploadFile } from '../../lib/uploadFile';
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
 
   editor.isVoid = element => {
-    return (element.type === BLOCK.IMG || element.type === 'uploaded-image') ? true : isVoid(element)
+    return (element.type === BLOCK.IMG || element.type === BLOCK.UPLOADEDIMG) ? true : isVoid(element)
   }
 
   // This is the paste an image URL and embed functionality
   editor.insertData = async data => {
     const text = data.getData('text/plain')
     const { files } = data
-
     if (files && files.length > 0) {
       for (const file of files) {
-        const reader = new FileReader()
-        const [mime] = file.type.split('/')
-
-        if (mime === 'image') {
-          const extension = file.name.split('.').pop()
-          const resizedFile = await resizeImage(file, 1920, 1080, extension)
-          reader.readAsDataURL(resizedFile)
-          reader.addEventListener('load', async () => {
-            // Add the base64 first to keep the editor UI snappy
-            const base64Img = reader.result
-            const uploadedMedia = useUploadedMedia.getState()
-            const id = nanoid()
-            uploadedMedia.upsertUploadedMedia(id, { url: base64Img });
-            const uploadedImageEmpty = { 
-              id, 
-              type: BLOCK.UPLOADEDIMG,
-              children: [{ text: '' }] 
-            }
-            Transforms.insertNodes(editor, uploadedImageEmpty);
-
-            //Upload to S3 and then replace the url
-            const { data } = await axios.post('/api/s3/uploadFile', {
-              name: resizedFile.name,
-              type: resizedFile.type,
-            })
-            const res = await axios.put(data.url, file, {
-              headers: {
-                'Content-type': file.type,
-                'Access-Control-Allow-Origin': '*',
-              }
-            })
-            if (res.status === 200) {
-              uploadedMedia.upsertUploadedMedia(id, { url: process.env.NEXT_PUBLIC_S3_BUCKET_URL + file.name });
-            } else {
-              Transforms.removeNodes(editor);
-            }
-          })
-        }
+        uploadAndInsertImage(editor, file)
       }
     } else if (isImageUrl(text)) {
       insertImage(editor, text)
@@ -79,6 +41,37 @@ export const withImages = editor => {
   }
 
   return editor
+}
+
+const uploadAndInsertImage = async (editor, file) => {
+  const reader = new FileReader()
+  const [mime] = file.type.split('/')
+  if (mime === 'image') {
+    const extension = file.name.split('.').pop()
+    const resizedFile = await resizeImage(file, 1920, 1080, extension)
+    reader.readAsDataURL(resizedFile)
+    reader.addEventListener('load', async () => {
+      // Add the base64 first to keep the editor UI snappy
+      const base64Img = reader.result
+      const uploadedMedia = useUploadedMedia.getState()
+      const id = nanoid()
+      uploadedMedia.upsertUploadedMedia(id, { url: base64Img });
+      const uploadedImageEmpty = { 
+        id, 
+        type: BLOCK.UPLOADEDIMG,
+        children: [{ text: '' }] 
+      }
+      Transforms.insertNodes(editor, uploadedImageEmpty);
+
+      //Upload to S3 and then replace the url
+      const imageURL = await uploadFile(resizedFile, 'posts')
+      if (imageURL) {
+        uploadedMedia.upsertUploadedMedia(id, { url: imageURL });
+      } else {
+        Transforms.removeNodes(editor);
+      }
+    })
+  }
 }
 
 const insertImage = (editor, url) => {
@@ -133,7 +126,9 @@ export const Image = ({ attributes, children, element }) => {
 export const UploadedImage = ({ attributes, children, element }) => {
   const editor = useSlateStatic()
   const path = ReactEditor.findPath(editor, element)
-  const uploadedMedia = useUploadedMedia.getState().uploadedMedia[element.id]
+  const uploadedMedia = useUploadedMedia(
+    (state) => element.id != null && state.uploadedMedia[element.id]
+  )
   const selected = useSelected()
   const focused = useFocused()
   if (uploadedMedia) {
