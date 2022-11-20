@@ -1,30 +1,12 @@
-import { useTheme } from '@mui/material/styles';
-import { IconButton } from '@mui/material';
 import Head from 'next/head';
-import { useContext } from 'react';
-import { ColorModeContext } from '../pages/_app';
 import styles from './Layout.module.css';
 import LogInBtn from './LoginBtn';
 import Logo from './Logo';
-import { Moon, Sun } from 'lucide-react';
-import axios from 'axios';
-import { useSession } from 'next-auth/react';
+import { UIModeSwitcher } from './UIModeSwitcher';
 
 export const siteTitle = 'The Forom';
 
 export default function Layout({ children }) {
-  const theme = useTheme()
-  const colorMode = useContext(ColorModeContext)
-  const { data: session } = useSession()
-
-  const handleModeSwitch = (newMode) => {
-    const uid = session.user.id
-    colorMode.toggleColorMode()
-    axios.post(`/api/users/${[uid]}/uiMode`, {
-      uid,
-      uiMode: newMode
-    })
-  }
   return (
     <>
       <Head>
@@ -50,14 +32,7 @@ export default function Layout({ children }) {
         {children}
       </main>
       <footer>
-        {theme.palette.mode} mode
-        <IconButton 
-          sx={{ ml: 1 }} 
-          onClick={() => handleModeSwitch(theme.palette.mode === 'dark' ? 'light' : 'dark')} 
-          color='inherit'
-        >
-          {theme.palette.mode === 'dark' ? <Sun /> : <Moon />}
-        </IconButton>
+        <UIModeSwitcher />
       </footer>
     </>
   );

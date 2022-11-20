@@ -1,48 +1,39 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { SessionProvider } from "next-auth/react"
 import { ThemeProvider } from "@mui/material/styles"
 import { CssBaseline, useMediaQuery } from "@mui/material"
 import { createTheme } from "@mui/material/styles";
-
-export const ColorModeContext = createContext({ toggleColorMode: () => {} });
+import { useUIModeStore } from '../lib/UIModeStore'
 
 export default function App({ 
   Component, 
   pageProps: { session, ...pageProps } 
 }) {
-  const [mode, setMode] = useState('light')
+  const mode = useUIModeStore(state => state.mode)
+  const modeToggle = useUIModeStore(state => state.toggle)
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  
   useEffect(() => {
-    setMode(prefersDarkMode  ? 'dark': 'light')
-  }, [prefersDarkMode])
-
-  const colorMode = useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'))
-      }
-    }),
-    [],
-  )
+    modeToggle(prefersDarkMode  ? 'dark': 'light')
+  }, [modeToggle, prefersDarkMode])
 
   const theme = useMemo(
-    () =>
-      createTheme({
+    () => {
+      return createTheme({
         palette: {
           mode,
         }
-      }),
+      })
+    },
     [mode],
   )
 
   return(
-    <ColorModeContext.Provider value={colorMode}>
-      <SessionProvider session={session}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </SessionProvider>
-    </ColorModeContext.Provider>
+    <SessionProvider session={session}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </SessionProvider>
   )
 }
