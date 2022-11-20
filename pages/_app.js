@@ -14,7 +14,11 @@ export default function App({
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   
   useEffect(() => {
-    modeToggle(prefersDarkMode  ? 'dark': 'light')
+    let mode = prefersDarkMode  ? 'dark': 'light'
+    if (localStorage.getItem("UIMode") !== null) {
+      mode = localStorage.getItem('UIMode');
+    }
+    modeToggle(mode)
   }, [modeToggle, prefersDarkMode])
 
   const theme = useMemo(
