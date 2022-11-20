@@ -49,6 +49,7 @@ model User {
   twitterURL    String?
   facebookURL   String?
   linkedInURL   String?
+  uiMode        String?
   threads       Thread[]
   posts         Post[]
   accounts      Account[]
