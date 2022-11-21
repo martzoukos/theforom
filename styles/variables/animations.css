@@ -1,0 +1,5 @@
+:root {
+  --ease: cubic-bezier(0.4, 0, 0.03, 0.95);
+  --slow-animation: 700ms;
+  --fast-animation: 100ms;
+}

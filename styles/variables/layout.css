@@ -1,0 +1,14 @@
+:root {
+  --container-width: 55em;
+  --padding-vertical: 2.5em;
+  --padding-horizontal: 1em;
+  --product-tile-ratio: 165%; 
+  /* --border-radius: 0.1875em; */
+  --border-radius: 0;
+  --form-element-height: 3em;
+  --form-row-margin: 1em;
+}
+
+@value mobileBreakpoint: 500px;
+@value tabletBreakpoint: 800px;
+@value laptopBreakpoint: 1700px;

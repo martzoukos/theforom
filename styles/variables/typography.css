@@ -1,0 +1,41 @@
+:root {
+  /* Bigass typographic scale of:
+    - n: 4 steps
+    - r: 1.618 (fibonacci)
+    - f0: 18px base font size
+    https://blog.envylabs.com/responsive-typographic-scales-in-css-b9f60431d1c4
+  */ 
+  --step-up-15:  6.08em;	/*109px*/
+  --step-up-14:  5.39em;	/*97px*/
+  --step-up-13:  4.78em;	/*86px*/
+  --step-up-12:  4.24em;	/*76px*/
+  --step-up-11:  3.76em;	/*68px*/
+  --step-up-10:  3.33em;	/*60px*/
+  --step-up-9:   2.95em;	/*53px*/
+  --step-up-8:   2.62em;	/*47px*/
+  --step-up-7:   2.32em;	/*42px*/
+  --step-up-6:   2.06em;	/*37px*/
+  --step-up-5:   1.82em;	/*33px*/
+  --step-up-4:   1.62em;	/*29px*/
+  --step-up-3:   1.43em;	/*26px*/
+  --step-up-2:   1.27em;	/*23px*/
+  --step-up-1:   1.13em;	/*20px*/
+  --step-up-0:   1rem;	  /*rem in case you wanna reset to 18px*/
+  --step-down-1:  0.89em;	/*16px*/
+  --step-down-2:  0.79em;	/*14px*/
+  --step-down-3:  0.70em;	/*13px*/
+  --step-down-4:  0.62em;	/*11px*/
+  --step-down-5:  0.55em;	/*10px*/
+  --step-down-6:  0.49em;	/*9px*/
+  --step-down-7:  0.43em;	/*8px*/
+  --step-down-8:  0.38em;	/*7px*/
+  --step-down-9:  0.34em;	/*6px*/
+  --step-down-10: 0.30em;	/*5px*/
+  --step-down-11: 0.27em;	/*5px*/
+  --step-down-12: 0.24em;	/*4px*/
+  --step-down-13: 0.21em;	/*4px*/
+  --step-down-14: 0.19em;	/*3px*/
+  --step-down-15: 0.16em;	/*3px*/
+
+  --form-element-size: 1rem; /* Keep form elements small */
+}

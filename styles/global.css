@@ -1,56 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;900&display=swap');
 
-html,
+
 body {
   padding: 0;
   margin: 0;
   font-family: 'Source Serif Pro', serif;
   line-height: 1.6;
-  font-size: 18px;
+  font-size: var(--step-up-0);
   font-weight: 400;
-  color: #333;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000;
-    color: #fff;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #fff;
-    color: #000;
-  }
+  background-color: var(--white);
+  color: var(--black);
+  transition: background-color var(--ease) var(--slow-animation), 
+              color var(--ease) var(--slow-animation);
 }
 
 body.dark {
-  background-color: #000;
-  color: #fff;
-}
-
-body.light {
-  background-color: #fff;
-  color: #000;
+  background-color: var(--black);
+  color: var(--white);
 }
 
 
-
-@media screen and (min-width: 800px) {
-  body {
-    font-size: 20px;
-  }
-}
 
 a, a:visited {
-  color: blue;
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 b, strong {
