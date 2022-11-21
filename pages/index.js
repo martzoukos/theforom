@@ -36,50 +36,56 @@ export default function Home({ allThreads }) {
         <title>{siteTitle}</title>
       </Head>
       <Container>
-        <h1>The Forums are back.</h1>
-        <table>
-          <thead>
-            <th>Topic</th>
-            <th>Categories</th>
-            <th>Replies</th>
-            <th>Latest</th>
-          </thead>
-          <tbody>
-            {allThreads.map((thread, i) => (
-              <tr key={i}>
-                <td>
-                  <Avatar alt={thread.User.name} src={thread.User.image} />
-                  {thread.subject}
-                  {thread.User.name}
-                  {new Date(thread.createdAt).toLocaleString()}
-                </td>
-                <td>
-                  #animals
-                  <br/>
-                  #questions
-                  <br/>
-                  #general
-                </td>
-                <td>
-                  {thread._count.posts}
-                  <br/>
-                  Replies
-                </td>
-                <td>
-                  <Avatar alt={thread.User.name} src={thread.User.image} />
-                  <Avatar alt={thread.User.name} src={thread.User.image} />
-                  <br/>
-                  {new Date(thread.createdAt).toLocaleString()}
-                </td>
+        <>
+          <h1>The Forums are back.</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Topic</th>
+                <th>Categories</th>
+                <th>Replies</th>
+                <th>Latest</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        {session ?
-          <Link href='/threads/new'>Create a new Thread</Link>
-          :  
-          <Button variant='contained' onClick={() => signIn()}>Connect to create a Thread</Button>
-        }
+            </thead>
+            <tbody>
+              {allThreads.map((thread, i) => (
+                <tr key={i}>
+                  <td>
+                    <Avatar alt={thread.User.name} src={thread.User.image} />
+                    {thread.subject}
+                    {thread.User.name}
+                    {new Date(thread.createdAt).toLocaleString()}
+                  </td>
+                  <td>
+                    #animals
+                    <br/>
+                    #questions
+                    <br/>
+                    #general
+                  </td>
+                  <td>
+                    {thread._count.posts}
+                    <br/>
+                    Replies
+                  </td>
+                  <td>
+                    <Avatar alt={thread.User.name} src={thread.User.image} />
+                    <Avatar alt={thread.User.name} src={thread.User.image} />
+                    <br/>
+                    {new Date(thread.createdAt).toLocaleString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div>
+            { session ?
+              <Link href='/threads/new'>Create a new Thread</Link>
+              :  
+              <Button variant='contained' onClick={() => signIn()}>Connect to create a Thread</Button>
+            }
+          </div>
+        </>
       </Container>
       <Container>
         <h2>Browse the categories</h2>

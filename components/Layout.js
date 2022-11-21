@@ -35,7 +35,6 @@ export default function Layout({ children }) {
           </div>
           <div>
             Copyright © {new Date().getFullYear()} The Forom. All rights reserved.
-          <Link href='/about' />
           </div>
         </div>
         <div>
