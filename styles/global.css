@@ -15,12 +15,16 @@ body {
               color var(--ease) var(--slow-animation);
 }
 
+@media screen and (min-width: 800px) {
+  body {
+    font-size: 20px;
+  }
+}
+
 body.dark {
   background-color: var(--black);
   color: var(--white);
 }
-
-
 
 a, a:visited {
   text-decoration: none;
