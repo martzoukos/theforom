@@ -1,5 +1,5 @@
 .logo {
-  font-size: var(--step-up-1);
+  font-size: var(--step-up-2);
   display: flex;
   align-items: baseline;
   color: var(--black);
@@ -24,7 +24,6 @@
 .logo:focus .dot {
   background-color: var(--red);
 }
-
 
 :global(body.dark) .logo {
   color: var(--white);

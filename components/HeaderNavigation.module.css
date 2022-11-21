@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1.5em;
+  border-bottom: 1px solid var(--grey-on-white);
+  transition: border-color var(--ease) var(--slow-animation);
+}
+
+:global(body.dark) .nav {
+  border-color: var(--grey-on-black);
+}
+
+.login {
+  font-size: var(--step-down-1);
+}

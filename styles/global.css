@@ -7,7 +7,7 @@ body {
   margin: 0;
   font-family: 'Source Serif Pro', serif;
   line-height: 1.6;
-  font-size: var(--step-up-0);
+  font-size: 18px;
   font-weight: 400;
   background-color: var(--white);
   color: var(--black);
