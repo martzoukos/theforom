@@ -1,6 +1,7 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import HeaderNavigation from './HeaderNavigation';
-import styles from './Layout.module.css';
+import Logo from './Logo';
 import { UIModeSwitcher } from './UIModeSwitcher';
 
 export const siteTitle = 'The Forom';
@@ -24,11 +25,26 @@ export default function Layout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <HeaderNavigation />
-      <main className={styles.container}>
-        {children}
-      </main>
+      {children}
       <footer>
-        <UIModeSwitcher />
+        <div>
+          <div>
+            <Logo />
+            <br/>
+            Made in wonderfull Athens, Greece
+          </div>
+          <div>
+            Copyright © {new Date().getFullYear()} The Forom. All rights reserved.
+          <Link href='/about' />
+          </div>
+        </div>
+        <div>
+          <Link href='/about'>About</Link>
+          <Link href='/contact'>Contact</Link>
+          <Link href='/privacy'>Privacy</Link>
+          <Link href='/terms-of-service'>Terms of Service</Link>
+          <UIModeSwitcher />
+        </div>
       </footer>
     </>
   );

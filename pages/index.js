@@ -36,25 +36,75 @@ export default function Home({ allThreads }) {
         <title>{siteTitle}</title>
       </Head>
       <Container>
-        <h1>Threads </h1>
-        <ul>
-          {allThreads.map((thread, i) => (
-            <li href={`/threads/${thread.id}`} key={`thread-${i}`}>
-                {thread.User.image &&
+        <h1>The Forums are back.</h1>
+        <table>
+          <thead>
+            <th>Topic</th>
+            <th>Categories</th>
+            <th>Replies</th>
+            <th>Latest</th>
+          </thead>
+          <tbody>
+            {allThreads.map((thread, i) => (
+              <tr key={i}>
+                <td>
                   <Avatar alt={thread.User.name} src={thread.User.image} />
-                }
-                {thread.subject}
-                ({thread._count.posts} posts)
-            </li>
+                  {thread.subject}
+                  {thread.User.name}
+                  {new Date(thread.createdAt).toLocaleString()}
+                </td>
+                <td>
+                  #animals
+                  <br/>
+                  #questions
+                  <br/>
+                  #general
+                </td>
+                <td>
+                  {thread._count.posts}
+                  <br/>
+                  Replies
+                </td>
+                <td>
+                  <Avatar alt={thread.User.name} src={thread.User.image} />
+                  <Avatar alt={thread.User.name} src={thread.User.image} />
+                  <br/>
+                  {new Date(thread.createdAt).toLocaleString()}
+                </td>
+              </tr>
             ))}
-        </ul>
+          </tbody>
+        </table>
         {session ?
           <Link href='/threads/new'>Create a new Thread</Link>
-          :
-          <Container>          
-            <Button variant='contained' onClick={() => signIn()}>Connect to create a Thread</Button>
-          </Container>
+          :  
+          <Button variant='contained' onClick={() => signIn()}>Connect to create a Thread</Button>
         }
+      </Container>
+      <Container>
+        <h2>Browse the categories</h2>
+        <div>
+          #answers (2)
+          #questions (3)
+          #animals (1)
+          #cars (2432)
+          #politics (214)
+          #answers (2)
+          #questions (3)
+          #animals (1)
+          #cars (2432)
+          #politics (214)
+          #answers (2)
+          #questions (3)
+          #animals (1)
+          #cars (2432)
+          #politics (214)
+          #answers (2)
+          #questions (3)
+          #animals (1)
+          #cars (2432)
+          #politics (214)
+        </div>
       </Container>
     </Layout>
   );
