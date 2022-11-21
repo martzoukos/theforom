@@ -1,43 +1,26 @@
-import { useEffect, useMemo } from "react";
+import '../styles/global.css'
+import { useEffect } from "react";
 import { SessionProvider } from "next-auth/react"
-import { ThemeProvider } from "@mui/material/styles"
-import { CssBaseline, useMediaQuery } from "@mui/material"
-import { createTheme } from "@mui/material/styles";
 import { useUIModeStore } from '../lib/UIModeStore'
 
 export default function App({ 
   Component, 
   pageProps: { session, ...pageProps } 
 }) {
-  const mode = useUIModeStore(state => state.mode)
-  const modeToggle = useUIModeStore(state => state.toggle)
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-  
-  useEffect(() => {
-    let mode = prefersDarkMode  ? 'dark': 'light'
-    if (localStorage.getItem("UIMode") !== null) {
-      mode = localStorage.getItem('UIMode');
-    }
-    modeToggle(mode)
-  }, [modeToggle, prefersDarkMode])
+  const storeMode = useUIModeStore(state => state.mode)
+  const storeModeToggle = useUIModeStore(state => state.toggle)
 
-  const theme = useMemo(
-    () => {
-      return createTheme({
-        palette: {
-          mode,
-        }
-      })
-    },
-    [mode],
-  )
+  useEffect(() => {
+    const localMode = (localStorage.getItem("UIMode") !== null)
+      ? localStorage.getItem('UIMode')
+      : null
+    storeModeToggle(localMode)
+    document.body.className = localMode ? localMode : storeMode
+  }, [storeMode, storeModeToggle])
 
   return(
     <SessionProvider session={session}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Component {...pageProps} />
     </SessionProvider>
   )
 }

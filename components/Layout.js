@@ -1,7 +1,6 @@
 import Head from 'next/head';
+import HeaderNavigation from './HeaderNavigation';
 import styles from './Layout.module.css';
-import LogInBtn from './LoginBtn';
-import Logo from './Logo';
 import { UIModeSwitcher } from './UIModeSwitcher';
 
 export const siteTitle = 'The Forom';
@@ -24,10 +23,7 @@ export default function Layout({ children }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>        
-        <Logo />
-        <LogInBtn />
-      </header>
+      <HeaderNavigation />
       <main className={styles.container}>
         {children}
       </main>

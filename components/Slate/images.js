@@ -11,12 +11,12 @@ import {
   Transforms
 } from 'slate'
 import { Image as ImageIcon, Trash, UploadCloud } from 'lucide-react';
-import { Button, LinearProgress } from '@mui/material';
 import { BLOCK } from './constants';
 import { useUploadedMedia } from './SlateEditor';
 import { nanoid } from 'nanoid';
 import { resizeImage } from '../../lib/resizeImage';
 import { uploadFile } from '../../lib/uploadFile';
+import Button from '../Button';
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
@@ -158,7 +158,7 @@ export const UploadedImage = ({ attributes, children, element }) => {
             }}
           />
           { uploadedMedia.url.startsWith('data:image') &&
-            <LinearProgress size={20} />
+            <span>uploading...</span>
           }
           <Button
             type="button"

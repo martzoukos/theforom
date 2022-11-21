@@ -7,7 +7,7 @@ import {
   Transforms
 } from 'slate'
 import { Video as VideoIcon } from "lucide-react";
-import { Button } from "@mui/material";
+import Button from "../Button";
 import { BLOCK } from "./constants";
 
 export const withVideos = editor => {

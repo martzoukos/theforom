@@ -5,7 +5,7 @@ import {
 } from 'slate';
 import { useSlate } from "slate-react"
 import Sticky from "react-sticky-el"
-import { Button, ButtonGroup } from "@mui/material"
+import Button from '../Button';
 import { 
   Bold, 
   Italic,

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import SlateEditor, { useUploadedMedia } from "./Slate/SlateEditor"
 import styles from './PostReply.module.css'
-import { Button } from '@mui/material';
+import Button from './Button';
 
 export const PostReply = ({thread}) => {
   const [post, setPost] = useState('')

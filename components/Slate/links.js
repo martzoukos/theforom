@@ -10,7 +10,7 @@ import {
 } from "slate-react"
 import isUrl from 'is-url'
 import { Link as Linkicon, Unlink } from 'lucide-react';
-import { Button } from '@mui/material';
+import Button from '../Button';
 import { INLINE } from './constants';
 
 // Use this in the initialization createEditor() function

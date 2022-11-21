@@ -12,6 +12,32 @@ body {
   color: #333;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+body.dark {
+  background-color: #000;
+  color: #fff;
+}
+
+body.light {
+  background-color: #fff;
+  color: #000;
+}
+
+
+
 @media screen and (min-width: 800px) {
   body {
     font-size: 20px;

@@ -1,13 +1,12 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
 import prisma from '../lib/prisma'
-import { Container, Avatar, TextField, InputAdornment, Card, CardContent, Button } from '@mui/material';
+import Container from '../components/Container';
+import Avatar from '../components/Avatar';
+import Button from '../components/Button';
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
-import { Stack } from '@mui/system';
 import { useState } from 'react';
-import { Facebook, Linkedin, Twitter } from 'lucide-react';
-import { LoadingButton } from '@mui/lab';
 import { uploadFile } from '../lib/uploadFile';
 import { stringAvatar } from '../lib/stringAvatar';
 import { resizeImage } from '../lib/resizeImage';
@@ -103,71 +102,53 @@ export default function Home({ user }) {
         </Head>
         <Container>
           <form onSubmit={handleSubmit}>
-            <Stack spacing={2}>
+            <div>
               <h1>My Settings</h1>
-              <Card>
-                <CardContent>
-                  {image ?
-                    <Avatar src={image} />
-                  : <Avatar sx={{ bgcolor: 'blue' }} {...stringAvatar(name)} />
-                  }
-                  <input type='file' onChange={handleAvatarUpload} />
-                </CardContent>
-              </Card>
-              <TextField 
-                label='Name' 
+              <div>
+                {image ?
+                  <Avatar src={image} />
+                : <Avatar sx={{ bgcolor: 'blue' }} {...stringAvatar(name)} />
+                }
+                <input type='file' onChange={handleAvatarUpload} />
+              </div>
+              <input
+                type='text' 
                 value={name} 
                 onChange={e => setName(e.target.value) } 
               />
-              <TextField 
+              <input
+                type='text' 
                 label='Short bio' 
                 value={shortBio} 
                 onChange={e => setShortBio(e.target.value) } 
               />
-              <TextField 
+              <input
+                type='text' 
                 label='Long bio' 
                 value={longBio} 
                 onChange={e => setLongBio(e.target.value) } 
                 multiline={true} 
               />
-              <TextField 
+              <input
+                type='text' 
                 label='Twitter profile' 
                 value={twitterURL} 
                 onChange={e => setTwitterURL(e.target.value) } 
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Twitter />
-                    </InputAdornment>
-                  ),
-                }}
               />
-              <TextField 
+              <input
+                type='text' 
                 label='Facebook profile' 
                 value={facebookURL} 
                 onChange={e => setFacebookURL(e.target.value) } 
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Facebook />
-                    </InputAdornment>
-                  ),
-                }}
               />
-              <TextField 
+              <input
+                type='text' 
                 label='Linkedin profile' 
                 value={linkedInURL} 
                 onChange={e => setLinkedInURL(e.target.value) } 
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Linkedin />
-                    </InputAdornment>
-                  ),
-                }}
               />
-              <LoadingButton type='submit' loading={loading} variant='contained'>Submit</LoadingButton>
-            </Stack>
+              <Button type='submit' loading={loading} variant='contained'>Submit</Button>
+            </div>
           </form>
         </Container>
       </Layout>

@@ -2,7 +2,9 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/Layout';
 import prisma from '../lib/prisma'
 import Link from 'next/link'
-import { List, ListItem, Container, Avatar, Button } from '@mui/material';
+import Button from '../components/Button';
+import Container from '../components/Container';
+import Avatar from '../components/Avatar';
 import { useSession, signIn } from 'next-auth/react';
 
 export async function getServerSideProps() {
@@ -35,19 +37,17 @@ export default function Home({ allThreads }) {
       </Head>
       <Container>
         <h1>Threads </h1>
-        <List>
+        <ul>
           {allThreads.map((thread, i) => (
-            <Link href={`/threads/${thread.id}`} key={`thread-${i}`}>
-              <ListItem>
+            <li href={`/threads/${thread.id}`} key={`thread-${i}`}>
                 {thread.User.image &&
                   <Avatar alt={thread.User.name} src={thread.User.image} />
                 }
                 {thread.subject}
                 ({thread._count.posts} posts)
-              </ListItem>
-            </Link>
+            </li>
             ))}
-        </List>
+        </ul>
         {session ?
           <Link href='/threads/new'>Create a new Thread</Link>
           :

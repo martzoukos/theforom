@@ -1,12 +1,16 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Styles from './Logo.module.css';
 
 export default function Logo() {
   return (
     <Link href="/">
-      <span className={Styles.red} />
-      <span className={Styles.green} />
-      <span className={Styles.blue} />
+      <Image 
+        src='/logo.svg'
+        alt='theforom logo'
+        width='175'
+        height='30'
+      />
     </Link>
   )
 }

@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Editor, { useUploadedMedia } from '../../components/Slate/SlateEditor';
 import { useSession, signIn } from 'next-auth/react';
-import { Container, Button } from '@mui/material';
+import Button from '../../components/Button';
+import Container from '../../components/Container';
 
 export default function Thread() {
   const [title, setTitle] = useState('')

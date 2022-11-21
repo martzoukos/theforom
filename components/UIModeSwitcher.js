@@ -1,6 +1,6 @@
-import { IconButton } from "@mui/material"
 import { Sun, Moon } from "lucide-react"
 import { useUIModeStore } from "../lib/UIModeStore"
+import Button from "./Button"
 
 export const UIModeSwitcher = () => {
   const UIMode = useUIModeStore(state => state.mode)
@@ -12,13 +12,13 @@ export const UIModeSwitcher = () => {
   return (
     <>
       {UIMode} mode
-        <IconButton 
+        <Button 
           sx={{ ml: 1 }} 
           onClick={handleClick} 
           color='inherit'
         >
           {UIMode === 'dark' ? <Sun /> : <Moon />}
-        </IconButton>
+        </Button>
     </>
 
   )

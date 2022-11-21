@@ -6,7 +6,8 @@ import ThreadTitle from '../../components/ThreadTitle';
 import ThreadCreator from '../../components/ThreadCreator';
 import { PostReply } from '../../components/PostReply';
 import { useSession, signIn } from 'next-auth/react';
-import { Button, Container } from '@mui/material';
+import Button from '../../components/Button';
+import Container from '../../components/Container';
 
 export async function getServerSideProps(context) {
   const thread = await prisma.thread.findUnique({
