@@ -31,59 +31,49 @@ export const SlateToolbar =() => {
   return (
     <Sticky className={styles.toolbar}>
       <div className={styles.toolbar}>
-        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
-          <ToolbarButton format={INLINE.BOLD} type='mark'>
-            <Bold size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={INLINE.ITALIC} type='mark'>
-            <Italic size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={INLINE.UNDERLINE} type='mark'>
-            <Underline size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={INLINE.STRIKETHROUGH} type='mark'>
-            <Strikethrough size={18} />
-          </ToolbarButton>
-        </ButtonGroup>
-        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
-          <ToolbarButton format={INLINE.H1} type='block'>
-            <Heading1 size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={INLINE.H2} type='block'>
-            <Heading2 size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={INLINE.H3} type='block'>
-            <Heading3 size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={INLINE.H4} type='block'>
-            <Heading4 size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={INLINE.H5} type='block'>
-            <Heading5 size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={INLINE.H6} type='block'>
-            <Heading6 size={18} />
-          </ToolbarButton>
-        </ButtonGroup>
-        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
-          <ToolbarButton format={BLOCK.BLOCKQUOTE} type='block'>
-            <Quote size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={BLOCK.UL} type='block'>
-            <List size={18} />
-          </ToolbarButton>
-          <ToolbarButton format={BLOCK.OL} type='block'>
-            <ListOrdered size={18} />
-          </ToolbarButton>
-        </ButtonGroup>
-        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
-          <AddLinkButton />
-          <RemoveLinkButton />
-        </ButtonGroup>
-        <ButtonGroup variant='outlined' className={styles.buttonGroup}>
-          <InsertImageButton />
-          <InsertVideoButton />
-        </ButtonGroup>
+        <ToolbarButton format={INLINE.BOLD} type='mark'>
+          <Bold size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.ITALIC} type='mark'>
+          <Italic size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.UNDERLINE} type='mark'>
+          <Underline size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.STRIKETHROUGH} type='mark'>
+          <Strikethrough size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.H1} type='block'>
+          <Heading1 size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.H2} type='block'>
+          <Heading2 size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.H3} type='block'>
+          <Heading3 size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.H4} type='block'>
+          <Heading4 size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.H5} type='block'>
+          <Heading5 size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.H6} type='block'>
+          <Heading6 size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={BLOCK.BLOCKQUOTE} type='block'>
+          <Quote size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={BLOCK.UL} type='block'>
+          <List size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={BLOCK.OL} type='block'>
+          <ListOrdered size={18} />
+        </ToolbarButton>
+        <AddLinkButton />
+        <RemoveLinkButton />
+        <InsertImageButton />
+        <InsertVideoButton />
       </div>
     </Sticky>
   )
