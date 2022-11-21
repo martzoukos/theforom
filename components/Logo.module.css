@@ -1,25 +1,45 @@
-.red {
-  display: block;
-  width: 30px;
-  height: 10px;
-  border-radius: 10px;
-  margin-bottom: 3px;
-  background-color: red;
+.logo {
+  font-size: var(--step-up-1);
+  display: flex;
+  align-items: baseline;
+  color: var(--black);
+  transition: color var(--ease) var(--fast-animation);
 }
 
-.green {
-  display: block;
-  width: 30px;
-  height: 10px;
-  border-radius: 20px;
-  margin-bottom: 3px;
-  background-color: green;
+.logo:hover,
+.logo:focus {
+  color: var(--red);
 }
 
-.blue {
-  display: block;
-  width: 15px;
-  height: 10px;
-  border-radius: 20px;
-  background-color: blue;
+.dot {
+  margin-right: 0.3em;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 100%;
+  background-color: var(--black);
+  transition: background-color var(--ease) var(--fast-animation);
+}
+
+.logo:hover .dot,
+.logo:focus .dot {
+  background-color: var(--red);
+}
+
+
+:global(body.dark) .logo {
+  color: var(--white);
+}
+
+:global(body.dark) .dot {
+  background-color: var(--white);
+}
+
+:global(body.dark) .logo:hover,
+:global(body.dark) .logo:focus {
+  color: var(--yellow);
+}
+
+:global(body.dark) .logo:hover .dot,
+:global(body.dark) .logo:focus .dot {
+  background-color: var(--yellow);
 }
