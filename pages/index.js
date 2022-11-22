@@ -37,7 +37,7 @@ export default function Home({ allThreads }) {
       </Head>
       <Container>
         <>
-          <h1>The Forums are back.</h1>
+          <h1 className='as-h1'>The Forums are back.</h1>
           <table>
             <thead>
               <tr>
@@ -88,7 +88,7 @@ export default function Home({ allThreads }) {
         </>
       </Container>
       <Container>
-        <h2>Browse the categories</h2>
+        <h2 className='as-h2'>Browse the categories</h2>
         <div>
           #answers (2)
           #questions (3)

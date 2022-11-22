@@ -3,6 +3,7 @@ import '../styles/variables/colors.css'
 import '../styles/variables/typography.css'
 import '../styles/variables/layout.css'
 import '../styles/global.css'
+import '../styles/headlines.css'
 
 import { useEffect } from "react";
 import { SessionProvider } from "next-auth/react"

@@ -1,0 +1,33 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+  background: linear-gradient(180deg, var(--black) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  background-clip: text;
+}
+
+.as-h1 {
+  font-size: var(--step-up-14);
+  text-align: center;
+}
+
+.as-h2 {
+  font-size: var(--step-up-8);
+  text-align: center;
+}
+
+body.dark h1, 
+body.dark h2, 
+body.dark h3, 
+body.dark h4, 
+body.dark h5, 
+body.dark h6 {
+  background: linear-gradient(180deg, var(--white) 0%, var(--light-purple) 100%);  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  background-clip: text;
+}
