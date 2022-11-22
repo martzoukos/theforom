@@ -1,0 +1,17 @@
+.row {
+  cursor: pointer;
+  transition: background-color var(--ease) var(--fast-animation);
+}
+
+.row:hover {
+  background-color: var(--grey-on-white);
+}
+
+:global(body.dark) .row:hover {
+  background-color: var(--grey-on-black);
+}
+
+.topic {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,11 @@
+.headerRow {
+  background-color: var(--very-light-purple);
+}
+
+.headerCell {
+  font-size: var(--step-down-3);
+  text-transform: uppercase;
+  font-family: var(--sans-serif);
+  text-align: left;
+  padding: 0.5em 1.5em;
+}

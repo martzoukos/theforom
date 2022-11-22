@@ -1,44 +1,20 @@
-import Avatar from "./Avatar"
+import styles from "./ThreadsTable.module.css"
+import ThreadsTableRow from "./ThreadsTableRow"
 
 export default function ThreadsTable({ threads }) {
   return(
-    <table>
+    <table cellPadding='0' cellSpacing='0' width='100%'>
       <thead>
-        <tr>
-          <th>Topic</th>
-          <th>Categories</th>
-          <th>Replies</th>
-          <th>Latest</th>
+        <tr className={styles.headerRow}>
+          <th className={styles.headerCell}>Topic</th>
+          <th className={styles.headerCell}>Categories</th>
+          <th className={styles.headerCell}>Replies</th>
+          <th className={styles.headerCell}>Latest</th>
         </tr>
       </thead>
       <tbody>
         {threads.map((thread, i) => (
-          <tr key={i}>
-            <td>
-              <Avatar alt={thread.User.name} src={thread.User.image} />
-              {thread.subject}
-              {thread.User.name}
-              {new Date(thread.createdAt).toLocaleString()}
-            </td>
-            <td>
-              #animals
-              <br/>
-              #questions
-              <br/>
-              #general
-            </td>
-            <td>
-              {thread._count.posts}
-              <br/>
-              Replies
-            </td>
-            <td>
-              <Avatar alt={thread.User.name} src={thread.User.image} />
-              <Avatar alt={thread.User.name} src={thread.User.image} />
-              <br/>
-              {new Date(thread.createdAt).toLocaleString()}
-            </td>
-          </tr>
+          <ThreadsTableRow thread={thread} key={i} />
         ))}
       </tbody>
     </table>
