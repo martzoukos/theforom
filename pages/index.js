@@ -4,8 +4,8 @@ import prisma from '../lib/prisma'
 import Link from 'next/link'
 import Button from '../components/Button';
 import Container from '../components/Container';
-import Avatar from '../components/Avatar';
 import { useSession, signIn } from 'next-auth/react';
+import ThreadsTable from '../components/ThreadsTable';
 
 export async function getServerSideProps() {
   const threads = await prisma.thread.findMany({
@@ -38,46 +38,7 @@ export default function Home({ allThreads }) {
       <Container>
         <>
           <h1 className='as-h1'>The Forums are back.</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Topic</th>
-                <th>Categories</th>
-                <th>Replies</th>
-                <th>Latest</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allThreads.map((thread, i) => (
-                <tr key={i}>
-                  <td>
-                    <Avatar alt={thread.User.name} src={thread.User.image} />
-                    {thread.subject}
-                    {thread.User.name}
-                    {new Date(thread.createdAt).toLocaleString()}
-                  </td>
-                  <td>
-                    #animals
-                    <br/>
-                    #questions
-                    <br/>
-                    #general
-                  </td>
-                  <td>
-                    {thread._count.posts}
-                    <br/>
-                    Replies
-                  </td>
-                  <td>
-                    <Avatar alt={thread.User.name} src={thread.User.image} />
-                    <Avatar alt={thread.User.name} src={thread.User.image} />
-                    <br/>
-                    {new Date(thread.createdAt).toLocaleString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <ThreadsTable threads={allThreads} />
           <div>
             { session ?
               <Link href='/threads/new'>Create a new Thread</Link>

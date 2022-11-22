@@ -1,5 +1,5 @@
 .postCreator {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--sans-serif);
   max-width: 40rem;
   margin: 0 auto 1rem;
   display: flex;

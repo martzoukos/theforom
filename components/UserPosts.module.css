@@ -4,7 +4,7 @@
 }
 
 .content {
-  font-family: 'Source Serif Pro', serif;
+  font-family: var(--serif);
   line-height: 1.6;
   font-size: 1rem;
   margin-bottom: 1rem;

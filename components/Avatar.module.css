@@ -1,0 +1,10 @@
+.emptyAvatar {
+  border-radius: 100%;
+  display: block;
+  color: var(--white);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-family: var(--sans-serif);
+  font-size: var(--step-down-2);
+}

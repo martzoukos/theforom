@@ -38,4 +38,7 @@
   --step-down-15: 0.16em;	/*3px*/
 
   --form-element-size: 1rem; /* Keep form elements small */
+
+  --serif: 'Source Serif Pro', serif;
+  --sans-serif: 'Source Sans Pro', sans-serif;
 }

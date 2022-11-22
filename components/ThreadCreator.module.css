@@ -1,6 +1,6 @@
 .threadCreator {
   text-align: center;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--sans-serif);
   max-width: 53rem; /* 960px */
   margin: 0 auto;
 }
