@@ -2,10 +2,9 @@ import Link from "next/link"
 import styles from './CategoriesList.module.css'
 
 export default function CategoriesList({ categories }) {
-  const ccategories = categories.concat(categories, categories, categories, categories, categories, categories, categories, categories, categories)
   return(
     <div className={styles.list}>
-      {ccategories.map((category, i) =>
+      {categories.map((category, i) =>
         <Link 
           key={i}
           href={`/categories/${category.name}`}
