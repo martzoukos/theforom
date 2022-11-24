@@ -60,7 +60,7 @@
 }
 
 .repliesNumber {
-  font-size: var(--step-up-4);
+  font-size: var(--step-up-5);
   font-family: var(--serif);
   display: block;
   line-height: 1;
