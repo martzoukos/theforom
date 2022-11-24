@@ -18,6 +18,6 @@
 }
 
 .headerCell:first-child {
-  /* left align with thradsTableRow.topic */
+  /* left align with threadsTableRow.topic */
   padding-left: 20px; 
 }
