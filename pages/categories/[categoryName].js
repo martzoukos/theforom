@@ -19,7 +19,7 @@ export async function getServerSideProps(context) {
       },
       categories: {
         select: {
-          name: true
+          Category: true
         }
       },
       posts: {
@@ -42,7 +42,9 @@ export async function getServerSideProps(context) {
     where: {
       categories: {
         some: {
-          name: context.params.categoryName
+          Category: {
+            name: context.params.categoryName 
+          }
         }
       }
     }

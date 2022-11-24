@@ -9,7 +9,6 @@ export default function Avatar({
   height = 45,
 }) {
   if (src) {
-    console.log(src)
     return (
       <Image 
         src={src} 

@@ -1,15 +1,13 @@
 import Link from "next/link"
 import Avatar from "./Avatar"
-import { useRouter } from "next/router"
 import styles from './ThreadsTableRow.module.css'
 import ReactTimeAgo from 'react-time-ago'
 import flattenParticipants from "../lib/flattenParticipants"
 
 export default function ThreadsTableRow({ thread }) {
-  const router = useRouter()
   const threadURL = `/threads/${thread.id}`
-  const participants = flattenParticipants(thread.posts)
-  const categories = thread.categories.slice(0, 3)
+  const participants = flattenParticipants(thread.posts, 'name', 3)
+  const categories = thread.categories.slice(0, 3).map(c => c.Category)
   return(
     <tr className={styles.row}>
       <td>
@@ -49,7 +47,7 @@ export default function ThreadsTableRow({ thread }) {
       </td>
       <td className={styles.replies}>
         <span className={styles.repliesNumber}>
-          {thread._count.posts}
+          {thread._count.posts - 1}
         </span>
         <span className={styles.repliesLabel}>
           Replies
