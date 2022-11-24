@@ -6,11 +6,6 @@
   --cell-padding-v: 2em;
 }
 
-.row a:hover, 
-.row a:focus {
-  text-decoration: underline;
-}
-
 :global(body.dark) .row {
   border-color: var(--very-dark-purple);
 }
@@ -29,7 +24,6 @@
 
 .subject {
   font-family: var(--serif);
-  color: inherit;
   line-height: 1.1;
   display: block;
 }
@@ -51,7 +45,6 @@
 }
 
 .category {
-  color: inherit;
   display: block;
 }
 

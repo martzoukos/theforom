@@ -4,6 +4,7 @@
 
 .headerRow {
   background-color: var(--very-light-purple);
+  transition: background-color var(--ease) var(--slow-animation);
 }
 
 :global(body.dark) .headerRow {

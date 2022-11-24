@@ -7,6 +7,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
   background-clip: text;
+  transition: background-color var(--ease) var(--fast-animation);
 }
 
 .as-h1 {
