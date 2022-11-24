@@ -1,0 +1,22 @@
+.button {
+  transition: color var(--ease) var(--fast-animation);
+}
+
+.button:hover,
+.button:focus {
+  color: var(--red);
+}
+
+:global(body.dark) .button:hover,
+:global(body.dark) .button:focus {
+  color: var(--yellow);
+}
+
+.buttonContent {
+  display: flex;
+}
+
+.icon {
+  margin-right: 0.5em;
+  margin-left: -1.7em;
+}

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Footer from './Footer';
 import HeaderNavigation from './HeaderNavigation';
 import Logo from './Logo';
 import { UIModeSwitcher } from './UIModeSwitcher';
@@ -26,25 +27,7 @@ export default function Layout({ children }) {
       </Head>
       <HeaderNavigation />
       {children}
-      <footer>
-        <div>
-          <div>
-            <Logo />
-            <br/>
-            Made in wonderfull Athens, Greece
-          </div>
-          <div>
-            Copyright © {new Date().getFullYear()} The Forom. All rights reserved.
-          </div>
-        </div>
-        <div>
-          <Link href='/about'>About</Link>
-          <Link href='/contact'>Contact</Link>
-          <Link href='/privacy'>Privacy</Link>
-          <Link href='/terms-of-service'>Terms of Service</Link>
-          <UIModeSwitcher />
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
