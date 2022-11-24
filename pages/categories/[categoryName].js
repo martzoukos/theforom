@@ -1,13 +1,14 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/Layout';
-import prisma from '../lib/prisma'
+import Layout, { siteTitle } from '../../components/Layout';
+import prisma from '../../lib/prisma'
 import Link from 'next/link'
-import Button from '../components/Button';
-import Container from '../components/Container';
+import Button from '../../components/Button';
+import Container from '../../components/Container';
 import { useSession, signIn } from 'next-auth/react';
-import ThreadsTable from '../components/ThreadsTable';
+import ThreadsTable from '../../components/ThreadsTable';
+import { useRouter } from 'next/router'
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const threads = await prisma.thread.findMany({
     include: {
       User:{
@@ -37,6 +38,13 @@ export async function getServerSideProps() {
       _count: {
         select: { posts: true }
       }
+    },
+    where: {
+      categories: {
+        some: {
+          name: context.params.categoryName
+        }
+      }
     }
   })
   return {
@@ -48,6 +56,8 @@ export async function getServerSideProps() {
 
 export default function Home({ allThreads }) {
   const { data: session } = useSession()
+  const router = useRouter()
+  const { categoryName } = router.query
   return (
     <Layout>
       <Head>
@@ -55,7 +65,7 @@ export default function Home({ allThreads }) {
       </Head>
       <Container>
         <>
-          <h1 className='as-h1'>The Forums are back.</h1>
+          <h1 className='as-h1'>#{categoryName}</h1>
           <ThreadsTable threads={allThreads} />
           <div>
             { session ?
@@ -65,31 +75,6 @@ export default function Home({ allThreads }) {
             }
           </div>
         </>
-      </Container>
-      <Container>
-        <h2 className='as-h2'>Browse the categories</h2>
-        <div>
-          #answers (2)
-          #questions (3)
-          #animals (1)
-          #cars (2432)
-          #politics (214)
-          #answers (2)
-          #questions (3)
-          #animals (1)
-          #cars (2432)
-          #politics (214)
-          #answers (2)
-          #questions (3)
-          #animals (1)
-          #cars (2432)
-          #politics (214)
-          #answers (2)
-          #questions (3)
-          #animals (1)
-          #cars (2432)
-          #politics (214)
-        </div>
       </Container>
     </Layout>
   );

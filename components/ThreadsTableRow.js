@@ -9,13 +9,9 @@ export default function ThreadsTableRow({ thread }) {
   const router = useRouter()
   const threadURL = `/threads/${thread.id}`
   const participants = flattenParticipants(thread.posts)
+  const categories = thread.categories.slice(0, 3)
   return(
-    <tr 
-      className={styles.row}
-      onClick={() => {
-        router.push(threadURL)
-      }}
-    >
+    <tr className={styles.row}>
       <td>
         <div className={styles.topic}>
           <div className={styles.avatar}>
@@ -39,11 +35,17 @@ export default function ThreadsTableRow({ thread }) {
         </div>
       </td>
       <td className={styles.categories}>
-        #animals
-        <br/>
-        #questions
-        <br/>
-        #general
+        {categories.map((category, i) => {
+          return(
+            <Link
+              href={`/categories/${category.name}`}
+              className={styles.category}
+              key={i}
+            >
+              #{category.name}
+            </Link>
+          )
+        })}
       </td>
       <td className={styles.replies}>
         <span className={styles.repliesNumber}>

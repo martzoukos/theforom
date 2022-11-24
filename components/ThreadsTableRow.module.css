@@ -1,23 +1,18 @@
 .row {
-  cursor: pointer;
-  transition: background-color var(--ease) var(--fast-animation), 
-              color var(--ease) var(--fast-animation);
+  transition: background-color var(--ease) var(--fast-animation);
   border-bottom: 1px solid var(--very-light-purple);
 
   --cell-padding-h: 1em;
   --cell-padding-v: 2em;
 }
 
+.row a:hover, 
+.row a:focus {
+  text-decoration: underline;
+}
+
 :global(body.dark) .row {
   border-color: var(--very-dark-purple);
-}
-
-.row:hover {
-  color: var(--red);
-}
-
-:global(body.dark) .row:hover {
-  color: var(--yellow);
 }
 
 .topic {
@@ -53,6 +48,11 @@
   font-size: var(--step-down-3);
   font-family: var(--serif);
   padding: var(--cell-padding-v) var(--cell-padding-h) var(--cell-padding-v) 0;
+}
+
+.category {
+  color: inherit;
+  display: block;
 }
 
 .replies {
