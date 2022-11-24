@@ -15,6 +15,23 @@ body {
               color var(--ease) var(--slow-animation);
 }
 
+body::before {
+  position: absolute;
+  width: 90%;
+  height: 50em;
+  left: 50%;
+  top: -20em;
+  margin-left: -45%;
+  content: "";
+  display: block;
+  background: radial-gradient(50% 50% at 50% 50%, #DDFBFF 0%, rgba(236, 244, 255, 0) 100%);
+  z-index: -1;
+}
+
+body.dark::before {
+  background: radial-gradient(50% 50% at 50% 50%, #091F3F 0%, rgba(9, 31, 63, 0) 100%);
+}
+
 body.dark {
   background-color: var(--black);
   color: var(--white);
