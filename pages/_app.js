@@ -9,6 +9,10 @@ import { useEffect } from "react";
 import { SessionProvider } from "next-auth/react"
 import { useUIModeStore } from '../lib/UIModeStore'
 import DetectDarkMode from 'detect-dark-mode'
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
+
+TimeAgo.addDefaultLocale(en)
 
 export default function App({ 
   Component, 

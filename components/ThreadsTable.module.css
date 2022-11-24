@@ -1,11 +1,23 @@
+.table {
+  border-collapse: collapse;
+}
+
 .headerRow {
   background-color: var(--very-light-purple);
+}
+
+:global(body.dark) .headerRow {
+  background-color: var(--very-dark-purple);
 }
 
 .headerCell {
   font-size: var(--step-down-3);
   text-transform: uppercase;
-  font-family: var(--sans-serif);
   text-align: left;
-  padding: 0.5em 1.5em;
+  padding: 0.5em 1.5em 0.5em 0;
+}
+
+.headerCell:first-child {
+  /* left align with thradsTableRow.topic */
+  padding-left: 20px; 
 }

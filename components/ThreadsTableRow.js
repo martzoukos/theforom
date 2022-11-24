@@ -2,10 +2,13 @@ import Link from "next/link"
 import Avatar from "./Avatar"
 import { useRouter } from "next/router"
 import styles from './ThreadsTableRow.module.css'
+import ReactTimeAgo from 'react-time-ago'
+import flattenParticipants from "../lib/flattenParticipants"
 
 export default function ThreadsTableRow({ thread }) {
   const router = useRouter()
   const threadURL = `/threads/${thread.id}`
+  const participants = flattenParticipants(thread.posts)
   return(
     <tr 
       className={styles.row}
@@ -15,14 +18,22 @@ export default function ThreadsTableRow({ thread }) {
     >
       <td>
         <div className={styles.topic}>
-          <Avatar alt={thread.User.name} src={thread.User.image} />
-          <div>
-            <Link href={threadURL}>
+          <div className={styles.avatar}>
+            <Avatar 
+              alt={thread.User.name} 
+              src={thread.User.image}   
+            />
+          </div>
+          <div className={styles.threadInfo}>
+            <Link href={threadURL} className={styles.subject}>
               {thread.subject}
             </Link>
-            <div>
+            <div className={styles.smallInfo}>
               {thread.User.name}
-              {new Date(thread.createdAt).toLocaleString()}
+              <ReactTimeAgo 
+                date={thread.createdAt}
+                className={styles.createdAt} 
+              />
             </div>
           </div>
         </div>
@@ -35,15 +46,31 @@ export default function ThreadsTableRow({ thread }) {
         #general
       </td>
       <td className={styles.replies}>
-        {thread._count.posts}
-        <br/>
-        Replies
+        <span className={styles.repliesNumber}>
+          {thread._count.posts}
+        </span>
+        <span className={styles.repliesLabel}>
+          Replies
+        </span>
       </td>
       <td className={styles.latestActivity}>
-        <Avatar alt={thread.User.name} src={thread.User.image} />
-        <Avatar alt={thread.User.name} src={thread.User.image} />
-        <br/>
-        {new Date(thread.createdAt).toLocaleString()}
+        <div className={styles.participants}>
+          {participants.map((user, i) => {
+            return(
+              <Avatar 
+                key={i}
+                alt={user.name} 
+                src={user.image}
+                width={25}
+                height={25}
+              />
+            )
+          })}
+        </div>
+        <ReactTimeAgo 
+          date={thread.updatedAt}
+          className={styles.updatedAt}
+        />
       </td>
     </tr>
   )

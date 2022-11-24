@@ -16,6 +16,19 @@ export async function getServerSideProps() {
           image: true,
         }
       },
+      posts: {
+        select: {
+          User: {
+            select: {
+              image: true,
+              name: true,
+            }
+          }
+        },
+        orderBy: {
+          createdAt: 'desc'
+        },
+      },
       _count: {
         select: { posts: true }
       }

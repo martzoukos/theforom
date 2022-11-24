@@ -5,7 +5,7 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--sans-serif);
   line-height: 1.6;
   font-size: 18px;
   font-weight: 400;

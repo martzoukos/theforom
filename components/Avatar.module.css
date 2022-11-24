@@ -5,6 +5,5 @@
   justify-content: center;
   display: flex;
   align-items: center;
-  font-family: var(--sans-serif);
   font-size: var(--step-down-2);
 }

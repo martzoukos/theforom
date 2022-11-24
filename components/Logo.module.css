@@ -1,4 +1,5 @@
 .logo {
+  font-family: var(--serif);
   font-size: var(--step-up-2);
   display: flex;
   align-items: baseline;

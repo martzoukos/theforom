@@ -3,7 +3,7 @@ import ThreadsTableRow from "./ThreadsTableRow"
 
 export default function ThreadsTable({ threads }) {
   return(
-    <table cellPadding='0' cellSpacing='0' width='100%'>
+    <table cellPadding='0' cellSpacing='0' width='100%' className={styles.table}>
       <thead>
         <tr className={styles.headerRow}>
           <th className={styles.headerCell}>Topic</th>
