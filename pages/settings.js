@@ -3,13 +3,15 @@ import Layout from '../components/Layout';
 import prisma from '../lib/prisma'
 import Container from '../components/Container';
 import Avatar from '../components/Avatar';
-import Button from '../components/Button';
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { useState } from 'react';
 import { uploadFile } from '../lib/uploadFile';
-import { stringAvatar } from '../lib/stringAvatar';
 import { resizeImage } from '../lib/resizeImage';
+import FieldRow from '../components/FieldRow';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import Button from '../components/Button';
 
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(
@@ -34,26 +36,18 @@ export async function getServerSideProps(context) {
 export default function Home({ user }) {
   const [loading, setLoading] = useState(false)
   const [avatarLoading, setAvatarLoading] = useState(false)
-  const [name, setName] = useState(user.name)
   const [image, setImage] = useState(user.image)
-  const [shortBio, setShortBio] = useState(user.shortBio)
-  const [longBio, setLongBio] = useState(user.longBio)
-  const [twitterURL, setTwitterURL] = useState(user.twitterURL)
-  const [facebookURL, setFacebookURL] = useState(user.facebookURL)
-  const [linkedInURL, setLinkedInURL] = useState(user.linkedInURL)
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const handleAvatarUpload = async event => {
     setAvatarLoading(true)
     const file = event.target.files[0]
     const resizedFile = await resizeImage(file, 400, 400, 'jpg')
     const imageURL = await uploadFile(resizedFile, 'settings')
-    const result = await fetch(`/api/users/${user.id}/avatar`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        uid: user.id,
-        image: imageURL,
-      }),
+    const result = await axios.put(`/api/users/${user.id}/avatar`, {
+      uid: user.id,
+      image: imageURL,
     });
     setAvatarLoading(false)
     switch (result.status) {
@@ -65,24 +59,18 @@ export default function Home({ user }) {
     }
   }
 
-  const handleSubmit = async event => {
+  const onSubmit = async data => {
     setLoading(true)
-    event.preventDefault()
-    const body = { 
+    const result = await axios.put(`/api/users/${user.id}`, { 
       uid: user.id,
       user: {
-        name: name,
-        shortBio: shortBio,
-        longBio: longBio,
-        twitterURL: twitterURL,
-        facebookURL: facebookURL,
-        linkedInURL: linkedInURL,
+        name: data.name,
+        shortBio: data.shortBio,
+        longBio: data.longBio,
+        twitterURL: data.twitterURL,
+        facebookURL: data.facebookURL,
+        linkedInURL: data.linkedInURL,
       }
-     };
-    const result = await fetch(`/api/users/${user.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
     });
     setLoading(false)
     switch (result.status) {
@@ -101,53 +89,54 @@ export default function Home({ user }) {
           <title>Settings</title>
         </Head>
         <Container>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <h1>My Settings</h1>
-              <div>
-                {image ?
-                  <Avatar src={image} />
-                : <Avatar sx={{ bgcolor: 'blue' }} {...stringAvatar(name)} />
+              <div style={{ marginBottom: '1em' }}>
+                <Avatar src={image} alt={user.name} />
+                {avatarLoading 
+                  ? <span>Uploading image</span>
+                  : <input type='file' onChange={handleAvatarUpload} />
                 }
-                <input type='file' onChange={handleAvatarUpload} />
               </div>
-              <input
-                type='text' 
-                value={name} 
-                onChange={e => setName(e.target.value) } 
+              <FieldRow 
+                label='Name'
+                name='name'
+                defaultValue={user.name}
+                registerFunc={register}
               />
-              <input
-                type='text' 
-                label='Short bio' 
-                value={shortBio} 
-                onChange={e => setShortBio(e.target.value) } 
+              <FieldRow 
+                label='A bit about yourself, like what you do for a living'
+                name='shortBio'
+                defaultValue={user.shortBio}
+                registerFunc={register}
               />
-              <input
-                type='text' 
-                label='Long bio' 
-                value={longBio} 
-                onChange={e => setLongBio(e.target.value) } 
-                multiline={true} 
+              <FieldRow 
+                label='A bit more about yourself'
+                name='longBio'
+                type='textarea'
+                defaultValue={user.longBio}
+                registerFunc={register}
               />
-              <input
-                type='text' 
-                label='Twitter profile' 
-                value={twitterURL} 
-                onChange={e => setTwitterURL(e.target.value) } 
+              <FieldRow 
+                label='Twitter Profile'
+                name='twitterURL'
+                defaultValue={user.twitterURL}
+                registerFunc={register}
               />
-              <input
-                type='text' 
-                label='Facebook profile' 
-                value={facebookURL} 
-                onChange={e => setFacebookURL(e.target.value) } 
+              <FieldRow 
+                label='Facebook Profile'
+                name='facebookURL'
+                defaultValue={user.facebookURL}
+                registerFunc={register}
               />
-              <input
-                type='text' 
-                label='Linkedin profile' 
-                value={linkedInURL} 
-                onChange={e => setLinkedInURL(e.target.value) } 
+              <FieldRow 
+                label='Linkedin Profile'
+                name='linkedInURL'
+                defaultValue={user.linkedInURL}
+                registerFunc={register}
               />
-              <Button type='submit' loading={loading} variant='contained'>Submit</Button>
+              <Button type='submit' disabled={loading}>{loading ? <span>...</span> : <span>Submit</span>}</Button>
             </div>
           </form>
         </Container>

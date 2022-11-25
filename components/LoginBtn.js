@@ -1,5 +1,4 @@
 import { useSession, signIn, signOut } from "next-auth/react"
-import Button from "./Button"
 
 export default function LogInBtn() {
   const { data: session } = useSession()
@@ -11,7 +10,7 @@ export default function LogInBtn() {
           <span>welcome back <b>{possibleFirstName}</b></span>
         }
         (
-          <Button onClick={() => signOut()}>log out</Button>
+          <button onClick={() => signOut()}>log out</button>
         )
       </div>
     )

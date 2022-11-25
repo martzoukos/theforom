@@ -7,3 +7,7 @@
   align-items: center;
   font-size: var(--step-down-2);
 }
+
+.image {
+  border-radius: 100%;
+}

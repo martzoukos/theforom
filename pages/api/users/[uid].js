@@ -12,7 +12,6 @@ export default async function handler(req, res) {
     res.status(403).json({ error: 'unauthorized access' })
     return
   }
-
   const result = await prisma.user.update({
     where: {
       id: uid

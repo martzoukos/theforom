@@ -15,6 +15,7 @@ export default function Avatar({
         alt={alt}
         width={width}
         height={height}
+        className={styles.image}
       />
     )
   } else {

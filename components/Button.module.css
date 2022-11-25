@@ -1,0 +1,24 @@
+.button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  max-width: 20rem;
+  padding: 0.7em 1em;
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 0.5em;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: background-color var(--ease) var(--fast-animation);
+}
+
+.button:hover,
+.button:focus,
+:global(body.dark) .button:hover,
+:global(body.dark) .button:focus {
+  color: var(--white);
+  background-color: var(--purple);
+}

@@ -6,4 +6,75 @@ button {
   color: inherit;
   cursor: pointer;
   padding: 0;
+  transition: color var(--ease) var(--fast-animation);
+}
+
+button:hover,
+button:focus {
+  color: var(--red);
+}
+
+body.dark button:hover,
+body.dark button:focus {
+  color: var(--yellow);
+}
+
+label {
+  cursor: pointer;
+}
+
+input,
+select, 
+textarea {
+  background-color: var(--white);
+  color: var(--disabled-grey);
+  font-family: var(--sans-serif);
+  font-size: 16px;
+  line-height: 1.1;
+  padding: 0.7em 1em;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  max-width: 20rem;
+  display: block;
+  border: 1px solid var(--grey-on-white);
+  transition: border-color var(--ease) var(--fast-animation),
+              color var(--ease) var(--fast-animation);
+  border-radius: 0.5em;
+}
+
+input:focus,
+select:focus, 
+textarea:focus {
+  color: var(--black);
+  border-color: var(--black);
+}
+
+:global(body.dark) .nav {
+  border-color: var(--grey-on-black);
+}
+
+input[type=file] {
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+input::-webkit-input-placeholder{
+  font-family: var(--sans-serif);
+  font-size: var(--step-down-1);
+}
+
+textarea {
+  line-height: 1.5;
+  height: 6em;
+  padding: .7em;
+}
+
+input[type=radio],
+input[type=checkbox] {
+  height: auto;
+  padding: 0;
+  vertical-align: middle;
+  width: 1em;
 }
