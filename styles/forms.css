@@ -35,12 +35,16 @@ textarea {
   width: 100%;
   box-sizing: border-box;
   margin: 0;
-  max-width: 20rem;
+  max-width: 30rem;
   display: block;
   border: 1px solid var(--grey-on-white);
   transition: border-color var(--ease) var(--fast-animation),
               color var(--ease) var(--fast-animation);
   border-radius: 0.5em;
+}
+
+textarea {
+  max-width: 40rem;
 }
 
 input:focus,
