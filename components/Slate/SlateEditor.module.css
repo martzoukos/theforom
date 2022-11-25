@@ -9,20 +9,31 @@
 
 .button:hover,
 .button:focus {
-  background-color: #fafafa;
+  background-color: var(--white);
 }
 
 .editable {
   min-height: 4rem;
   padding: 0.3rem 1rem;
   line-height: 1.1;
-  background-color: #fafafa;
+  background-color: var(--white);
 }
 
 .toolbar {
-  background-color: white;
+  background-color: var(--white);
   position: relative;
   z-index: 10;
+}
+
+.editable,
+.toolbar {
+  border: 1px solid var(--grey-on-white);
+}
+
+:global(body.dark) .editable,
+:global(body.dark) .toolbar {
+  background-color: var(--black);
+  border: 1px solid var(--grey-on-black);
 }
 
 .buttonGroup + .buttonGroup {

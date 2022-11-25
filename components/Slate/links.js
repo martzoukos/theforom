@@ -10,7 +10,6 @@ import {
 } from "slate-react"
 import isUrl from 'is-url'
 import { Link as Linkicon, Unlink } from 'lucide-react';
-import Button from '../Button';
 import { INLINE } from './constants';
 
 // Use this in the initialization createEditor() function
@@ -126,7 +125,7 @@ export const LinkComponent = ({ attributes, children, element }) => {
 export const AddLinkButton = () => {
   const editor = useSlate()
   return (
-    <Button
+    <button
       type='button'
       variant={isLinkActive(editor) ? 'contained' : 'outlined'}
       size='small'
@@ -137,7 +136,7 @@ export const AddLinkButton = () => {
       }}
     >
       <Linkicon size={18} />
-    </Button>
+    </button>
   )
 }
 
@@ -153,7 +152,7 @@ export const RemoveLinkButton = () => {
   const editor = useSlate()
 
   return (
-    <Button
+    <button
       type='button'
       variant={isLinkActive(editor) ? 'contained' : 'outlined'}
       size='small'
@@ -165,6 +164,6 @@ export const RemoveLinkButton = () => {
       }}
     >
       <Unlink size={18} />
-    </Button>
+    </button>
   )
 }

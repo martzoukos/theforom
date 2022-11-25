@@ -16,7 +16,6 @@ import { useUploadedMedia } from './SlateEditor';
 import { nanoid } from 'nanoid';
 import { resizeImage } from '../../lib/resizeImage';
 import { uploadFile } from '../../lib/uploadFile';
-import Button from '../Button';
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
@@ -103,7 +102,7 @@ export const Image = ({ attributes, children, element }) => {
             boxShadow: `${selected && focused ? '0 0 0 3px #B4D5FF' : 'none'}`
           }}
         />
-        <Button
+        <button
           type="button"
           size='small'
           active="true"
@@ -117,7 +116,7 @@ export const Image = ({ attributes, children, element }) => {
           }}
         >
           <Trash size={18} />
-        </Button>
+        </button>
       </div>
     </div>
   )
@@ -160,7 +159,7 @@ export const UploadedImage = ({ attributes, children, element }) => {
           { uploadedMedia.url.startsWith('data:image') &&
             <span>uploading...</span>
           }
-          <Button
+          <button
             type="button"
             size='small'
             active="true"
@@ -174,7 +173,7 @@ export const UploadedImage = ({ attributes, children, element }) => {
             }}
           >
             <Trash size={18} />
-          </Button>
+          </button>
         </div>
       </div>
     )
@@ -188,7 +187,7 @@ export const UploadedImage = ({ attributes, children, element }) => {
 export const InsertImageButton = () => {
   const editor = useSlateStatic()
   return (
-    <Button
+    <button
       type='button'
       variant='outlined'
       size='small'
@@ -203,7 +202,7 @@ export const InsertImageButton = () => {
       }}
     >
       <ImageIcon size={18} />
-    </Button>
+    </button>
   )
 }
 

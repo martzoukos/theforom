@@ -7,7 +7,6 @@ import {
   Transforms
 } from 'slate'
 import { Video as VideoIcon } from "lucide-react";
-import Button from "../Button";
 import { BLOCK } from "./constants";
 
 export const withVideos = editor => {
@@ -78,7 +77,7 @@ export const Video = ({ attributes, children, element }) => {
 export const InsertVideoButton = () => {
   const editor = useSlateStatic()
   return (
-    <Button
+    <button
       type='button'
       variant='outlined'
       size='small'
@@ -93,7 +92,7 @@ export const InsertVideoButton = () => {
       }}
     >
       <VideoIcon size={18} />
-    </Button>
+    </button>
   )
 }
 

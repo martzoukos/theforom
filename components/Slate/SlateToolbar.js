@@ -5,7 +5,6 @@ import {
 } from 'slate';
 import { useSlate } from "slate-react"
 import Sticky from "react-sticky-el"
-import Button from '../Button';
 import { 
   Bold, 
   Italic,
@@ -83,7 +82,7 @@ const ToolbarButton = ({ format, type = 'mark', children }) => {
   const editor = useSlate()
   const isActive = type === 'mark' ? isMarkActive(editor, format) : isBlockActive(editor, format)
   return (
-    <Button
+    <button
       type="button"
       variant={isActive ? 'contained' : 'outlined'}
       size='small'
@@ -98,7 +97,7 @@ const ToolbarButton = ({ format, type = 'mark', children }) => {
       }}
     >
       {children}
-    </Button>
+    </button>
   )
 }
 
