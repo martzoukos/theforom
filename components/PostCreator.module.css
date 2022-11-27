@@ -1,38 +1,43 @@
 .postCreator {
-  max-width: 40rem;
-  margin: 0 auto 1rem;
   display: flex;
   align-items: center;
   line-height: 1;
-  border-bottom: 1px solid #EFEFEF;
+  background: var(--very-light-purple);
+  padding: 1em;
+}
+
+:global(body.dark) .postCreator {
+  background: var(--very-dark-purple);
 }
 
 .avatar {
-  margin-right: 1rem;
-  margin-left: -4rem;
+  width: 4em;
 }
 
 .avatarImage {
   border-radius: 100%;
-  width: 3rem;
-  height: 3rem;
+  width: 45px;
+  height: 45px;
 }
 
 .metaContent {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
+.nameInfo {
+  display: flex;
+  flex-direction: column;
+}
+
 .name {
-  font-size: 1.2rem;
+  font-size: var(--step-up-1);
+  margin-bottom: 0.2em;
 }
 
-.shortBio {
-  font-size: 0.8em;
-}
-
+.shortBio ,
 .createdDate {
-  font-size: 0.8em;
+  font-size: var(--step-down-1);
 }

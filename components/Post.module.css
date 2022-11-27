@@ -1,13 +1,15 @@
 .post {
-  padding: 2rem 0;
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
+  padding-bottom: 4em;
 }
 
-.post:hover {
-  border-color: #DDD;
+.bordered {
+  border: 1px solid var(--very-light-purple)
 }
 
-.withBackground {
-  background-color: #FAFAFA;
+:global(body.dark) .bordered {
+  border-color: var(--very-dark-purple)
+}
+
+.typographyContainer {
+  padding-top: 2em;
 }

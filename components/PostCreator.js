@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import styles from './PostCreator.module.css';
+import ReactTimeAgo from 'react-time-ago'
 
 const PostCreator = ({
   avatar, 
@@ -9,6 +10,7 @@ const PostCreator = ({
   shortBio, 
   postCount,
   postCreatedAt,
+  postNumber,
 }) => {
   const createdAtDate = new Date(postCreatedAt).toLocaleString()
   return (
@@ -21,16 +23,19 @@ const PostCreator = ({
         />
       </Link>
       <div className={styles.metaContent}>
-        <div>
+        <div className={styles.nameInfo}>
           <span className={styles.name}>{name}</span>
-          &nbsp;&middot;&nbsp;
           <span className={styles.shortBio}>
             {shortBio}
             &nbsp;&middot;&nbsp;
             {postCount} posts
           </span>
         </div>
-        <time className={styles.createdDate}>Posted at: {createdAtDate}</time>
+        <div className={styles.createdDate}>
+          <a href={`#post-${postNumber}`}>#{postNumber}</a>
+          &nbsp;&middot;&nbsp;
+          <ReactTimeAgo date={createdAtDate} />
+        </div>
       </div>
     </div>
   )

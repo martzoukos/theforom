@@ -53,7 +53,10 @@ export const SlateTextarea = ({editor}) => {
   return <Editable 
     renderLeaf={renderLeaf} 
     renderElement={renderElement}
-    className={styles.editable}
+    className={`
+      ${styles.editable}
+      typography
+    `}
     onDOMBeforeInput={handleDomBeforeInput}
     onKeyDown={event => {      
       for (const hotkey in HOTKEYS) {

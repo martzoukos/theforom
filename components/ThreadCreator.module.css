@@ -1,21 +1,22 @@
 .threadCreator {
-  text-align: center;
-  max-width: 53rem; /* 960px */
-  margin: 0 auto;
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .avatar {
   border-radius: 100%;
-  width: 5rem;
-  height: 5rem;
-  margin: 0 auto 0.5rem;
+  width: 45px;
+  height: 45px;
+  margin-bottom: 0.5rem;
 }
 
 .name {
-  font-size: 1.2rem;
+  font-size: var(--step-up-2);
   line-height: 1;
 }
 
 .shortBio {
-  font-size: 0.8em;
+  font-size: var(--step-down-1);
 }

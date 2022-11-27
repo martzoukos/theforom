@@ -1,0 +1,70 @@
+.typography {
+  line-height: 1.3;
+  font-family: var(--serif);
+  font-size: var(--step-up-1);
+  line-height: 1.5;
+}
+
+.typography > * {
+  margin: 0;
+  padding: 0;
+}
+
+.typography > * + * {
+  margin-top: 1em;
+}
+
+.typography a {
+  text-decoration: underline;
+}
+
+.typography h1,
+.typography h2,
+.typography h3,
+.typography h4,
+.typography h5,
+.typography h6 {
+  font-family: var(--sans-serif);
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+}
+
+.typography h1 {
+  font-size: var(--step-up-5);
+}
+
+.typography h2 {
+  font-size: var(--step-up-4);
+}
+
+.typography h3 {
+  font-size: var(--step-up-3);
+}
+
+.typography h4 {
+  font-size: var(--step-up-2);
+}
+
+.typography h5 {
+  font-size: var(--step-up-1);
+}
+
+.typography h6 {
+  font-size: var(--step-up-1);
+}
+
+.typography li {
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+.typography blockquote {
+  font-size: var(--step-up-2);
+  margin-left: 1em;
+  padding-left: 0.5em;
+  border-left: 0.3em solid var(--grey-on-white);
+}
+
+:global(body.dark) .typography blockquote {
+  border-color: var(--grey-on-black);
+}

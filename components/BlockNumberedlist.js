@@ -1,10 +1,8 @@
-import styles from './BlockNumberedlist.module.css';
-
 export const BlockNumberedlist = ({ content }) => {
   return (
-    <ol className={styles.ol}>
+    <ol>
       {content.map((li, i) => {
-        return <li key={i} className={styles.li}>{li}</li>
+        return <li key={i}>{li}</li>
       })}
     </ol>
   )

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import SlateEditor, { useUploadedMedia } from "./Slate/SlateEditor"
-import styles from './PostReply.module.css'
 import Button from './Button';
+import Container from './Container';
 
 export const PostReply = ({thread}) => {
   const [post, setPost] = useState('')
@@ -25,23 +25,19 @@ export const PostReply = ({thread}) => {
   }
 
   return (
-    <form 
-      action='/api/post'
-      method='post'
-      onSubmit={handleSubmit}
-      className={styles.form}
-    >
-      <h2 className={styles.header}>Reply to this thread</h2>
-      <div className={styles.editor}>
-        <SlateEditor value={post} setValue={setPost} />
-      </div>
-      <Button
-        type='submit'
-        color='primary'
-        variant='contained'
+    <Container isNarrow={true}>
+      <form 
+        action='/api/post'
+        method='post'
+        onSubmit={handleSubmit}
       >
-        Add a post
-      </Button>
-    </form>
+        <h2 className='as-h2'>Reply to this thread</h2>
+        <SlateEditor value={post} setValue={setPost} />
+        <br/>
+        <Button>
+          Add a post
+        </Button>
+      </form>
+    </Container>
   )
 }

@@ -70,6 +70,7 @@ export default function Home({ allThreads, allCategories }) {
           <h1 className='as-h1'>The Forums are back.</h1>
           <ThreadsTable threads={allThreads} />
           <div>
+            <br/>
             { session ?
               <Link href='/threads/new'>Create a new Thread</Link>
               :  
