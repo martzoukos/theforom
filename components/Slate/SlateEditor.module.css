@@ -50,7 +50,7 @@
   line-height: 1.3;
   background-color: var(--editor-white);
   font-family: var(--serif);
-  font-size: var(--step-down-1);
+  font-size: var(--step-up-1);
   line-height: 1.5;
   border: 1px solid var(--very-light-purple);
   border-bottom-left-radius: var(--border-radius);
