@@ -24,7 +24,7 @@ const PostCreator = ({
       </Link>
       <div className={styles.metaContent}>
         <div className={styles.nameInfo}>
-          <span className={styles.name}>{name}</span>
+          <Link href={`/users/${id}`} className={styles.name}>{name}</Link>
           <span className={styles.shortBio}>
             {shortBio}
             &nbsp;&middot;&nbsp;
