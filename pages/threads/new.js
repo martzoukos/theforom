@@ -21,10 +21,11 @@ export default function Thread() {
   const onSubmit = async data => {
     setLoading(true)
     const result = await axios.post('/api/thread', { 
-      title: data.title, 
+      title: data.subject, 
       content: richTextContent,
       uploadedMedia: uploadedMedia.uploadedMedia
     })
+    setLoading(false)
     switch (result.status) {
       case 200:
         await router.push(`/threads/${result.data.id}`)
