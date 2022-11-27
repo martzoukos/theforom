@@ -41,7 +41,7 @@ export default function Thread() {
         <Head>
           <title>Create your Thread</title>
         </Head>
-        <Container>
+        <Container isNarrow={true}>
           <form  onSubmit={handleSubmit(onSubmit)}>
             <h1 className='as-h2'>Create your Thread</h1>
             <FieldRow

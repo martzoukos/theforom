@@ -46,10 +46,12 @@
 
 .editable {
   min-height: 14rem;
-  padding: 0.3rem 1rem;
+  padding: 2rem;
   line-height: 1.3;
   background-color: var(--editor-white);
   font-family: var(--serif);
+  font-size: var(--step-down-1);
+  line-height: 1.5;
   border: 1px solid var(--very-light-purple);
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
@@ -58,4 +60,69 @@
 :global(body.dark) .editable {
   background-color: var(--editor-black);
   border: 1px solid var(--very-dark-purple);
+}
+
+/* TYPOGRAPHY FOR SLATE EDITOR */
+
+.editable > * {
+  margin: 0;
+  padding: 0;
+}
+
+.editable > * + * {
+  margin-top: 1em;
+}
+
+.editable a {
+  text-decoration: underline;
+}
+
+.editable h1,
+.editable h2,
+.editable h3,
+.editable h4,
+.editable h5,
+.editable h6 {
+  font-family: var(--sans-serif);
+  line-height: 1.1;
+}
+
+.editable h1 {
+  font-size: var(--step-up-7);
+}
+
+.editable h2 {
+  font-size: var(--step-up-5);
+}
+
+.editable h3 {
+  font-size: var(--step-up-4);
+}
+
+.editable h4 {
+  font-size: var(--step-up-3);
+}
+
+.editable h5 {
+  font-size: var(--step-up-2);
+}
+
+.editable h6 {
+  font-size: var(--step-up-1);
+}
+
+.editable li {
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+.editable blockquote {
+  font-size: var(--step-up-2);
+  margin-left: 1em;
+  padding-left: 0.5em;
+  border-left: 0.3em solid var(--grey-on-white);
+}
+
+:global(body.dark) .editable blockquote {
+  border-color: var(--grey-on-black);
 }

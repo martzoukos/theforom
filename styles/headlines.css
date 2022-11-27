@@ -1,4 +1,9 @@
-h1, h2, h3, h4, h5, h6 {
+.as-h1, 
+.as-h2, 
+.as-h3, 
+.as-h4, 
+.as-h5, 
+.as-h6 {
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.055em;
@@ -20,12 +25,12 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-body.dark h1, 
-body.dark h2, 
-body.dark h3, 
-body.dark h4, 
-body.dark h5, 
-body.dark h6 {
+body.dark .as-h1, 
+body.dark .as-h2, 
+body.dark .as-h3, 
+body.dark .as-h4, 
+body.dark .as-h5, 
+body.dark .as-h6 {
   background: linear-gradient(180deg, var(--white) 0%, var(--light-purple) 100%);  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
