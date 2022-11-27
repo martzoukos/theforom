@@ -90,7 +90,10 @@ const ToolbarButton = ({ format, type = 'mark', children }) => {
       variant={isActive ? 'contained' : 'outlined'}
       size='small'
       active={isActive.toString()}
-      className={styles.button}
+      className={`
+        ${styles.button} 
+        ${isActive && styles.buttonActive}
+      `}
       onMouseDown={event => {
         event.preventDefault()
         if (type==='mark') {

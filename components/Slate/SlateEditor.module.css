@@ -10,6 +10,7 @@
   position: relative;
   z-index: 10;
   display: flex;
+  padding: 0.5em 1em;
   justify-content: space-between;
   color: var(--black);
   background-color: var(--very-light-purple);
@@ -26,8 +27,21 @@
   background-color: transparent;
   border: 0;
   text-align: center;
-  padding: 1rem;
+  padding: 0.1rem;
+  border-radius: 0.3em;;
   cursor: pointer;
+  border: 1px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonActive {
+  border-color: var(--black)
+}
+
+:global(body.dark) .buttonActive {
+  border-color: var(--white)
 }
 
 .editable {

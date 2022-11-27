@@ -131,7 +131,10 @@ export const AddLinkButton = () => {
       variant={isLinkActive(editor) ? 'contained' : 'outlined'}
       size='small'
       active={isLinkActive(editor).toString()}
-      className={styles.button}
+      className={`
+        ${styles.button} 
+        ${isLinkActive(editor) && styles.buttonActive}
+      `}
       onMouseDown={event => {
         event.preventDefault()
         addLink(editor)
