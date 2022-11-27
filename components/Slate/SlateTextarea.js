@@ -81,6 +81,7 @@ export const SlateTextarea = ({editor}) => {
 // REACT COMPONENTS
 /////////////
 const Element = ({ attributes, children, element }) => {
+  console.log(element)
   switch (element.type) {
     case BLOCK.BLOCKQUOTE:
       return (

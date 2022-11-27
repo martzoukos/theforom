@@ -45,22 +45,22 @@ export const SlateToolbar =() => {
         <ToolbarButton format={INLINE.STRIKETHROUGH} type='mark'>
           <Strikethrough size={18} />
         </ToolbarButton>
-        <ToolbarButton format={INLINE.H1} type='block'>
+        <ToolbarButton format={BLOCK.H1} type='block'>
           <Heading1 size={18} />
         </ToolbarButton>
-        <ToolbarButton format={INLINE.H2} type='block'>
+        <ToolbarButton format={BLOCK.H2} type='block'>
           <Heading2 size={18} />
         </ToolbarButton>
-        <ToolbarButton format={INLINE.H3} type='block'>
+        <ToolbarButton format={BLOCK.H3} type='block'>
           <Heading3 size={18} />
         </ToolbarButton>
-        <ToolbarButton format={INLINE.H4} type='block'>
+        <ToolbarButton format={BLOCK.H4} type='block'>
           <Heading4 size={18} />
         </ToolbarButton>
-        <ToolbarButton format={INLINE.H5} type='block'>
+        <ToolbarButton format={BLOCK.H5} type='block'>
           <Heading5 size={18} />
         </ToolbarButton>
-        <ToolbarButton format={INLINE.H6} type='block'>
+        <ToolbarButton format={BLOCK.H6} type='block'>
           <Heading6 size={18} />
         </ToolbarButton>
         <ToolbarButton format={BLOCK.BLOCKQUOTE} type='block'>
