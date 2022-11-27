@@ -29,7 +29,7 @@
 }
 
 .smallInfo {
-  font-size: var(--step-down-3);
+  font-size: var(--step-down-2);
   line-height: 1;
   margin-top: 0.3em;
 }
@@ -39,7 +39,7 @@
 }
 
 .categories {
-  font-size: var(--step-down-3);
+  font-size: var(--step-down-2);
   font-family: var(--serif);
   padding: var(--cell-padding-v) var(--cell-padding-h) var(--cell-padding-v) 0;
 }
@@ -60,7 +60,7 @@
 }
 
 .repliesLabel {
-  font-size: var(--step-down-3);
+  font-size: var(--step-down-2);
   display: block;
   line-height: 1;
 }
@@ -71,7 +71,7 @@
 
 .participants {
   display: flex;
-  font-size: var(--step-down-3);
+  font-size: var(--step-down-2);
 }
 
 .participants > * {
@@ -85,5 +85,5 @@
 }
 
 .updatedAt {
-  font-size: var(--step-down-3);
+  font-size: var(--step-down-2);
 }
