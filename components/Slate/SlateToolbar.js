@@ -28,7 +28,10 @@ import { BLOCK, INLINE, LIST_TYPES } from './constants';
 
 export const SlateToolbar =() => {
   return (
-    <Sticky className={styles.toolbar}>
+    <Sticky 
+      stickyClassName={styles.toolbar}
+      scrollElement={document.body}
+    >
       <div className={styles.toolbar}>
         <ToolbarButton format={INLINE.BOLD} type='mark'>
           <Bold size={18} />
@@ -87,6 +90,7 @@ const ToolbarButton = ({ format, type = 'mark', children }) => {
       variant={isActive ? 'contained' : 'outlined'}
       size='small'
       active={isActive.toString()}
+      className={styles.button}
       onMouseDown={event => {
         event.preventDefault()
         if (type==='mark') {

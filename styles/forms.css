@@ -40,7 +40,7 @@ textarea {
   border: 1px solid var(--grey-on-white);
   transition: border-color var(--ease) var(--fast-animation),
               color var(--ease) var(--fast-animation);
-  border-radius: 0.5em;
+  border-radius: var(--border-radius)
 }
 
 textarea {

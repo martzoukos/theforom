@@ -11,6 +11,7 @@ import {
 import isUrl from 'is-url'
 import { Link as Linkicon, Unlink } from 'lucide-react';
 import { INLINE } from './constants';
+import styles from './SlateEditor.module.css'
 
 // Use this in the initialization createEditor() function
 export const withInlines = editor => {
@@ -130,6 +131,7 @@ export const AddLinkButton = () => {
       variant={isLinkActive(editor) ? 'contained' : 'outlined'}
       size='small'
       active={isLinkActive(editor).toString()}
+      className={styles.button}
       onMouseDown={event => {
         event.preventDefault()
         addLink(editor)
@@ -157,6 +159,7 @@ export const RemoveLinkButton = () => {
       variant={isLinkActive(editor) ? 'contained' : 'outlined'}
       size='small'
       active={isLinkActive(editor).toString()}
+      className={styles.button}
       onMouseDown={event => {
         if (isLinkActive(editor)) {
           unwrapLink(editor)

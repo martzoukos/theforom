@@ -8,6 +8,7 @@ import {
 } from 'slate'
 import { Video as VideoIcon } from "lucide-react";
 import { BLOCK } from "./constants";
+import styles from './SlateEditor.module.css'
 
 export const withVideos = editor => {
   const { insertData, isVoid } = editor
@@ -81,6 +82,7 @@ export const InsertVideoButton = () => {
       type='button'
       variant='outlined'
       size='small'
+      className={styles.button}
       onMouseDown={event => {
         event.preventDefault()
         const url = window.prompt('Enter the URL of the video:')

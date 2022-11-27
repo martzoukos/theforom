@@ -1,5 +1,7 @@
 :root {
   --black: #000;
+  --editor-black: #101010;
+  --editor-white: #fff;
   --white: #FFF;
   --yellow: #FCFF53;
   --blue: #5372ff;
@@ -12,4 +14,7 @@
 
   --grey-on-white: #B8BAD2;
   --grey-on-black: #2C2F4A;
+
+  --glow-color-light: #DDFBFF;
+  --glow-color-dark: #091F3F;
 }

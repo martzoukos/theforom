@@ -49,10 +49,11 @@ const SlateEditor = ({ setValue }) => {
       editor={editor}
       value={initialValue}
       onChange={setValue}
-      className={styles.slateEditor}
     >
-      <SlateToolbar />
-      <SlateTextarea editor={editor} />
+      <div className={styles.slateEditor}>
+        <SlateToolbar />
+        <SlateTextarea editor={editor} />
+      </div>
     </Slate>
   );
 };

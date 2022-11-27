@@ -16,6 +16,7 @@ import { useUploadedMedia } from './SlateEditor';
 import { nanoid } from 'nanoid';
 import { resizeImage } from '../../lib/resizeImage';
 import { uploadFile } from '../../lib/uploadFile';
+import styles from './SlateEditor.module.css'
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
@@ -191,6 +192,7 @@ export const InsertImageButton = () => {
       type='button'
       variant='outlined'
       size='small'
+      className={styles.button}
       onMouseDown={event => {
         event.preventDefault()
         const url = window.prompt('Enter the URL of the image:')

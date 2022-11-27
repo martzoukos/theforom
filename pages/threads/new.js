@@ -6,51 +6,65 @@ import Editor, { useUploadedMedia } from '../../components/Slate/SlateEditor';
 import { useSession, signIn } from 'next-auth/react';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
+import FieldRow from '../../components/FieldRow';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 export default function Thread() {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+  const [loading, setLoading] = useState('')
+  const [richTextContent, setRichTextContent] = useState('')
   const router = useRouter()
   const { data: session } = useSession()
   const uploadedMedia = useUploadedMedia()
+  const { register, handleSubmit } = useForm();
 
-  const handleSubmit = async event => {
-    event.preventDefault()
-    const body = { 
-      title, 
-      content,
+  const onSubmit = async data => {
+    setLoading(true)
+    const result = await axios.post('/api/thread', { 
+      title: data.title, 
+      content: richTextContent,
       uploadedMedia: uploadedMedia.uploadedMedia
-    };
-    const res = await fetch('/api/thread', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
     })
-    const data = await res.json()
-    await router.push(`/threads/${data.id}`)
+    switch (result.status) {
+      case 200:
+        await router.push(`/threads/${result.data.id}`)
+        break;
+      default:
+        alert('There was an issue with your request, please try again.')
+    }
   }
 
   if (session) {
     return (
       <Layout>
         <Head>
-          <title>Create your first thread</title>
+          <title>Create your Thread</title>
         </Head>
-        <Container maxWidth='md'>
-          <form action='/api/thread' method='post' onSubmit={handleSubmit}>
-            <label htmlFor='title'>Title</label>
-            <input 
-              type='text' 
-              name='title' 
-              id='title'
-              placeholder='Thread title'
-              onChange={(e) => setTitle(e.target.value)}
-              value={title}
+        <Container>
+          <form  onSubmit={handleSubmit(onSubmit)}>
+            <h1 className='as-h2'>Create your Thread</h1>
+            <FieldRow
+              label='Thread Title'
+              name='subject'
+              registerFunc={register}
             />
-            <br/>
-            <Editor value={content} setValue={setContent}/>
-            <br/>
-            <button type='submit'>Publish your Thread</button>
+            <FieldRow
+              label='Categories (comma separated)'
+              name='categories'
+              registerFunc={register}
+            />
+            <div style={{ marginBottom: '1.5em' }}>
+              <Editor value={richTextContent} setValue={setRichTextContent}/>
+            </div>
+            <Button 
+              type='submit' 
+              disabled={loading}
+            >
+              {loading 
+                ? <span>...</span> 
+                : <span>Publish your Thread</span>
+              }
+            </Button>
           </form>
         </Container>
       </Layout>
