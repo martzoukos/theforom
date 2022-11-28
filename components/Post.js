@@ -20,6 +20,7 @@ const Post = ({content, showCreatedBy, postNumber}) => {
             postCount={user._count.posts}
             postCreatedAt={content.createdAt}
             postNumber={postNumber}
+            postId={content.id}
           />
         }
         <Container isNarrow={true}>

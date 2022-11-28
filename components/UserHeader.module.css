@@ -1,47 +1,63 @@
-.container {
-  max-width: 40rem;
-  margin: 0 auto 1rem;
-}
-
 .topRow {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  margin-top: 2em;
 }
 
 .image {
   border-radius: 50%;
-  width: 3.5rem;
-  height: 3.5rem;
   margin-right: 1rem;
 }
 
 .name {
-  font-size: 2rem;
   margin: 0;
 }
 
 .info {
-  font-size: 0.8em;
   display: flex;
+  justify-content: center;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
 }
 
 .socialButton {
   margin-left: 0.2rem;
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 0 0.2em;
 }
 
 .socialIcon {
   color: transparent;
-  fill: #333;
-  width: 1rem;
-  height: 1rem;
+  fill: var(--black);
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.2em;
 }
 
-.socialButton:hover .socialIcon,
-.socialButton:focus .socialIcon {
-  fill: blue;
+:global(body.dark) .socialIcon {
+  fill: var(--white)
+}
+
+.twitter:hover,
+.twitter:focus {
+  fill: #00acee;
+}
+
+.facebook:hover,
+.facebook:focus {
+  fill: #3b5998;
+}
+
+.linkedin:hover,
+.linkedin:focus {
+  fill: #0072b1;
 }
 
 .longBio {

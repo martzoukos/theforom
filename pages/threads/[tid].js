@@ -69,7 +69,7 @@ const Thread = ({ thread }) => {
         date={thread.createdAt}
       />
       {thread.posts.map((post, i) => (
-        <div id={`post-${i}`} key={i}>
+        <div id={`post-${post.id}`} key={i}>
           <Post
             content={post}
             showCreatedBy={i>0} 

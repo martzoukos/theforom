@@ -3,7 +3,8 @@
 }
 
 .bordered {
-  border: 1px solid var(--very-light-purple)
+  border: 1px solid var(--very-light-purple);
+  margin-bottom: 4em;
 }
 
 :global(body.dark) .bordered {

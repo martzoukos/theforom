@@ -11,6 +11,7 @@ const PostCreator = ({
   postCount,
   postCreatedAt,
   postNumber,
+  postId,
 }) => {
   const createdAtDate = new Date(postCreatedAt).toLocaleString()
   return (
@@ -32,7 +33,7 @@ const PostCreator = ({
           </span>
         </div>
         <div className={styles.createdDate}>
-          <a href={`#post-${postNumber}`}>#{postNumber}</a>
+          <a href={`#post-${postId}`}>#{postNumber}</a>
           &nbsp;&middot;&nbsp;
           <ReactTimeAgo date={createdAtDate} />
         </div>
