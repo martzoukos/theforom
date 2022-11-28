@@ -45,18 +45,18 @@
   fill: var(--white)
 }
 
-.twitter:hover,
-.twitter:focus {
+.socialButton:hover .twitter,
+.socialButton:focus .twitter {
   fill: #00acee;
 }
 
-.facebook:hover,
-.facebook:focus {
+.socialButton:hover .facebook,
+.socialButton:focus .facebook {
   fill: #3b5998;
 }
 
-.linkedin:hover,
-.linkedin:focus {
+.socialButton:hover .linkedin,
+.socialButton:focus .linkedin {
   fill: #0072b1;
 }
 
