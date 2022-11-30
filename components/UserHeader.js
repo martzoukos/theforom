@@ -1,14 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
-import { Facebook, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Linkedin, Pencil, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import Container from './Container';
 import styles from './UserHeader.module.css';
 import ReactTimeAgo from 'react-time-ago';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 export const UserHeader = ({ user }) => {
+  const { data: session } = useSession()
   return (
     <Container isNarrow={true}>
       <div className={styles.topRow}>
+        {session.user.id === user.id && 
+          <Link href='/settings' className={styles.editLink}>
+            Edit my Profile
+            &nbsp;
+            <Pencil size={16} />
+          </Link>
+        }
         {user.image &&
           <Image
             className={styles.image} 
