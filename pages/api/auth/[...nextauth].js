@@ -11,7 +11,17 @@ export const authOptions = {
       from: process.env.EMAIL_FROM,
     }),
   ],
+  pages: {
+    signIn: '/sign-in',
+  },
   callbacks: {
+    signIn: async ({ user, account, profile, email, credentials }) => {
+      // @TODO: check database for user with this email
+      // if email exists and profile.email_verified
+      // then return true
+      // update user.name with profile.name
+      return true
+    },
     session: async ({ session, token }) => {
       if (session?.user) {
         session.user.id = token.sub;
@@ -22,6 +32,7 @@ export const authOptions = {
   session: {
     strategy: 'jwt',
   },
+  secret: process.env.NEXTAUTH_SECRET
 }
 
 export default NextAuth(authOptions)
