@@ -6,7 +6,7 @@ import Container from "./Container"
 
 export default function UserPost({ post }) {
   const text = documentToPlainText(post.content)
-  const trimmedText = text.trim().split(' ').slice(0, 100).join(' ') + '…'
+  const trimmedText = text? text.trim().split(' ').slice(0, 100).join(' ') + '…' : '…'
   return(
     <div className={styles.post}>
       <div className={styles.header}>
