@@ -11,7 +11,7 @@ export default function SignIn({ csrfToken }) {
         <title>Sign in - {siteTitle}</title>
       </Head>
       <Container isNarrow={true}>
-        <SignInForm csrfToken />
+        <SignInForm csrfToken={csrfToken} />
       </Container>
     </Layout>
   )

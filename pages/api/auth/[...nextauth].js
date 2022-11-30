@@ -13,6 +13,7 @@ export const authOptions = {
   ],
   pages: {
     signIn: '/sign-in',
+    verifyRequest: '/auth/verify-request',
   },
   callbacks: {
     signIn: async ({ user, account, profile, email, credentials }) => {
