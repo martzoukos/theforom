@@ -5,14 +5,8 @@
   align-items: center;
 }
 
-.avatar {
-  border-radius: 100%;
-  width: 45px;
-  height: 45px;
-  margin-bottom: 0.5rem;
-}
-
 .name {
+  margin-top: 0.5em;
   font-size: var(--step-up-2);
   line-height: 1;
 }

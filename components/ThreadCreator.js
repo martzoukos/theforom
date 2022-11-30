@@ -2,6 +2,7 @@
 import styles from './ThreadCreator.module.css';
 import Link from 'next/link';
 import Container from './Container'
+import Avatar from './Avatar';
 
 const ThreadCreator = ({
   avatar, 
@@ -14,10 +15,9 @@ const ThreadCreator = ({
     <Container>
       <div className={styles.threadCreator}>
         <Link href={`/users/${id}`}>
-          <img 
-            className={styles.avatar}
+          <Avatar 
             src={avatar}
-            alt={`Profile picture of ${name}`}
+            alt={name} 
           />
         </Link>
         <div className={styles.name}>{name}</div>

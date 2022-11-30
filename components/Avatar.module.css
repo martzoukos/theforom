@@ -11,3 +11,23 @@
 .image {
   border-radius: 100%;
 }
+
+.emptyAvatar,
+.image {
+  border: 2px solid transparent;
+  transition: border-color var(--ease) var(--fast-animation);
+}
+
+a:hover > .emptyAvatar,
+a:focus > .emptyAvatar,
+a:hover > .image,
+a:focus > .image {
+  border-color: var(--red);
+}
+
+:global(body.dark) a:hover > .emptyAvatar,
+:global(body.dark) a:focus > .emptyAvatar,
+:global(body.dark) a:hover > .image,
+:global(body.dark) a:focus > .image {
+  border-color: var(--yellow);
+}
