@@ -14,6 +14,7 @@ export const authOptions = {
   pages: {
     signIn: '/sign-in',
     verifyRequest: '/auth/verify-request',
+    error: '/auth/error'
   },
   callbacks: {
     signIn: async ({ user, account, profile, email, credentials }) => {
