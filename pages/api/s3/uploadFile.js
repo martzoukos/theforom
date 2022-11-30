@@ -30,7 +30,6 @@ export const uploadFile = async (req, res) => {
 
     res.status(200).json({ signedURL, fileURL });
   } catch (err) {
-    console.log(err);
     res.status(400).json({ message: err });
   }
 };

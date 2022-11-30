@@ -26,7 +26,9 @@ export const authOptions = {
     },
     session: async ({ session, token }) => {
       if (session?.user) {
-        session.user.id = token.sub;
+        session.user.id = token.sub
+        session.user.image = token.picture
+        session.user.name = token.name
       }
       return session;
     },

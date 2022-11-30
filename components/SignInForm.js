@@ -2,7 +2,6 @@ import Button from "./Button"
 import styles from './SignInForm.module.css'
 
 export default function SignInForm({ csrfToken }) {
-  console.log(csrfToken)
   return(
     <div>
       <h1 className="as-h2">Sign in</h1>

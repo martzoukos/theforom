@@ -25,7 +25,6 @@ export default async function handler(req, res) {
       }
     })
   })
-  console.log(categoriesQuery)
   const connectUser = { id: session?.user?.id }
   const result = await prisma.thread.create({
     data: {
