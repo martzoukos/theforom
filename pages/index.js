@@ -38,6 +38,9 @@ export async function getServerSideProps() {
       _count: {
         select: { posts: true }
       }
+    },
+    orderBy: {
+      createdAt: 'desc'
     }
   })
 

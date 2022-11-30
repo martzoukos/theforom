@@ -47,6 +47,9 @@ export async function getServerSideProps(context) {
           }
         }
       }
+    },
+    orderBy: {
+      createdAt: 'desc'
     }
   })
   return {
