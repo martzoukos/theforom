@@ -5,7 +5,8 @@ export default function FieldRow({
   name,
   type='text',
   defaultValue,
-  registerFunc
+  registerFunc,
+  inputParams,
 }) {
   return (
     <div className={styles.row}>
@@ -30,6 +31,7 @@ export default function FieldRow({
           type={type}
           name={name}
           id={name}
+          {...inputParams}
           defaultValue={defaultValue}
           {...registerFunc(name)}
         />

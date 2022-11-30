@@ -8,7 +8,24 @@ export default async function handler(req, res) {
     return
   }
 
-  const { title, content, uploadedMedia } = req.body
+  const { title, content, uploadedMedia, categories } = req.body
+  const categoriesQuery = categories === null 
+  ? []
+  : categories.map(c => {
+    return({
+      Category: {
+        connectOrCreate:{
+          where: {
+            name: c
+          },
+          create: {
+            name: c
+          }
+        }
+      }
+    })
+  })
+  console.log(categoriesQuery)
   const connectUser = { id: session?.user?.id }
   const result = await prisma.thread.create({
     data: {
@@ -19,6 +36,9 @@ export default async function handler(req, res) {
           uploadedMedia: uploadedMedia,
           User: { connect: connectUser }
         },
+      },
+      categories: {
+        create: categoriesQuery
       },
       User: { connect: connectUser }
     }

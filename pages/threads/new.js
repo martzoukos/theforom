@@ -22,8 +22,9 @@ export default function Thread() {
     setLoading(true)
     const result = await axios.post('/api/thread', { 
       title: data.subject, 
+      categories: data.categories.trim() === '' ? null : data.categories.split(','),
       content: richTextContent,
-      uploadedMedia: uploadedMedia.uploadedMedia
+      uploadedMedia: uploadedMedia.uploadedMedia,
     })
     setLoading(false)
     switch (result.status) {
@@ -52,6 +53,10 @@ export default function Thread() {
             <FieldRow
               label='Categories (comma separated)'
               name='categories'
+              inputParams={{
+                pattern: '^[0-9a-zA-Z]+(,[0-9a-zA-Z]+)*$',
+                title: 'Please provide a comma separated list'
+              }}
               registerFunc={register}
             />
             <div style={{ marginBottom: '1.5em' }}>
