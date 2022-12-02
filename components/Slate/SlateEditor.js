@@ -6,7 +6,7 @@ import { withInlines } from './withInlines'
 import { withImages } from './withImages'
 import { withVideos } from './withVideos'
 import { withHTML } from './pasteHTML';
-import { withShortcuts } from './markdownShortcuts';
+import { withShortcuts } from './withShortcuts';
 import { withLineReset } from './withLineReset';
 import styles from './SlateEditor.module.css'
 import { SlateToolbar } from './SlateToolbar';
