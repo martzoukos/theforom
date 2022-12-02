@@ -39,8 +39,21 @@ export const withShortcuts = editor => {
         })
 
         if (type === BLOCK.LI) {
+          let listType
+          switch (beforeText) {
+            case '*': 
+            case '-':
+            case'+':
+              listType = BLOCK.UL
+              break;
+            case '1.':
+            case 'a.':
+            case 'i.':
+              listType = BLOCK.OL
+              break;
+          }
           const list = {
-            type: BLOCK.UL,
+            type: listType,
             children: [],
           }
           Transforms.wrapNodes(editor, list, {
