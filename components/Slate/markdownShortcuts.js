@@ -101,7 +101,7 @@ export const withShortcuts = editor => {
               match: n =>
                 !Editor.isEditor(n) &&
                 Element.isElement(n) &&
-                n.type === BLOCK.UL,
+                (n.type === BLOCK.UL || n.type === BLOCK.UL),
               split: true,
             })
           }
