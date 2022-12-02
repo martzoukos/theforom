@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { isHotkey } from 'is-hotkey'
-import { LinkComponent } from './links'
-import { Image, UploadedImage } from './images'
-import { Video } from './videos'
+import { LinkComponent } from './withInlines'
+import { Image, UploadedImage } from './withImages'
+import { Video } from './withVideos'
 import styles from './SlateEditor.module.css'
 import { 
   toggleBlock,

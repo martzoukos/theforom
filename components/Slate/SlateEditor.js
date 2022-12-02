@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import { createEditor } from 'slate';
 import { Slate, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
-import { withInlines } from './links'
-import { withImages } from './images'
-import { withVideos } from './videos'
+import { withInlines } from './withInlines'
+import { withImages } from './withImages'
+import { withVideos } from './withVideos'
 import { withHTML } from './pasteHTML';
 import { withShortcuts } from './markdownShortcuts';
 import { withLineReset } from './withLineReset';
