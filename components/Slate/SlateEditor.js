@@ -7,6 +7,7 @@ import { withImages } from './images'
 import { withVideos } from './videos'
 import { withHTML } from './pasteHTML';
 import { withShortcuts } from './markdownShortcuts';
+import { withLineReset } from './withLineReset';
 import styles from './SlateEditor.module.css'
 import { SlateToolbar } from './SlateToolbar';
 import { SlateTextarea } from './SlateTextarea';
@@ -30,12 +31,14 @@ const SlateEditor = ({ setValue }) => {
   const editor = useMemo(
     () => withVideos(
       withHTML(
-        withShortcuts(
-          withImages(
-            withInlines(
-              withHistory(
-                withReact(
-                  createEditor()
+        withLineReset(
+          withShortcuts(
+            withImages(
+              withInlines(
+                withHistory(
+                  withReact(
+                    createEditor()
+                  )
                 )
               )
             )
