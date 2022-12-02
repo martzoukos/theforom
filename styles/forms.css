@@ -19,6 +19,16 @@ body.dark button:focus {
   color: var(--yellow);
 }
 
+button:disabled,
+button:disabled:hover,
+button:disabled:focus,
+body.dark button:disabled,
+body.dark button:disabled:hover,
+body.dark button:disabled:focus {
+  background-color: var(--disabled-grey);
+  cursor: default;
+}
+
 label {
   cursor: pointer;
 }
