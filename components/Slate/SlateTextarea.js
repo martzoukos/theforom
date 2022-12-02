@@ -148,7 +148,7 @@ const Element = ({ attributes, children, element }) => {
     case INLINE.LINK:
       return <LinkComponent {...{ attributes, children, element }} />
     case BLOCK.IMG:
-      return <Image {...{ attributes, children, element }} />
+      return <Image alt='' {...{ attributes, children, element }} />
     case BLOCK.UPLOADEDIMG:
       return <UploadedImage {...{ attributes, children, element }} />
     case BLOCK.VIDEO:
