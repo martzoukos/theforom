@@ -10,7 +10,6 @@ import Button from '../../../components/Button';
 import Container from '../../../components/Container';
 
 export async function getServerSideProps(context) {
-  console.log(context.params)
   const thread = await prisma.thread.findFirst({
     where: {
       id: parseInt(context.params.tid),
