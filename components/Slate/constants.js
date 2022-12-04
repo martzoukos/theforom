@@ -1,5 +1,6 @@
 export const BLOCK = {
   PARAGRAPH: 'paragraph',
+  BR: 'br',
   H1: 'heading-one',
   H2: 'heading-two',
   H3: 'heading-three',
@@ -35,6 +36,7 @@ export const HOTKEYS = {
   'mod+shift+4': BLOCK.H4,
   'mod+shift+5': BLOCK.H5,
   'mod+shift+6': BLOCK.H6,
+  'shift+enter': BLOCK.BR,
 }
 
 export const MARKDOWN_SHORTCUTS = {

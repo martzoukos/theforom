@@ -9,7 +9,7 @@ import {
   toggleMark,
 } from './SlateToolbar';
 import { Editable, ReactEditor } from "slate-react"
-import { Editor, Node } from 'slate';
+import { Editor, Node, Transforms } from 'slate';
 import { BLOCK, HOTKEYS, INLINE, MARKDOWN_SHORTCUTS } from './constants'
 
 export const SlateTextarea = ({editor}) => {
@@ -58,7 +58,7 @@ export const SlateTextarea = ({editor}) => {
       typography
     `}
     onDOMBeforeInput={handleDomBeforeInput}
-    onKeyDown={event => {      
+    onKeyDown={event => {
       for (const hotkey in HOTKEYS) {
         if (isHotkey(hotkey, event)) {
           event.preventDefault()
@@ -70,7 +70,10 @@ export const SlateTextarea = ({editor}) => {
             INLINE.STRIKETHROUGH,
           ].includes(mark)) {
             toggleMark(editor, mark)
-          } else {
+          } else if (mark === BLOCK.BR) {
+            Transforms.insertText(editor, '\n')
+          }
+          else {
             toggleBlock(editor, mark)
           }
         }
