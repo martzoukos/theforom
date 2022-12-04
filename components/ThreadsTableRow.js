@@ -5,7 +5,7 @@ import ReactTimeAgo from 'react-time-ago'
 import flattenParticipants from "../lib/flattenParticipants"
 
 export default function ThreadsTableRow({ thread }) {
-  const threadURL = `/threads/${thread.id}`
+  const threadURL = `/threads/${thread.slug}/${thread.id}`
   const participants = flattenParticipants(thread.posts, 'name', 3)
   const categories = thread.categories.slice(0, 3).map(c => c.Category)
   return(

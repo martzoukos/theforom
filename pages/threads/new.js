@@ -29,7 +29,7 @@ export default function Thread() {
     setLoading(false)
     switch (result.status) {
       case 200:
-        await router.push(`/threads/${result.data.id}`)
+        await router.push(`/threads/${result.data.slug}/${result.data.id}`)
         break;
       default:
         alert('There was an issue with your request, please try again.')
