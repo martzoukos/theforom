@@ -65,6 +65,19 @@
   border-left: 0.3em solid var(--grey-on-white);
 }
 
-:global(body.dark) .typography blockquote {
+body.dark .typography blockquote {
   border-color: var(--grey-on-black);
+}
+
+.typography code {
+  background-color: var(--code-bg-on-white);
+  color: var(--code-text-on-white);
+  font-size: var(--step-down-2);
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+}
+
+body.dark .typography code {
+  background-color: var(--code-bg-on-dark);
+  color: var(--code-text-on-dark);
 }

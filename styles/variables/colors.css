@@ -17,4 +17,9 @@
 
   --glow-color-light: #DDFBFF;
   --glow-color-dark: #091F3F;
+
+  --code-bg-on-white: #EEE;
+  --code-text-on-white: #EB5757;
+  --code-bg-on-dark: #333;
+  --code-text-on-dark: #d18a8a;
 }

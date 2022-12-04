@@ -19,6 +19,7 @@ import {
   Quote,
   List,
   ListOrdered,
+  Code,
 } from "lucide-react"
 import { AddLinkButton, RemoveLinkButton, addLink } from './withInlines'
 import { InsertImageButton } from './withImages'
@@ -44,6 +45,9 @@ export const SlateToolbar =() => {
         </ToolbarButton>
         <ToolbarButton format={INLINE.STRIKETHROUGH} type='mark'>
           <Strikethrough size={18} />
+        </ToolbarButton>
+        <ToolbarButton format={INLINE.CODE} type='mark'>
+          <Code size={18} />
         </ToolbarButton>
         <ToolbarButton format={BLOCK.H1} type='block'>
           <Heading1 size={18} />

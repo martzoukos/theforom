@@ -22,6 +22,7 @@ export const INLINE = {
   ITALIC: 'italic',
   UNDERLINE: 'underline',
   STRIKETHROUGH: 'strikethrough',
+  CODE: 'code',
 }
 
 export const HOTKEYS = {

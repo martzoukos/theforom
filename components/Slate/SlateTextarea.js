@@ -182,6 +182,10 @@ const Leaf = ({ attributes, children, leaf }) => {
     children = <s>{children}</s>
   }
 
+  if (leaf[INLINE.CODE]) {
+    children = <code>{children}</code>
+  }
+
   return(
     <span
       // The following is a workaround for a Chromium bug where,
