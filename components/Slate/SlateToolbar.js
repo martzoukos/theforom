@@ -20,6 +20,7 @@ import {
   List,
   ListOrdered,
   Code,
+  CurlyBraces,
 } from "lucide-react"
 import { AddLinkButton, RemoveLinkButton, addLink } from './withInlines'
 import { InsertImageButton } from './withImages'
@@ -71,7 +72,7 @@ export const SlateToolbar =() => {
           <Quote size={18} />
         </ToolbarButton>
         <ToolbarButton format={BLOCK.CODEBLOCK} type='block'>
-          <Code size={18} />
+          <CurlyBraces size={18} />
         </ToolbarButton>
         <ToolbarButton format={BLOCK.UL} type='block'>
           <List size={18} />
