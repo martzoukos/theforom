@@ -23,7 +23,8 @@ export const withLineReset = editor => {
             n.type === BLOCK.H4 ||
             n.type === BLOCK.H5 ||
             n.type === BLOCK.H6 ||
-            n.type === BLOCK.BLOCKQUOTE
+            n.type === BLOCK.BLOCKQUOTE ||
+            n.type === BLOCK.CODEBLOCK
           )
       })
 
