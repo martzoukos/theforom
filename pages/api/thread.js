@@ -1,5 +1,6 @@
 import prisma from '../../lib/prisma'
 import { getSession } from "next-auth/react"
+import slugify from 'slugify';
 
 export default async function handler(req, res) {
   const session = await getSession({ req });
@@ -29,6 +30,9 @@ export default async function handler(req, res) {
   const result = await prisma.thread.create({
     data: {
       subject: title,
+      slug: slugify(title, {
+        lower: true
+      }),
       posts: {
         create: {
           content: content,

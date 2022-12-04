@@ -1,19 +1,21 @@
-import prisma from '../../lib/prisma'
-import Layout from '../../components/Layout';
+import prisma from '../../../lib/prisma'
+import Layout from '../../../components/Layout';
 import Head from 'next/head';
-import Post from '../../components/Post';
-import ThreadTitle from '../../components/ThreadTitle';
-import ThreadCreator from '../../components/ThreadCreator';
-import { PostReply } from '../../components/PostReply';
+import Post from '../../../components/Post';
+import ThreadTitle from '../../../components/ThreadTitle';
+import ThreadCreator from '../../../components/ThreadCreator';
+import { PostReply } from '../../../components/PostReply';
 import { useSession, signIn } from 'next-auth/react';
-import Button from '../../components/Button';
-import Container from '../../components/Container';
+import Button from '../../../components/Button';
+import Container from '../../../components/Container';
 
 export async function getServerSideProps(context) {
-  const thread = await prisma.thread.findUnique({
+  console.log(context.params)
+  const thread = await prisma.thread.findFirst({
     where: {
-      id: parseInt(context.params.tid)
-    },
+      id: parseInt(context.params.tid),
+      slug: context.params.slug.toLowerCase()
+    } ,
     include: {
       User: {
         include: {
