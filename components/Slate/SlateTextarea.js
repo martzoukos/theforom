@@ -94,6 +94,10 @@ const Element = ({ attributes, children, element }) => {
           {children}
         </blockquote>
       )
+    case BLOCK.CODEBLOCK:
+      return (
+        <pre {...attributes}><code>{children}</code></pre>
+      )
     case BLOCK.UL:
       return (
         <ul {...attributes}>

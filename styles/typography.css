@@ -81,3 +81,11 @@ body.dark .typography code {
   background-color: var(--code-bg-on-dark);
   color: var(--code-text-on-dark);
 }
+
+.typography pre code {
+  display: block;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  max-width: 100%;  
+}

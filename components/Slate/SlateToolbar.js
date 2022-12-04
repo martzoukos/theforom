@@ -70,6 +70,9 @@ export const SlateToolbar =() => {
         <ToolbarButton format={BLOCK.BLOCKQUOTE} type='block'>
           <Quote size={18} />
         </ToolbarButton>
+        <ToolbarButton format={BLOCK.CODEBLOCK} type='block'>
+          <Code size={18} />
+        </ToolbarButton>
         <ToolbarButton format={BLOCK.UL} type='block'>
           <List size={18} />
         </ToolbarButton>
