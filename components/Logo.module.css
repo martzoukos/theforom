@@ -17,7 +17,7 @@
   width: 0.6em;
   height: 0.6em;
   border-radius: 100%;
-  background-color: var(--black);
+  background-color: var(--white);
   transition: background-color var(--ease) var(--fast-animation);
 }
 
