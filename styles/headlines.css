@@ -7,7 +7,7 @@
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.055em;
-  background: linear-gradient(180deg, var(--black) 0%, var(--purple) 100%);
+  background: linear-gradient(180deg, var(--white) 0%, var(--light-purple) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
@@ -25,13 +25,13 @@
   text-align: center;
 }
 
-body.dark .as-h1, 
-body.dark .as-h2, 
-body.dark .as-h3, 
-body.dark .as-h4, 
-body.dark .as-h5, 
-body.dark .as-h6 {
-  background: linear-gradient(180deg, var(--white) 0%, var(--light-purple) 100%);  -webkit-background-clip: text;
+body.light .as-h1, 
+body.light .as-h2, 
+body.light .as-h3, 
+body.light .as-h4, 
+body.light .as-h5, 
+body.light .as-h6 {
+  background: linear-gradient(180deg, var(--black) 0%, var(--purple) 100%);  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
   background-clip: text;

@@ -9,7 +9,7 @@
 
 .logo:hover,
 .logo:focus {
-  color: var(--red);
+  color: var(--yellow);
 }
 
 .dot {
@@ -23,23 +23,23 @@
 
 .logo:hover .dot,
 .logo:focus .dot {
-  background-color: var(--red);
-}
-
-:global(body.dark) .logo {
-  color: var(--white);
-}
-
-:global(body.dark) .dot {
-  background-color: var(--white);
-}
-
-:global(body.dark) .logo:hover,
-:global(body.dark) .logo:focus {
-  color: var(--yellow);
-}
-
-:global(body.dark) .logo:hover .dot,
-:global(body.dark) .logo:focus .dot {
   background-color: var(--yellow);
+}
+
+:global(body.light) .logo {
+  color: var(--black);
+}
+
+:global(body.light) .dot {
+  background-color: var(--black);
+}
+
+:global(body.light) .logo:hover,
+:global(body.light) .logo:focus {
+  color: var(--red);
+}
+
+:global(body.light) .logo:hover .dot,
+:global(body.light) .logo:focus .dot {
+  background-color: var(--red);
 }

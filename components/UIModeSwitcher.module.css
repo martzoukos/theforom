@@ -4,12 +4,12 @@
 
 .button:hover,
 .button:focus {
-  color: var(--red);
+  color: var(--yellow);
 }
 
-:global(body.dark) .button:hover,
-:global(body.dark) .button:focus {
-  color: var(--yellow);
+:global(body.light) .button:hover,
+:global(body.light) .button:focus {
+  color: var(--red);
 }
 
 .buttonContent {

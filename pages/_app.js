@@ -11,7 +11,6 @@ import '../styles/typography.css'
 import { useEffect } from "react";
 import { SessionProvider } from "next-auth/react"
 import { useUIModeStore } from '../lib/UIModeStore'
-import DetectDarkMode from 'detect-dark-mode'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 
@@ -25,15 +24,8 @@ export default function App({
   const storeModeToggle = useUIModeStore(state => state.toggle)
 
   useEffect(() => {
-    // 1. Application's session (default: 'light')
+    // Override with User's local storage (if available)
     let targetValue = storeMode
-
-    // 2. Override with User's system preference, if is 'black'
-    if (DetectDarkMode.isDark) {
-      targetValue = 'dark'
-    }
-
-    // 3. Override with User's local storage (if available)
     if (localStorage.getItem("UIMode") !== null) {
       targetValue = localStorage.getItem('UIMode')
     }

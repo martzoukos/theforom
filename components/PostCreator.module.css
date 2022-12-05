@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   line-height: 1;
-  background: var(--very-light-purple);
+  background: var(--very-dark-purple);
   padding: 1em;
 }
 
-:global(body.dark) .postCreator {
-  background: var(--very-dark-purple);
+:global(body.light) .postCreator {
+  background: var(--very-light-purple);
 }
 
 .avatar {

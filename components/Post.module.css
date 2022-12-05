@@ -3,12 +3,12 @@
 }
 
 .bordered {
-  border: 1px solid var(--very-light-purple);
+  border: 1px solid var(--very-dark-purple);
   margin-bottom: 4em;
 }
 
-:global(body.dark) .bordered {
-  border-color: var(--very-dark-purple)
+:global(body.light) .bordered {
+  border-color: var(--very-light-purple)
 }
 
 .typographyContainer {

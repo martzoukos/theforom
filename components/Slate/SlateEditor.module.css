@@ -1,9 +1,9 @@
 .slateEditor {
-  box-shadow: 0px 0px 5em 0 var(--glow-color-light);
+  box-shadow: 0px 0px 5em 0 var(--glow-color-dark);
 }
 
-:global(body.dark) .slateEditor {
-  box-shadow: 0px 0px 5em 0 var(--glow-color-dark);
+:global(body.light) .slateEditor {
+  box-shadow: 0px 0px 5em 0 var(--glow-color-light);
 }
 
 .toolbar {
@@ -12,15 +12,15 @@
   display: flex;
   padding: 0.5em 1em;
   justify-content: space-between;
-  color: var(--black);
-  background-color: var(--very-light-purple);
+  color: var(--white);
+  background-color: var(--very-dark-purple);
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
 }
 
-:global(body.dark) .toolbar {
-  color: var(--white);
-  background-color: var(--very-dark-purple);
+:global(body.light) .toolbar {
+  color: var(--black);
+  background-color: var(--very-light-purple);
 }
 
 .button {
@@ -37,23 +37,23 @@
 }
 
 .buttonActive {
-  border-color: var(--black)
+  border-color: var(--white)
 }
 
-:global(body.dark) .buttonActive {
-  border-color: var(--white)
+:global(body.light) .buttonActive {
+  border-color: var(--black)
 }
 
 .editable {
   min-height: 14rem;
   padding: 2rem;
-  background-color: var(--editor-white);
-  border: 1px solid var(--very-light-purple);
+  background-color: var(--editor-black);
+  border: 1px solid var(--very-dark-purple);
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
 }
 
-:global(body.dark) .editable {
-  background-color: var(--editor-black);
-  border: 1px solid var(--very-dark-purple);
+:global(body.light) .editable {
+  background-color: var(--editor-white);
+  border: 1px solid var(--very-light-purple);
 }

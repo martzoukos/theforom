@@ -1,11 +1,11 @@
 .post {
   padding-bottom: 4em;
-  border: 1px solid var(--very-light-purple);
+  border: 1px solid var(--very-dark-purple);
   margin-bottom: 4em;
 }
 
-:global(body.dark) .post {
-  border-color: var(--very-dark-purple)
+:global(body.light) .post {
+  border-color: var(--very-light-purple)
 }
 
 .header {
@@ -13,7 +13,7 @@
   justify-content: space-between;
   align-items: center;
   line-height: 1;
-  background: var(--very-light-purple);
+  background: var(--very-dark-purple);
   font-size: var(--step-down-1);
   padding: 1rem;
 }
@@ -22,8 +22,8 @@
   text-decoration: underline;
 }
 
-:global(body.dark) .header {
-  background: var(--very-dark-purple);
+:global(body.light) .header {
+  background: var(--very-light-purple);
 }
 
 .content {

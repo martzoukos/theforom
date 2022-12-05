@@ -3,12 +3,12 @@
 }
 
 .headerRow {
-  background-color: var(--very-light-purple);
+  background-color: var(--very-dark-purple);
   transition: background-color var(--ease) var(--slow-animation);
 }
 
-:global(body.dark) .headerRow {
-  background-color: var(--very-dark-purple);
+:global(body.light) .headerRow {
+  background-color: var(--very-light-purple);
 }
 
 .headerCell {

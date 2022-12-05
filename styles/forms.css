@@ -11,20 +11,20 @@ button {
 
 button:hover,
 button:focus {
-  color: var(--red);
+  color: var(--yellow);
 }
 
-body.dark button:hover,
-body.dark button:focus {
-  color: var(--yellow);
+body.light button:hover,
+body.light button:focus {
+  color: var(--red);
 }
 
 button:disabled,
 button:disabled:hover,
 button:disabled:focus,
-body.dark button:disabled,
-body.dark button:disabled:hover,
-body.dark button:disabled:focus {
+body.light button:disabled,
+body.light button:disabled:hover,
+body.light button:disabled:focus {
   background-color: var(--disabled-grey);
   cursor: default;
 }
@@ -61,11 +61,11 @@ input:focus,
 select:focus, 
 textarea:focus {
   color: var(--black);
-  border-color: var(--black);
+  border-color: var(--grey-on-black);
 }
 
-:global(body.dark) .nav {
-  border-color: var(--grey-on-black);
+:global(body.light) .nav {
+  border-color: var(--black);
 }
 
 input[type=file] {

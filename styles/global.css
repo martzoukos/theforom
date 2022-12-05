@@ -9,8 +9,8 @@ body {
   line-height: 1.6;
   font-size: 18px;
   font-weight: 400;
-  background-color: var(--white);
-  color: var(--black);
+  background-color: var(--black);
+  color: var(--white);
   transition: background-color var(--ease) var(--slow-animation), 
               color var(--ease) var(--slow-animation);
 }
@@ -24,38 +24,38 @@ body::before {
   margin-left: -45%;
   content: "";
   display: block;
-  background: radial-gradient(50% 50% at 50% 50%, var(--glow-color-light) 0%, rgba(236, 244, 255, 0) 100%);
+  background: radial-gradient(50% 50% at 50% 50%, var(--glow-color-dark) 0%, rgba(236, 244, 255, 0) 100%);
   z-index: -1;
 }
 
-body.dark::before {
-  background: radial-gradient(50% 50% at 50% 50%, var(--glow-color-dark) 0%, rgba(9, 31, 63, 0) 100%);
+body.light::before {
+  background: radial-gradient(50% 50% at 50% 50%, var(--glow-color-light) 0%, rgba(9, 31, 63, 0) 100%);
 }
 
-body.dark {
-  background-color: var(--black);
-  color: var(--white);
+body.light {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 a, a:visited {
   text-decoration: none;
-  color: var(--black);
+  color: var(--white);
   transition: color var(--ease) var(--fast-animation);
 }
 
-body.dark a,
-body.dark a:visited {
-  color: var(--white);
+body.light a,
+body.light a:visited {
+  color: var(--black);
 }
 
 a:hover,
 a:focus {
-  color: var(--red);
+  color: var(--yellow);
 }
 
-body.dark a:hover,
-body.dark a:focus {
-  color: var(--yellow);
+body.light a:hover,
+body.light a:focus {
+  color: var(--red);
 }
 
 b, strong {

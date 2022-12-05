@@ -1,13 +1,13 @@
 .row {
   transition: background-color var(--ease) var(--fast-animation);
-  border-bottom: 1px solid var(--very-light-purple);
+  border-bottom: 1px solid var(--very-dark-purple);
 
   --cell-padding-h: 1em;
   --cell-padding-v: 2em;
 }
 
-:global(body.dark) .row {
-  border-color: var(--very-dark-purple);
+:global(body.light) .row {
+  border-color: var(--very-light-purple);
 }
 
 .topic {
@@ -76,12 +76,12 @@
 
 .participants > * {
   margin-right: -0.3em;
-  border: 1px solid var(--white);  
+  border: 1px solid var(--black);  
   transition: border-color var(--ease) var(--slow-animation);
 }
 
-:global(body.dark) .participants > * {
-  border-color: var(--black);
+:global(body.light) .participants > * {
+  border-color: var(--white);
 }
 
 .updatedAt {

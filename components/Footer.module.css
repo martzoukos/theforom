@@ -1,11 +1,11 @@
 .footer {
-  border-top: 1px solid var(--very-light-purple);
+  border-top: 1px solid var(--very-dark-purple);
   margin-top: var(--vertical-spacing);
   padding: 1em 0;
 }
 
-:global(body.dark) .footer {
-  border-color: var(--very-dark-purple);
+:global(body.light) .footer {
+  border-color: var(--very-light-purple);
 }
 
 .flexContainer {

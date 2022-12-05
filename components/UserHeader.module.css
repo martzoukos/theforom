@@ -39,14 +39,14 @@
 
 .socialIcon {
   color: transparent;
-  fill: var(--black);
+  fill: var(--white);
   width: 1.5rem;
   height: 1.5rem;
   padding: 0.2em;
 }
 
-:global(body.dark) .socialIcon {
-  fill: var(--white)
+:global(body.light) .socialIcon {
+  fill: var(--black)
 }
 
 .socialButton:hover .twitter,

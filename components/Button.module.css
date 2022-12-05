@@ -15,8 +15,8 @@
 
 .button:hover,
 .button:focus,
-:global(body.dark) .button:hover,
-:global(body.dark) .button:focus {
+:global(body.light) .button:hover,
+:global(body.light) .button:focus {
   color: var(--white);
   background-color: var(--purple);
 }

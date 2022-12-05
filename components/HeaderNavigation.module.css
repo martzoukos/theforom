@@ -3,12 +3,12 @@
   justify-content: space-between;
   align-items: baseline;
   padding: 1.5em;
-  border-bottom: 1px solid var(--grey-on-white);
+  border-bottom: 1px solid var(--grey-on-black);
   transition: border-color var(--ease) var(--slow-animation);
 }
 
-:global(body.dark) .nav {
-  border-color: var(--grey-on-black);
+:global(body.light) .nav {
+  border-color: var(--grey-on-white);
 }
 
 .login {

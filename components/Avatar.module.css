@@ -22,12 +22,12 @@ a:hover > .emptyAvatar,
 a:focus > .emptyAvatar,
 a:hover > .image,
 a:focus > .image {
-  border-color: var(--red);
+  border-color: var(--yellow);
 }
 
-:global(body.dark) a:hover > .emptyAvatar,
-:global(body.dark) a:focus > .emptyAvatar,
-:global(body.dark) a:hover > .image,
-:global(body.dark) a:focus > .image {
-  border-color: var(--yellow);
+:global(body.light) a:hover > .emptyAvatar,
+:global(body.light) a:focus > .emptyAvatar,
+:global(body.light) a:hover > .image,
+:global(body.light) a:focus > .image {
+  border-color: var(--red);
 }
