@@ -12,7 +12,7 @@ export default function UserPost({ post }) {
       <div className={styles.header}>
         <div>
           Reply in: &nbsp;
-          <Link href={`/threads/${post.Thread.id}#post-${post.id}`}>{post.Thread.subject}</Link>
+          <Link href={`/threads/${post.Thread.slug}/${post.Thread.id}#post-${post.id}`}>{post.Thread.subject}</Link>
         </div>
         <div>
           <ReactTimeAgo date={post.createdAt} />

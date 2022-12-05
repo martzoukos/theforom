@@ -23,6 +23,7 @@ export async function getServerSideProps(context) {
             select: {
               id: true,
               subject: true,
+              slug: true,
             }
           }
         },

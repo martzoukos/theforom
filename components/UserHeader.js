@@ -12,7 +12,7 @@ export const UserHeader = ({ user }) => {
   return (
     <Container isNarrow={true}>
       <div className={styles.topRow}>
-        {session.user.id === user.id && 
+        {session?.user.id === user.id && 
           <Link href='/settings' className={styles.editLink}>
             Edit my Profile
             &nbsp;

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import styles from './PostCreator.module.css';
 import ReactTimeAgo from 'react-time-ago'
+import Avatar from './Avatar';
 
 const PostCreator = ({
   avatar, 
@@ -17,11 +18,7 @@ const PostCreator = ({
   return (
     <div className={styles.postCreator}>
       <Link href={`/users/${id}`} className={styles.avatar}>
-        <img 
-          className={styles.avatarImage}
-          src={avatar}
-          alt={`Profile picture of ${name}`}
-        />
+        <Avatar src={avatar} alt={name} />
       </Link>
       <div className={styles.metaContent}>
         <div className={styles.nameInfo}>

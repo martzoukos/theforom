@@ -4,7 +4,6 @@ import {
   Element as SlateElement 
 } from 'slate';
 import { useSlate } from "slate-react"
-import Sticky from "react-sticky-el"
 import { 
   Bold, 
   Italic,
@@ -30,62 +29,57 @@ import { BLOCK, INLINE, LIST_TYPES } from './constants';
 
 export const SlateToolbar =() => {
   return (
-    <Sticky 
-      stickyClassName={styles.toolbar}
-      scrollElement={document.body}
-    >
-      <div className={styles.toolbar}>
-        <ToolbarButton format={INLINE.BOLD} type='mark'>
-          <Bold size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={INLINE.ITALIC} type='mark'>
-          <Italic size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={INLINE.UNDERLINE} type='mark'>
-          <Underline size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={INLINE.STRIKETHROUGH} type='mark'>
-          <Strikethrough size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={INLINE.CODE} type='mark'>
-          <Code size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.H1} type='block'>
-          <Heading1 size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.H2} type='block'>
-          <Heading2 size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.H3} type='block'>
-          <Heading3 size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.H4} type='block'>
-          <Heading4 size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.H5} type='block'>
-          <Heading5 size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.H6} type='block'>
-          <Heading6 size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.BLOCKQUOTE} type='block'>
-          <Quote size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.CODEBLOCK} type='block'>
-          <CurlyBraces size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.UL} type='block'>
-          <List size={18} />
-        </ToolbarButton>
-        <ToolbarButton format={BLOCK.OL} type='block'>
-          <ListOrdered size={18} />
-        </ToolbarButton>
-        <AddLinkButton />
-        <RemoveLinkButton />
-        <InsertImageButton />
-        <InsertVideoButton />
-      </div>
-    </Sticky>
+    <div className={styles.toolbar}>
+      <ToolbarButton format={INLINE.BOLD} type='mark'>
+        <Bold size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={INLINE.ITALIC} type='mark'>
+        <Italic size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={INLINE.UNDERLINE} type='mark'>
+        <Underline size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={INLINE.STRIKETHROUGH} type='mark'>
+        <Strikethrough size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={INLINE.CODE} type='mark'>
+        <Code size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.H1} type='block'>
+        <Heading1 size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.H2} type='block'>
+        <Heading2 size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.H3} type='block'>
+        <Heading3 size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.H4} type='block'>
+        <Heading4 size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.H5} type='block'>
+        <Heading5 size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.H6} type='block'>
+        <Heading6 size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.BLOCKQUOTE} type='block'>
+        <Quote size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.CODEBLOCK} type='block'>
+        <CurlyBraces size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.UL} type='block'>
+        <List size={18} />
+      </ToolbarButton>
+      <ToolbarButton format={BLOCK.OL} type='block'>
+        <ListOrdered size={18} />
+      </ToolbarButton>
+      <AddLinkButton />
+      <RemoveLinkButton />
+      <InsertImageButton />
+      <InsertVideoButton />
+    </div>
   )
 }
 
