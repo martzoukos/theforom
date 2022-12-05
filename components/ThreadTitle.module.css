@@ -7,7 +7,11 @@
   margin: 0;
 }
 
-.createdDate {
-  margin-top: 1em;
+.subline {
+  display: flex;
   font-size: var(--step-down-1);
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
 }

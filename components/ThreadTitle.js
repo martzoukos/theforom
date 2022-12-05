@@ -1,8 +1,9 @@
 import Container from './Container';
 import styles from './ThreadTitle.module.css';
 import ReactTimeAgo from 'react-time-ago'
+import Link from 'next/link';
 
-const ThreadTitle = ({title, date}) => {
+const ThreadTitle = ({title, date, categories}) => {
   const createdAtDate = new Date(date).toLocaleString()
   return (
     <Container>
@@ -13,10 +14,30 @@ const ThreadTitle = ({title, date}) => {
         `}>
           {title}
         </h1>
-        <ReactTimeAgo 
-          date={createdAtDate}
-          className={styles.createdDate} 
-        />
+        <div className={styles.subline}>
+          <ReactTimeAgo date={createdAtDate} />
+          {categories.length > 0 &&
+            <>
+              &nbsp;
+              in
+              &nbsp;
+              {categories.map((c, i) => {
+                const category = c.Category
+                return(
+                  <>
+                    <Link 
+                      href={`/categories/${category.name}`} 
+                      key={i}
+                    >
+                      #{category.name}
+                    </Link>
+                    {i <= categories.length-2 && <>,&nbsp;</>}
+                  </>
+                )
+              })}
+            </>
+          }
+        </div>
       </div>
     </Container>
   )

@@ -23,6 +23,15 @@ export async function getServerSideProps(context) {
           }
         },
       },
+      categories: {
+        select: {
+          Category: {
+            select: {
+              name: true
+            }
+          }
+        }
+      },
       posts: {
         select: {
           id: true,
@@ -68,6 +77,7 @@ const Thread = ({ thread }) => {
       <ThreadTitle 
         title={thread.subject}
         date={thread.createdAt}
+        categories={thread.categories}
       />
       {thread.posts.map((post, i) => (
         <div id={`post-${post.id}`} key={i}>
