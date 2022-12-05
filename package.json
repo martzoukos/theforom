@@ -35,7 +35,6 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.39.5",
     "react-image-file-resizer": "^0.4.8",
-    "react-sticky-el": "^2.0.9",
     "react-time-ago": "^7.2.1",
     "slate": "^0.84.0",
     "slate-history": "^0.66.0",
