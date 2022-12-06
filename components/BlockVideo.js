@@ -12,6 +12,7 @@ export const BlockVideo = ({ url }) => {
         ${styles[parsedURL.provider]}
       `}
       frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen="true" 
       scrolling="no"   
     />
