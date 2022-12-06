@@ -29,12 +29,10 @@ export const getEmbedVideoURL = parsedURL => {
     case 'twitch':
       if (parsedURL.mediaType === 'stream') {
         console.log('stream')
-        return `https://player.twitch.tv/?channel=${parsedURL.channel}&parent=theforom.com`
+        return `https://player.twitch.tv/?channel=${parsedURL.channel}&parent=www.theforom.com`
       } else {
-        return `https://clips.twitch.tv/embed?clip=${parsedURL.id}&parent=theforom.com`
+        return `https://clips.twitch.tv/embed?clip=${parsedURL.id}&parent=www.theforom.com`
       }
-    case 'dailymotion':
-      return `https://www.dailymotion.com/embed/video/${parsedURL.id}`
     case 'ted':
       return `https://embed.ted.com/talks/lang/en/${parsedURL.id}`
     case 'facebook':
