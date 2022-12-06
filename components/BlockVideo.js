@@ -27,12 +27,7 @@ export const getEmbedVideoURL = parsedURL => {
     case 'tiktok':
       return `https://www.tiktok.com/embed/v2/${parsedURL.id}`
     case 'twitch':
-      if (parsedURL.mediaType === 'stream') {
-        console.log('stream')
-        return `https://player.twitch.tv/?channel=${parsedURL.channel}&parent=www.theforom.com`
-      } else {
-        return `https://clips.twitch.tv/embed?clip=${parsedURL.id}&parent=www.theforom.com`
-      }
+      return `https://player.twitch.tv/?channel=${parsedURL.channel}&parent=www.theforom.com`
     case 'ted':
       return `https://embed.ted.com/talks/lang/en/${parsedURL.id}`
     case 'facebook':
