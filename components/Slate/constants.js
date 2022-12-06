@@ -15,6 +15,7 @@ export const BLOCK = {
   IMG: 'image',
   UPLOADEDIMG: 'uploaded-image',
   VIDEO: 'video',
+  SOCIAL: 'social',
 }
 
 export const INLINE = {

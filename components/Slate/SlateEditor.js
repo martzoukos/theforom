@@ -5,6 +5,7 @@ import { withHistory } from 'slate-history';
 import { withInlines } from './withInlines'
 import { withImages } from './withImages'
 import { withVideos } from './withVideos'
+import { withSocials } from './withSocials'
 import { withHTML } from './pasteHTML';
 import { withShortcuts } from './withShortcuts';
 import { withLineReset } from './withLineReset';
@@ -29,15 +30,18 @@ export const useUploadedMedia = create((set) => ({
 
 const SlateEditor = ({ setValue }) => {
   const editor = useMemo(
-    () => withVideos(
-      withHTML(
-        withLineReset(
-          withShortcuts(
-            withImages(
-              withInlines(
-                withHistory(
-                  withReact(
-                    createEditor()
+    () => 
+    withSocials(
+      withVideos(
+        withHTML(
+          withLineReset(
+            withShortcuts(
+              withImages(
+                withInlines(
+                  withHistory(
+                    withReact(
+                      createEditor()
+                    )
                   )
                 )
               )

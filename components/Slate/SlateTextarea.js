@@ -11,6 +11,7 @@ import {
 import { Editable, ReactEditor } from "slate-react"
 import { Editor, Node, Transforms } from 'slate';
 import { BLOCK, HOTKEYS, INLINE, MARKDOWN_SHORTCUTS } from './constants'
+import { Social } from './withSocials';
 
 export const SlateTextarea = ({editor}) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
@@ -160,6 +161,8 @@ const Element = ({ attributes, children, element }) => {
       return <UploadedImage {...{ attributes, children, element }} />
     case BLOCK.VIDEO:
       return <Video {...{ attributes, children, element }} />
+    case BLOCK.SOCIAL:
+      return <Social {...{ attributes, children, element }} />
     default:
       return (
         <p {...attributes}>

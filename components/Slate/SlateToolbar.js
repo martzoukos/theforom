@@ -24,6 +24,7 @@ import {
 import { AddLinkButton, RemoveLinkButton, addLink } from './withInlines'
 import { InsertImageButton } from './withImages'
 import { InsertVideoButton } from './withVideos'
+import { InsertSocialButton } from './withSocials';
 import styles from './SlateEditor.module.css'
 import { BLOCK, INLINE, LIST_TYPES } from './constants';
 
@@ -79,6 +80,10 @@ export const SlateToolbar =() => {
       <RemoveLinkButton />
       <InsertImageButton />
       <InsertVideoButton />
+      <InsertSocialButton provider='twitter' />
+      <InsertSocialButton provider='facebook' />
+      <InsertSocialButton provider='linkedin' />
+      <InsertSocialButton provider='instagram' />
     </div>
   )
 }
