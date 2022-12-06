@@ -9,6 +9,7 @@ import {
 import { Video as VideoIcon } from "lucide-react";
 import { BLOCK } from "./constants";
 import styles from './SlateEditor.module.css'
+import { getEmbedVideoURL } from "../BlockVideo";
 
 export const withVideos = editor => {
   const { insertData, isVoid } = editor
@@ -41,7 +42,9 @@ export const Video = ({ attributes, children, element }) => {
   const editor = useSlateStatic()
   const path = ReactEditor.findPath(editor, element)
 
-  const embedYoutubeURL = urlParser.parse(element.url)
+  const parsedURL = urlParser.parse(element.url)
+  const embedURL = getEmbedVideoURL(parsedURL)
+
   return (
     <div {...attributes}>
       {children}
@@ -49,16 +52,15 @@ export const Video = ({ attributes, children, element }) => {
         contentEditable={false}
       >
         <iframe 
+          src={embedURL} 
           style={{
             display: 'block',
             width: '100%',
             height: '20em',
           }}
-          src={`https://www.youtube.com/embed/${embedYoutubeURL.id}`} 
-          title="YouTube video player" 
           frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowFullScreen   
+          allowfullscreen="true" 
+          scrolling="no"   
         />
         <button
           type="button"
