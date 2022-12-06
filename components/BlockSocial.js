@@ -1,4 +1,4 @@
-import { TwitterEmbed, FacebookEmbed, LinkedInEmbed, InstagramEmbed } from 'react-social-media-embed';
+import { TwitterEmbed, FacebookEmbed, InstagramEmbed } from 'react-social-media-embed';
 
 export const BlockSocial = ({ url, provider }) => {
   return(
@@ -8,9 +8,6 @@ export const BlockSocial = ({ url, provider }) => {
       }
       {provider === 'facebook' &&
         <FacebookEmbed url={url} />
-      }
-      {provider === 'linkedin' &&
-        <LinkedInEmbed url={url} />
       }
       {provider === 'instagram' &&
         <InstagramEmbed url={url} />

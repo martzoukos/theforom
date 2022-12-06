@@ -82,7 +82,6 @@ export const SlateToolbar =() => {
       <InsertVideoButton />
       <InsertSocialButton provider='twitter' />
       <InsertSocialButton provider='facebook' />
-      <InsertSocialButton provider='linkedin' />
       <InsertSocialButton provider='instagram' />
     </div>
   )

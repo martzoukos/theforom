@@ -5,10 +5,10 @@ import {
 import {
   Transforms
 } from 'slate'
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import { BLOCK } from "./constants";
 import styles from './SlateEditor.module.css'
-import { FacebookEmbed, InstagramEmbed, LinkedInEmbed, TwitterEmbed } from 'react-social-media-embed';
+import { FacebookEmbed, InstagramEmbed, TwitterEmbed } from 'react-social-media-embed';
 
 export const withSocials = editor => {
   const { insertData, isVoid } = editor
@@ -52,9 +52,6 @@ export const Social = ({ attributes, children, element }) => {
         {element.provider === 'facebook' &&
           <FacebookEmbed url={element.url} />
         }
-        {element.provider === 'linkedin' &&
-          <LinkedInEmbed url={element.url} />
-        }
         {element.provider === 'instagram' &&
           <InstagramEmbed url={element.url} />
         }
@@ -91,8 +88,6 @@ export const InsertSocialButton = ({ provider }) => {
           case 'facebook':
           promptText = 'Enter the URL of the Facebook Post'
           break
-          case 'linkedin':
-          promptText = 'Enter the URL of the LinkedIn Post'
           break
           case 'instagram':
           promptText = 'Enter the URL of the Instagram Post'
@@ -108,9 +103,6 @@ export const InsertSocialButton = ({ provider }) => {
             break
             case 'facebook':
             errorText = 'Not a valid Facebook URL'
-            break
-            case 'linkedin':
-            errorText = 'Not a valid LinkedIn URL'
             break
             case 'instagram':
             errorText = 'Not a valid Instagram URL'
@@ -128,9 +120,6 @@ export const InsertSocialButton = ({ provider }) => {
       {provider === 'facebook' &&
         <Facebook size={18} />
       }
-      {provider === 'linkedin' &&
-        <Linkedin size={18} />
-      }
       {provider === 'instagram' &&
         <Instagram size={18} />
       }
@@ -144,9 +133,6 @@ const getSocialProvider = url => {
   }
   if (/http(?:s)?:\/\/(?:www\.)?facebook\.com\/([a-zA-Z0-9_]+)/.test(url)) {
     return 'facebook'
-  }
-  if (/http(?:s)?:\/\/(?:www\.)?linkedin\.com\/([a-zA-Z0-9_]+)/.test(url)) {
-    return 'linkedin'
   }
   if (/http(?:s)?:\/\/(?:www\.)?instagram\.com\/([a-zA-Z0-9_]+)/.test(url)) {
     return 'instagram'
