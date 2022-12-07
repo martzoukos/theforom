@@ -14,6 +14,7 @@ import CategoriesInput from '../../components/CategoriesInput';
 export default function Thread() {
   const [loading, setLoading] = useState('')
   const [richTextContent, setRichTextContent] = useState('')
+  const [categories, setCategories] = useState([])
   const router = useRouter()
   const { data: session } = useSession()
   const uploadedMedia = useUploadedMedia()
@@ -23,7 +24,7 @@ export default function Thread() {
     setLoading(true)
     const result = await axios.post('/api/thread', { 
       title: data.subject, 
-      categories: data.categories.trim() === '' ? null : data.categories.split(','),
+      categories: categories,
       content: richTextContent,
       uploadedMedia: uploadedMedia.uploadedMedia,
     })
@@ -51,17 +52,10 @@ export default function Thread() {
               name='subject'
               registerFunc={register}
             />
-            <CategoriesInput />
-{/* 
-            <FieldRow
-              label='Categories (comma separated)'
-              name='categories'
-              inputParams={{
-                pattern: '^[0-9a-zA-Z]+(,[0-9a-zA-Z]+)*$',
-                title: 'Please provide a comma separated list'
-              }}
-              registerFunc={register}
-            /> */}
+            <CategoriesInput 
+              categories={categories}
+              setCategories={setCategories}
+            />
             <div style={{ marginBottom: '1.5em' }}>
               <Editor value={richTextContent} setValue={setRichTextContent}/>
             </div>
