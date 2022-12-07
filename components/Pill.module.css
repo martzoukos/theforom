@@ -1,0 +1,27 @@
+.pill {
+  background-color: var(--purple);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--step-down-2);
+  border-radius: 1em;
+  line-height: 1;
+  padding: 0.3em 0.5em 0.3em 0.8em;
+  white-space: nowrap;
+}
+
+:global(body.light) .pill {
+  background-color: var(--very-light-purple);
+}
+
+.icon {
+  margin-left: 0.5em;
+  padding: 0.2em;
+  background-color: var(--very-dark-purple);
+  border-radius: 50%;
+  color: var(--white);
+}
+
+:global(body.light) .icon {
+  background-color: var(--purple);
+}

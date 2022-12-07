@@ -9,6 +9,7 @@ import Container from '../../components/Container';
 import FieldRow from '../../components/FieldRow';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import CategoriesInput from '../../components/CategoriesInput';
 
 export default function Thread() {
   const [loading, setLoading] = useState('')
@@ -50,6 +51,8 @@ export default function Thread() {
               name='subject'
               registerFunc={register}
             />
+            <CategoriesInput />
+{/* 
             <FieldRow
               label='Categories (comma separated)'
               name='categories'
@@ -58,7 +61,7 @@ export default function Thread() {
                 title: 'Please provide a comma separated list'
               }}
               registerFunc={register}
-            />
+            /> */}
             <div style={{ marginBottom: '1.5em' }}>
               <Editor value={richTextContent} setValue={setRichTextContent}/>
             </div>

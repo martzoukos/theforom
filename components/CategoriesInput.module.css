@@ -1,0 +1,64 @@
+.container {
+  margin-bottom: 2em;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.fauxInput {
+  display: flex;
+  background-color: var(--white);
+  padding: 0.4em;
+  border: 1px solid var(--grey-on-white);
+  transition: border-color var(--ease) var(--fast-animation),
+              color var(--ease) var(--fast-animation);
+  border-radius: var(--border-radius);
+  z-index: 100;
+  position: relative;
+  cursor: text;
+}
+
+.fauxInput > * + * {
+  margin-left: 0.5em;
+}
+
+.dropDown {
+  background-color: var(--white);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  z-index: 100;
+  margin-top: 0.2em;
+  box-shadow: 0em 0.3em 0.5em var(--very-dark-purple);
+}
+
+:global(body.light) .dropDown {
+  box-shadow: 0em 0.3em 0.5em var(--very-light-purple);
+}
+
+.dropDownItem {
+  display: block;
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.1;
+  padding: 0.7em 1em;
+}
+
+.dropDownItem:hover {
+  color: var(--black);
+  background-color: var(--very-light-purple);
+}
+
+:global(.active).dropDownItem {
+  background-color: var(--blue);
+  color: var(--white)
+}
+
+.typeahead {
+  border: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 1;
+  border-radius: 0;
+}
