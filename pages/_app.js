@@ -6,6 +6,7 @@ import '../styles/global.css'
 import '../styles/headlines.css'
 import '../styles/forms.css'
 import '../styles/typography.css'
+import '../styles/third-party/react-bootstrap-typeahead.css'
 
 
 import { useEffect } from "react";

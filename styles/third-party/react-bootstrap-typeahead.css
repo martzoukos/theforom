@@ -1,0 +1,92 @@
+.rbt {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--white);
+  padding: 0.2em 0.7em;
+  min-height: 1.8em;
+  border: 1px solid var(--grey-on-white);
+  transition: border-color var(--ease) var(--fast-animation),
+              color var(--ease) var(--fast-animation);
+  border-radius: var(--border-radius);
+  z-index: 100;
+  position: relative;
+  cursor: text;
+}
+
+.rbt-input-wrapper {
+  height: 1.8em;
+}
+
+.rbt-menu {
+  background-color: var(--white);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  z-index: 100;
+  margin-top: 0.2em;
+  box-shadow: 0em 0.3em 0.5em var(--very-dark-purple);
+}
+
+body.light .rbt-menu {
+  box-shadow: 0em 0.3em 0.5em var(--very-light-purple);
+}
+
+.dropdown-item {
+  display: block;
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.1;
+  padding: 0.7em 1em;
+}
+
+.dropdown-item:hover {
+  color: var(--black);
+  background-color: var(--very-light-purple);
+}
+
+.dropdown-item.active {
+  background-color: var(--blue);
+  color: var(--white)
+}
+
+.rbt-override .rbt-token {
+  background-color: var(--purple);
+  color: var(--white);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--step-down-2);
+  border-radius: 1em;
+  line-height: 1;
+  padding: 0.3em 0.5em 0.3em 0.8em;
+  white-space: nowrap;
+  margin-right: 0.5em;
+}
+
+body.light .rbt-override .rbt-token {
+  background-color: var(--very-light-purple);
+  color: var(--black);
+}
+
+.rbt-override .rbt-token-active,
+body.light .rbt-override .rbt-token-active {
+  background-color: var(--blue);
+  color: var(--white)
+}
+
+.rbt-override .rbt-token .rbt-token-remove-button {
+  margin-left: 0.5em;
+  line-height: 1;
+  width: 1.3em;
+  height: 1.3em;
+  font-size: 1em;
+  background-color: var(--very-dark-purple);
+  border-radius: 50%;
+  color: var(--white);
+  display: initial;
+  font-weight: initial;
+  padding: initial;
+}
+
+body.light .rbt-override .rbt-token .rbt-token-remove-button {
+  background-color: var(--purple);
+}

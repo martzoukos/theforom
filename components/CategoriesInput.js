@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Typeahead, Menu, MenuItem } from "react-bootstrap-typeahead";
+import { Typeahead } from "react-bootstrap-typeahead";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import styles from './CategoriesInput.module.css'
-import Pill from "./Pill";
 
 export default function CategoriesInput() {
-  const [suggestion, setSuggestions] = useState([])
+  const [selection, setSelection] = useState([])
+  const [categories, setCategories] = useState([])
 
-  const categories = [
+  const options = [
     'general',
     'generals',
     'generallisimo',
@@ -18,48 +18,39 @@ export default function CategoriesInput() {
     'it',
   ]
 
-
   return(
     <div className={styles.container}>
       <label htmlFor="categories-input" className={styles.label}>
-        Categories (up to 3)
+        Categories
       </label>
       <label htmlFor="categories-input" className={styles.fauxInput}>
-        <Pill name={'Category 1'} onClick={() => {
-          console.log('click')
-        }} />
-        <Pill name={'Category 1'} onClick={() => {
-          console.log('click')
-        }} />
-        <Pill name={'Category 1'} onClick={() => {
-          console.log('click')
-        }} />
-        <Typeahead
-          id='category-1'
-          labelKey='Category'
-          onChange={setSuggestions}
-          options={categories}
-          selected={suggestion}
-          inputProps={{ 
-            id: 'categories-input',
-            className: styles.typeahead 
-          }}
-          renderMenu={(results, menuProps) => (
-            <Menu {...menuProps} className={styles.dropDown}>
-              {results.map((result, index) => (
-                <MenuItem 
-                  option={result} 
-                  position={index}
-                  key={index}
-                  className={styles.dropDownItem}
-                >
-                  {result}
-                </MenuItem>
-              ))}
-            </Menu>
-          )}
-        />
+        <div className='rbt-override'>
+          <Typeahead
+            id='categories-input'
+            labelKey='Category'
+            options={options}
+            onChange={setSelection}
+            selected={selection}
+            inputProps={{ 
+              id: 'categories-input',
+            }}
+            multiple={true}
+          />
+        </div>
       </label>
     </div>
   )
+}
+
+const upsert = (array, element) => {
+  const i = array.findIndex(_element => _element.id === element.id)
+  console.log('index', i)
+  if (i > -1) {
+    array[i] = element
+  } else {
+    console.log('are we pushing?')
+    array.push(element)
+  }
+  console.log(array, element)
+  return array
 }
