@@ -93,7 +93,6 @@ const ToolbarButton = ({ format, type = 'mark', children }) => {
   return (
     <button
       type="button"
-      variant={isActive ? 'contained' : 'outlined'}
       size='small'
       active={isActive.toString()}
       className={`

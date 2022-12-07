@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/Layout';
 import prisma from '../lib/prisma'
-import Link from 'next/link'
 import Button from '../components/Button';
 import Container from '../components/Container';
 import { useSession, signIn } from 'next-auth/react';
@@ -71,13 +70,23 @@ export default function Home({ allThreads, allCategories }) {
       <Container>
         <>
           <h1 className='as-h1'>The Forums are back.</h1>
-          <ThreadsTable threads={allThreads} />
-          <div>
-            <br/>
+          <div style={{
+            marginBottom: '2em'
+          }}>
             { session ?
-              <Link href='/threads/new'>Create a new Thread</Link>
+              <Button href='/threads/new'>Create a new Thread</Button>
               :  
-              <Button variant='contained' onClick={() => signIn()}>Connect to create a Thread</Button>
+              <Button onClick={() => signIn()}>Connect to create a Thread</Button>
+            }
+          </div>
+          <ThreadsTable threads={allThreads} />
+          <div style={{
+            marginTop: '2em'
+          }}>
+            { session ?
+              <Button href='/threads/new'>Create a new Thread</Button>
+              :  
+              <Button onClick={() => signIn()}>Connect to create a Thread</Button>
             }
           </div>
         </>

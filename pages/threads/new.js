@@ -78,7 +78,7 @@ export default function Thread() {
   } else {
     return(
       <Container>          
-        <Button variant='contained' onClick={() => signIn()}>Connect to create a Thread</Button>
+        <Button onClick={() => signIn()}>Connect to create a Thread</Button>
       </Container>
     )
   }

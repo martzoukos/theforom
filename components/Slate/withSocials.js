@@ -75,7 +75,6 @@ export const InsertSocialButton = ({ provider }) => {
   return (
     <button
       type='button'
-      variant='outlined'
       size='small'
       className={styles.button}
       onMouseDown={event => {

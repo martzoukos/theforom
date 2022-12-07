@@ -107,7 +107,6 @@ export const Image = ({ attributes, children, element }) => {
           type="button"
           size='small'
           active="true"
-          variant='contained'
           onMouseDown={() => { Transforms.removeNodes(editor, { at: path })} }
           style={{
             display: `${selected && focused ? 'inline' : 'none'}`,
@@ -164,7 +163,6 @@ export const UploadedImage = ({ attributes, children, element }) => {
             type="button"
             size='small'
             active="true"
-            variant='contained'
             onMouseDown={() => { Transforms.removeNodes(editor, { at: path })} }
             style={{
               display: `${selected && focused ? 'inline' : 'none'}`,
@@ -190,7 +188,6 @@ export const InsertImageButton = () => {
   return (
     <button
       type='button'
-      variant='outlined'
       size='small'
       className={styles.button}
       onMouseDown={event => {

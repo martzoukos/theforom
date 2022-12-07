@@ -128,7 +128,6 @@ export const AddLinkButton = () => {
   return (
     <button
       type='button'
-      variant={isLinkActive(editor) ? 'contained' : 'outlined'}
       size='small'
       active={isLinkActive(editor).toString()}
       className={`
@@ -159,7 +158,6 @@ export const RemoveLinkButton = () => {
   return (
     <button
       type='button'
-      variant={isLinkActive(editor) ? 'contained' : 'outlined'}
       size='small'
       active={isLinkActive(editor).toString()}
       className={styles.button}

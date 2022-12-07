@@ -92,7 +92,7 @@ const Thread = ({ thread }) => {
         <PostReply thread={thread}/>
       :
         <Container>
-          <Button variant='contained' onClick={() => signIn()}>Connect to post a reply</Button>
+          <Button onClick={() => signIn()}>Connect to post a reply</Button>
         </Container>
       }
     </Layout>
