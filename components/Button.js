@@ -1,12 +1,13 @@
+import Link from 'next/link'
 import styles from './Button.module.css'
 
 export default function Button( props ) {
   const { href } = props
   if (href) {
     return(
-      <a href className={styles.button} {...props}>
+      <Link href className={styles.button} {...props}>
         {props.children}
-      </a>
+      </Link>
     )
   } else {
     return(
