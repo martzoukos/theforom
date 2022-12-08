@@ -7,7 +7,9 @@
 }
 
 .toolbar {
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   z-index: 10;
   display: flex;
   padding: 0.5em 1em;
