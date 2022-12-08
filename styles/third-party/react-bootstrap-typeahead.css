@@ -13,8 +13,20 @@
   cursor: text;
 }
 
-.rbt-input-wrapper {
+.rbt-override .rbt-input-multi {
+  overflow: initial;
+}
+
+.rbt-input-main {
   height: 1.8em;
+}
+
+.rbt-input-wrapper {
+  background-color: var(--white);
+}
+
+.rbt-input-main:disabled {
+  font-style: italic;
 }
 
 .rbt-menu {

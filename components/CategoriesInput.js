@@ -63,6 +63,7 @@ export default function CategoriesInput({ categories, setCategories}) {
             onBlur={handleOnBlur}
             multiple={true}
             disabled={loading}
+            placeholder={loading && 'loading categories...'}
           />
         </div>
       </label>
