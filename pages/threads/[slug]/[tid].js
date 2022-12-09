@@ -1,4 +1,4 @@
-import prisma from '../../../lib/prisma'
+import { prisma } from '../../../lib/prisma'
 import Layout from '../../../components/Layout';
 import Head from 'next/head';
 import Post from '../../../components/Post';
@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
           createdAt: true,
           User: {
             select: {
-              id: true,
+              handle: true,
               name: true,
               image: true,
               shortBio: true,
@@ -69,7 +69,7 @@ const Thread = ({ thread }) => {
       </Head>
       <ThreadCreator 
         avatar={thread.User.image}
-        id={thread.User.id}
+        handle={thread.User.handle}
         name={thread.User.name}
         shortBio={thread.User.shortBio}
         postCount={thread.User._count.posts}

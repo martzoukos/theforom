@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import prisma from '../lib/prisma'
+import { prisma } from '../lib/prisma'
 import Container from '../components/Container';
 import Avatar from '../components/Avatar';
 import { unstable_getServerSession } from "next-auth/next";
@@ -65,21 +65,29 @@ export default function Home({ user }) {
       uid: user.id,
       user: {
         name: data.name,
+        handle: data.handle,
         shortBio: data.shortBio,
         longBio: data.longBio,
         twitterURL: data.twitterURL,
         facebookURL: data.facebookURL,
         linkedInURL: data.linkedInURL,
       }
-    });
+    })
+    .then(() => {
+      alert('Your settings are updated')
+    })
+    .catch(function (error) {
+      if (error.response) {
+        switch (error.response.status) {
+          case 409:
+            alert('The handle is already taken')
+            break;
+          default:
+            alert('There was an issue with your request, please try again.')
+        }
+      }
+    })
     setLoading(false)
-    switch (result.status) {
-      case 200:
-        alert('Your settings are updated')
-        break;
-      default:
-        alert('There was an issue with your request, please try again.')
-    }
   }
 
   if (user) {
@@ -103,6 +111,12 @@ export default function Home({ user }) {
                 label='Name'
                 name='name'
                 defaultValue={user.name}
+                registerFunc={register}
+              />
+              <FieldRow 
+                label='Handle (this will be unique and yours only)'
+                name='handle'
+                defaultValue={user.handle}
                 registerFunc={register}
               />
               <FieldRow 

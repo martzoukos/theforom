@@ -1,4 +1,4 @@
-import prisma from '../../lib/prisma'
+import { prisma } from '../../lib/prisma'
 import Layout from '../../components/Layout';
 import Head from 'next/head';
 import { UserHeader } from '../../components/UserHeader';
@@ -8,7 +8,7 @@ import Container from '../../components/Container';
 export async function getServerSideProps(context) {
   const user = await prisma.user.findUnique({
     where: {
-      id: context.params.uid
+      handle: context.params.handle
     },
     include: {
       _count: {
@@ -41,7 +41,7 @@ const User = ({ user }) => {
   return (
     <Layout>
       <Head>
-        <title>{user.name}</title>
+        <title>{user.handle}</title>
       </Head>
       <UserHeader user={user} />
       <Container>

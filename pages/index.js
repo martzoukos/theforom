@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/Layout';
-import prisma from '../lib/prisma'
+import { prisma } from '../lib/prisma'
 import Button from '../components/Button';
 import Container from '../components/Container';
 import { useSession, signIn } from 'next-auth/react';
@@ -13,6 +13,7 @@ export async function getServerSideProps() {
       User:{
         select: {
           name: true,
+          handle: true,
           image: true,
         }
       },
@@ -27,6 +28,7 @@ export async function getServerSideProps() {
             select: {
               image: true,
               name: true,
+              handle: true,
             }
           }
         },

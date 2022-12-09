@@ -23,7 +23,7 @@ export const UserHeader = ({ user }) => {
           <Image
             className={styles.image} 
             src={user.image} 
-            alt={user.name}
+            alt={user.handle}
             width='120'
             height='120'
           />
@@ -32,10 +32,17 @@ export const UserHeader = ({ user }) => {
           <h1 className={`
             as-h1
             ${styles.name}
-          `}>
-            {user.name}
+          `}
+          title={user.name}>
+            {user.handle}
           </h1>
           <div className={styles.info}>
+            {user.name &&
+              <div>
+                {user.name}
+                &nbsp;&middot;&nbsp;
+              </div>
+            }
             {user.shortBio &&
               <div>
                 {user.shortBio}

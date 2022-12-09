@@ -23,7 +23,7 @@ export default function ThreadsTableRow({ thread }) {
               {thread.subject}
             </Link>
             <div className={styles.smallInfo}>
-              {thread.User.name}
+              <span title={thread.User.name}>{thread.User.handle}</span>
               <ReactTimeAgo 
                 date={thread.createdAt}
                 className={styles.createdAt} 

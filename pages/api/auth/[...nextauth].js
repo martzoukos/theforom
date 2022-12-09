@@ -1,7 +1,8 @@
 import NextAuth from "next-auth"
 import EmailProvider from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import prisma from '../../../lib/prisma'
+import { prisma } from '../../../lib/prisma'
+import { generateFromEmail } from "unique-username-generator";
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
@@ -31,6 +32,21 @@ export const authOptions = {
         session.user.name = token.name
       }
       return session;
+    },
+  },
+  events: {
+    createUser: async ({ user }) => {
+      const handle = generateFromEmail(user.email, 4)
+      user.handle = handle
+      const result = await prisma.user.update({
+        where: {
+          id: user.id
+        },
+        data: {
+          handle: handle
+        }
+      })
+      return user
     },
   },
   session: {

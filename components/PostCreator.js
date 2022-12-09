@@ -6,7 +6,7 @@ import Avatar from './Avatar';
 
 const PostCreator = ({
   avatar, 
-  id,
+  handle,
   name, 
   shortBio, 
   postCount,
@@ -17,15 +17,16 @@ const PostCreator = ({
   const createdAtDate = new Date(postCreatedAt).toLocaleString()
   return (
     <div className={styles.postCreator}>
-      <Link href={`/users/${id}`} className={styles.avatar}>
+      <Link href={`/users/${handle}`} className={styles.avatar}>
         <Avatar src={avatar} alt={name} />
       </Link>
       <div className={styles.metaContent}>
         <div className={styles.nameInfo}>
-          <Link href={`/users/${id}`} className={styles.name}>{name}</Link>
+          <Link href={`/users/${handle}`} className={styles.name} title={name}>{handle}</Link>
           <span className={styles.shortBio}>
-            {shortBio}
-            &nbsp;&middot;&nbsp;
+            {shortBio &&
+            <span>&nbsp;&middot;&nbsp;{shortBio}</span>
+            }
             {postCount} posts
           </span>
         </div>

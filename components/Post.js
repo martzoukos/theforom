@@ -14,7 +14,7 @@ const Post = ({content, showCreatedBy, postNumber}) => {
         {showCreatedBy &&
           <PostCreator 
             avatar={user.image}
-            id={user.id}
+            handle={user.handle}
             name={user.name}
             shortBio={user.shortBio}
             postCount={user._count.posts}

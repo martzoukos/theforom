@@ -6,7 +6,7 @@ import Avatar from './Avatar';
 
 const ThreadCreator = ({
   avatar, 
-  id, 
+  handle, 
   name, 
   shortBio, 
   postCount
@@ -14,16 +14,16 @@ const ThreadCreator = ({
   return (
     <Container>
       <div className={styles.threadCreator}>
-        <Link href={`/users/${id}`}>
+        <Link href={`/users/${handle}`}>
           <Avatar 
             src={avatar}
             alt={name} 
           />
         </Link>
-        <div className={styles.name}>{name}</div>
+        <div className={styles.name} title={name}>{handle}</div>
         <div className={styles.shortBio}>
-          {shortBio}
-          &nbsp;&middot;&nbsp;
+          {shortBio &&
+          <span>&nbsp;&middot;&nbsp;{shortBio}</span>}
           {postCount} posts
         </div>
       </div>
