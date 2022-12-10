@@ -14,6 +14,7 @@ import { SessionProvider } from "next-auth/react"
 import { useUIModeStore } from '../lib/UIModeStore'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 TimeAgo.addDefaultLocale(en)
 
@@ -37,6 +38,7 @@ export default function App({
 
   return(
     <SessionProvider session={session}>
+      <GoogleAnalytics trackPageViews />
       <Component {...pageProps} />
     </SessionProvider>
   )
