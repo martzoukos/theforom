@@ -1,5 +1,6 @@
 .button {
   transition: color var(--ease) var(--fast-animation);
+  text-align: left;
 }
 
 .button:hover,

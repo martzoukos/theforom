@@ -12,7 +12,7 @@ export default function SignInForm({ csrfToken }) {
       </p>
       <form method="post" action="/api/auth/signin/email" className={styles.form}>
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-        <label>
+        <label className={styles.label}>
           Your email address
           <input type="email" id="email" name="email" className={styles.input} />
         </label>

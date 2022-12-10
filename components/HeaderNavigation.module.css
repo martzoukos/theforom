@@ -1,10 +1,16 @@
 .nav {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  padding: 1.5em;
+  align-items: center;
+  padding: 0.5em;
   border-bottom: 1px solid var(--grey-on-black);
   transition: border-color var(--ease) var(--slow-animation);
+}
+
+@media only screen and (min-width: 600px) {
+  .nav {
+    padding: 1.5em;
+  }
 }
 
 :global(body.light) .nav {

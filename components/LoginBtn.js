@@ -10,7 +10,7 @@ export default function LogInBtn() {
     return (
       <div className={styles.container}>
         {possibleFirstName &&
-          <span>Welcome back <b>{possibleFirstName}</b></span>
+          <span className={styles.welcomeBack}>Welcome back <b>{possibleFirstName}</b></span>
         }
         <div className={styles.avatar}>
           <Avatar 
@@ -29,6 +29,8 @@ export default function LogInBtn() {
     )
   }
   return (
-    <button onClick={() => signIn()}>Sign in</button>
+    <div className={styles.container}>
+      <button onClick={() => signIn()}>Sign in</button>
+    </div>
   )
 }

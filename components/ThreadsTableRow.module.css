@@ -2,8 +2,15 @@
   transition: background-color var(--ease) var(--fast-animation);
   border-bottom: 1px solid var(--very-dark-purple);
 
-  --cell-padding-h: 1em;
-  --cell-padding-v: 2em;
+  --cell-padding-h: 0.5em;
+  --cell-padding-v: 1em;
+}
+
+@media only screen and (min-width: 600px) {
+  .row {
+    --cell-padding-h: 1em;
+    --cell-padding-v: 2em;
+  }
 }
 
 :global(body.light) .row {

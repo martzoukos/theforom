@@ -1,8 +1,23 @@
 .container {
   display: flex;
   align-items: center;
+  font-size: var(--step-down-2);
 }
 
 .avatar {
   margin: 0 0.5em;
+}
+
+.welcomeBack {
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .container {  
+    font-size: inherit;
+  }
+  
+  .welcomeBack {
+    display: block;
+  }
 }

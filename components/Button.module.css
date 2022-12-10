@@ -2,13 +2,13 @@
   display: inline-block;
   box-sizing: border-box;
   margin: 0;
-  padding: 0.7em 2em;
+  padding: 0.5em 1em;
   background-color: var(--blue);
   color: var(--white);
   border-radius: 0.5em;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 16px;
+  font-size: var(--step-down-2);
   letter-spacing: 1px;
   transition: background-color var(--ease) var(--fast-animation);
 }
@@ -24,4 +24,11 @@
 :global(body.light) .button:focus {
   color: var(--white);
   background-color: var(--purple);
+}
+
+@media only screen and (min-width: 600px) {
+  .button {
+    padding: 0.7em 2em;
+    font-size: 16px;
+  }
 }

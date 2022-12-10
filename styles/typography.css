@@ -1,8 +1,13 @@
 .typography {
   line-height: 1.3;
   font-family: var(--serif);
-  font-size: var(--step-up-1);
   line-height: 1.5;
+}
+
+@media only screen and (min-width: 600px) {
+  .typography {
+    font-size: var(--step-up-1);
+  }
 }
 
 .typography > * {

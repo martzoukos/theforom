@@ -12,6 +12,7 @@
   top: 0;
   z-index: 10;
   display: flex;
+  flex-wrap: wrap;
   padding: 0.5em 1em;
   justify-content: space-between;
   color: var(--white);

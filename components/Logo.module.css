@@ -1,10 +1,15 @@
 .logo {
   font-family: var(--serif);
-  font-size: var(--step-up-2);
   display: flex;
   align-items: baseline;
   color: var(--white);
   transition: color var(--ease) var(--fast-animation);
+}
+
+@media only screen and (min-width: 600px) {
+  .logo {
+    font-size: var(--step-up-2);
+  }
 }
 
 .logo:hover,

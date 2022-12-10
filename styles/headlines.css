@@ -16,13 +16,23 @@
 }
 
 .as-h1 {
-  font-size: var(--step-up-14);
+  font-size: var(--step-up-7);
   text-align: center;
 }
 
 .as-h2 {
-  font-size: var(--step-up-8);
+  font-size: var(--step-up-4);
   text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .as-h1 {
+    font-size: var(--step-up-14);
+  }
+  
+  .as-h2 {
+    font-size: var(--step-up-8);
+  }
 }
 
 body.light .as-h1, 

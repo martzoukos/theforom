@@ -71,16 +71,7 @@ export default function Home({ allThreads, allCategories }) {
       </Head>
       <Container>
         <>
-          <h1 className='as-h1'>The Forums are back.</h1>
-          <div style={{
-            marginBottom: '2em'
-          }}>
-            { session ?
-              <Button href='/threads/new'>Create a new Thread</Button>
-              :  
-              <Button onClick={() => signIn()}>Connect to create a Thread</Button>
-            }
-          </div>
+          <h1 className='as-h1'>The Forums are back.</h1> 
           <ThreadsTable threads={allThreads} />
           <div style={{
             marginTop: '2em'

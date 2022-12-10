@@ -71,7 +71,9 @@ export default function Home({ allThreads }) {
         <>
           <h1 className='as-h1'>#{categoryName}</h1>
           <ThreadsTable threads={allThreads} />
-          <div>
+          <div style={{
+            marginTop: '2em'
+          }}>
             { session ?
               <Button href='/threads/new'>Create a new Thread</Button>
               :  

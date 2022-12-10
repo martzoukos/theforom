@@ -3,7 +3,13 @@
   align-items: center;
   line-height: 1;
   background: var(--very-dark-purple);
-  padding: 1em;
+  padding: 0.5em;
+}
+
+@media only screen and (min-width: 600px) {
+  .postCreator {
+    padding: 1em;
+  }
 }
 
 :global(body.light) .postCreator {
