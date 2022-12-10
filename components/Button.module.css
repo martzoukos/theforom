@@ -13,6 +13,11 @@
   transition: background-color var(--ease) var(--fast-animation);
 }
 
+:global(body.light) a.button,
+:global(body.light) a.button:visited {
+  color: var(--white);
+}
+
 .button:hover,
 .button:focus,
 :global(body.light) .button:hover,
