@@ -1,5 +1,5 @@
 import { prisma } from '../../lib/prisma'
-import Layout from '../../components/Layout';
+import Layout, { siteTitle } from '../../components/Layout';
 import Head from 'next/head';
 import { UserHeader } from '../../components/UserHeader';
 import UserPost from '../../components/UserPost';
@@ -41,7 +41,7 @@ const User = ({ user }) => {
   return (
     <Layout>
       <Head>
-        <title>{user.handle}</title>
+        <title>{user.handle} = {siteTitle}</title>
       </Head>
       <UserHeader user={user} />
       <Container>

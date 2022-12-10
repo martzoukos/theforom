@@ -1,11 +1,8 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Footer from './Footer';
 import HeaderNavigation from './HeaderNavigation';
-import Logo from './Logo';
-import { UIModeSwitcher } from './UIModeSwitcher';
 
-export const siteTitle = 'The Forom';
+export const siteTitle = 'the forom';
 
 export default function Layout({ children }) {
   return (
@@ -14,14 +11,9 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="The forums are back"
+          content="The Forom is a lively and vibrant community where users can let their voices be heard and share their thoughts and opinions on a wide range of topics. It's a place where ideas are exchanged, discussions are had, and friendships are formed. Whether you're an expert on a particular subject or just looking to learn more, The Forom has something for everyone. So why not stop by and join the conversation today?"
         />
-        <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle,
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-        />
+        <meta property="og:image" content='/ogimage.png' />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>

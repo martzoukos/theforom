@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Layout from '../components/Layout';
+import Layout, { siteTitle } from '../components/Layout';
 import { prisma } from '../lib/prisma'
 import Container from '../components/Container';
 import Avatar from '../components/Avatar';
@@ -94,7 +94,7 @@ export default function Home({ user }) {
     return (
       <Layout>
         <Head>
-          <title>Settings</title>
+          <title>Your Settings - {siteTitle}</title>
         </Head>
         <Container>
           <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,5 +1,5 @@
 import { prisma } from '../../../lib/prisma'
-import Layout from '../../../components/Layout';
+import Layout, { siteTitle } from '../../../components/Layout';
 import Head from 'next/head';
 import Post from '../../../components/Post';
 import ThreadTitle from '../../../components/ThreadTitle';
@@ -65,7 +65,7 @@ const Thread = ({ thread }) => {
   return (
     <Layout>
       <Head>
-        <title>{thread.subject}</title>
+        <title>{thread.subject} - {siteTitle}</title>
       </Head>
       <ThreadCreator 
         avatar={thread.User.image}

@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Layout from '../../components/Layout'
+import Layout, { siteTitle } from '../../components/Layout'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Editor, { useUploadedMedia } from '../../components/Slate/SlateEditor';
@@ -42,7 +42,7 @@ export default function Thread() {
     return (
       <Layout>
         <Head>
-          <title>Create your Thread</title>
+          <title>Create your Thread - {siteTitle}</title>
         </Head>
         <Container isNarrow={true}>
           <form  onSubmit={handleSubmit(onSubmit)}>

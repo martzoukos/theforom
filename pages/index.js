@@ -67,7 +67,7 @@ export default function Home({ allThreads, allCategories }) {
   return (
     <Layout>
       <Head>
-        <title>{siteTitle}</title>
+        <title>Welcome to the forom, friend!</title>
       </Head>
       <Container>
         <>

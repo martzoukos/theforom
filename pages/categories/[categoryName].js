@@ -65,7 +65,7 @@ export default function Home({ allThreads }) {
   return (
     <Layout>
       <Head>
-        <title>{siteTitle}</title>
+        <title>#{categoryName} - {siteTitle}</title>
       </Head>
       <Container>
         <>
