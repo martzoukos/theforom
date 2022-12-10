@@ -74,9 +74,19 @@ export default function Thread() {
     )
   } else {
     return(
-      <Container>          
-        <Button onClick={() => signIn()}>Connect to create a Thread</Button>
-      </Container>
+      <Layout>
+        <Head>
+          <title>Create your Thread</title>
+        </Head>
+        <Container isNarrow={true}>
+          <div style={{
+            margin: '2em auto',
+            textAlign: 'center'
+          }}>
+            <Button onClick={() => signIn()}>Connect to create a Thread</Button>    
+          </div>
+        </Container>
+      </Layout>
     )
   }
 }

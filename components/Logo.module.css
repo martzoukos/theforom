@@ -3,7 +3,7 @@
   font-size: var(--step-up-2);
   display: flex;
   align-items: baseline;
-  color: var(--black);
+  color: var(--white);
   transition: color var(--ease) var(--fast-animation);
 }
 
