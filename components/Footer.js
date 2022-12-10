@@ -23,10 +23,8 @@ export default function Footer() {
             </div>
           </div>
           <div className={styles.rightColumn}>
-            <Link className={styles.footerLink} href='/about'>About</Link>
-            <Link className={styles.footerLink} href='/contact'>Contact</Link>
-            <Link className={styles.footerLink} href='/privacy'>Privacy</Link>
             <Link className={styles.footerLink} href='/terms-of-service'>Terms of Service</Link>
+            <Link className={styles.footerLink} href='/privacy-policy'>Privacy Policy</Link>
             <UIModeSwitcher />
           </div>
         </div>
