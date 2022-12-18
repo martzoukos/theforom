@@ -18,7 +18,12 @@ export default function Layout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <HeaderNavigation />
-      {children}
+      <div style={{
+        maxWidth: 500,
+        margin: '0 auto'
+      }}>
+        {children}
+      </div>
       <Footer />
     </>
   );

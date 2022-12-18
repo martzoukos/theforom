@@ -58,6 +58,11 @@
   font-size: var(--step-up-1);
 }
 
+.typography ul,
+.typography ol {
+  margin-left: 1em;
+}
+
 .typography li {
   margin-bottom: 0.5em;
   line-height: 1.3;

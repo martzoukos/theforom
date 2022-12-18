@@ -9,14 +9,14 @@ body {
   line-height: 1.6;
   font-size: 18px;
   font-weight: 400;
-  background-color: var(--black);
+  background-color: var(--very-dark-purple);
   color: var(--white);
   transition: background-color var(--ease) var(--slow-animation), 
               color var(--ease) var(--slow-animation);
 }
 
 body::before {
-  position: absolute;
+  position: fixed;
   width: 90%;
   height: 50em;
   left: 50%;

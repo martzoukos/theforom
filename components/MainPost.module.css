@@ -1,35 +1,30 @@
-.post {
-  display: flex;
-  align-items: flex-end;
+.bubble {
+  background-color: var(--black);
+  border-radius: 1em;
+  padding: 1.1em;
   margin-bottom: 0.7em;
 }
 
-.content {
-  width: 100%;
-  margin-left: 0.7em;
+:global(body.light) .bubble {
+  background-color: var(--white);
+}
+
+.threadTitle {
+  font-size: var(--step-up-6);
+  line-height: 1.1;
+  margin: 0;
 }
 
 .createdBy {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   font-size: var(--step-down-2);
   color: var(--light-purple);
   margin: 0.7em 0;
-  padding: 0 1.3em;
 }
 
 :global(body.light) .createdBy {
   color: var(--purple);
-}
-.bubble {
-  background-color: var(--black);
-  border-radius: 1em;
-  padding: 1.1em;
-}
-
-:global(body.light) .bubble {
-  background-color: var(--white);
 }
 
 .createdBy a {
