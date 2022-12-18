@@ -19,8 +19,9 @@ export default function Layout({ children }) {
       </Head>
       <HeaderNavigation />
       <div style={{
-        maxWidth: 500,
-        margin: '0 auto'
+        maxWidth: 700,
+        margin: '0 auto',
+        padding: '1em'
       }}>
         {children}
       </div>
