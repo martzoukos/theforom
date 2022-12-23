@@ -28,7 +28,7 @@ export const useUploadedMedia = create((set) => ({
   ,
 }))
 
-const SlateEditor = ({ setValue }) => {
+const SlateEditor = ({ setValue, focused }) => {
   const editor = useMemo(
     () => 
     withSocials(
@@ -58,8 +58,8 @@ const SlateEditor = ({ setValue }) => {
       onChange={setValue}
     >
       <div className={styles.slateEditor}>
-        <SlateToolbar />
         <SlateTextarea editor={editor} />
+        <SlateToolbar focused={focused} />
       </div>
     </Slate>
   );

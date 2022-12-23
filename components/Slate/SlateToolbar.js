@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {  
   Editor,
   Transforms,
@@ -20,69 +21,95 @@ import {
   ListOrdered,
   Code,
   CurlyBraces,
+  Plus,
 } from "lucide-react"
 import { AddLinkButton, RemoveLinkButton, addLink } from './withInlines'
 import { InsertImageButton } from './withImages'
 import { InsertVideoButton } from './withVideos'
 import { InsertSocialButton } from './withSocials';
-import styles from './SlateEditor.module.css'
+import styles from './SlateToolbar.module.css'
 import { BLOCK, INLINE, LIST_TYPES } from './constants';
 
-export const SlateToolbar =() => {
+export const SlateToolbar =({ focused }) => {
+  const [blocksOpen, setBlocksOpen] = useState(false)
   return (
-    <div className={styles.toolbar}>
-      <ToolbarButton format={INLINE.BOLD} type='mark'>
-        <Bold size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={INLINE.ITALIC} type='mark'>
-        <Italic size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={INLINE.UNDERLINE} type='mark'>
-        <Underline size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={INLINE.STRIKETHROUGH} type='mark'>
-        <Strikethrough size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={INLINE.CODE} type='mark'>
-        <Code size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.H1} type='block'>
-        <Heading1 size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.H2} type='block'>
-        <Heading2 size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.H3} type='block'>
-        <Heading3 size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.H4} type='block'>
-        <Heading4 size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.H5} type='block'>
-        <Heading5 size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.H6} type='block'>
-        <Heading6 size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.BLOCKQUOTE} type='block'>
-        <Quote size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.CODEBLOCK} type='block'>
-        <CurlyBraces size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.UL} type='block'>
-        <List size={18} />
-      </ToolbarButton>
-      <ToolbarButton format={BLOCK.OL} type='block'>
-        <ListOrdered size={18} />
-      </ToolbarButton>
-      <AddLinkButton />
-      <RemoveLinkButton />
-      <InsertImageButton />
-      <InsertVideoButton />
-      <InsertSocialButton provider='twitter' />
-      <InsertSocialButton provider='facebook' />
-      <InsertSocialButton provider='instagram' />
+    <div className={`
+      ${styles.toolbar}
+      ${focused && styles.visible}
+    `}>
+      <div className={styles.topBar}>
+        <button
+          type='button'
+          className={styles.button}
+          onClick={() => {
+            setBlocksOpen(!blocksOpen)
+          }} 
+        >
+          <Plus size={14} />
+        </button>
+        <div className={styles.shadowContainer}>
+          <div className={styles.toggleActions}>
+            <div className={styles.scrollableActions}>
+              <ToolbarButton format={INLINE.BOLD} type='mark'>
+                <Bold size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={INLINE.ITALIC} type='mark'>
+                <Italic size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={INLINE.UNDERLINE} type='mark'>
+                <Underline size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={INLINE.STRIKETHROUGH} type='mark'>
+                <Strikethrough size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={INLINE.CODE} type='mark'>
+                <Code size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.H1} type='block'>
+                <Heading1 size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.H2} type='block'>
+                <Heading2 size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.H3} type='block'>
+                <Heading3 size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.H4} type='block'>
+                <Heading4 size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.H5} type='block'>
+                <Heading5 size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.H6} type='block'>
+                <Heading6 size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.BLOCKQUOTE} type='block'>
+                <Quote size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.CODEBLOCK} type='block'>
+                <CurlyBraces size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.UL} type='block'>
+                <List size={14} />
+              </ToolbarButton>
+              <ToolbarButton format={BLOCK.OL} type='block'>
+                <ListOrdered size={14} />
+              </ToolbarButton>
+            </div>
+          </div>
+        </div>
+      </div>
+      {blocksOpen &&
+        <div className={styles.addAction}>
+          <AddLinkButton />
+          <RemoveLinkButton />
+          <InsertImageButton />
+          <InsertVideoButton />
+          <InsertSocialButton provider='twitter' />
+          <InsertSocialButton provider='facebook' />
+          <InsertSocialButton provider='instagram' />
+        </div>
+      }
     </div>
   )
 }
@@ -103,7 +130,7 @@ const ToolbarButton = ({ format, type = 'mark', children }) => {
         event.preventDefault()
         if (type==='mark') {
           toggleMark(editor, format)
-        }else if (type==='block') {
+        } else if (type==='block') {
           toggleBlock(editor, format)
         }
       }}

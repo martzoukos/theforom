@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Container from './Container';
 import Footer from './Footer';
 import HeaderNavigation from './HeaderNavigation';
 
@@ -18,14 +19,10 @@ export default function Layout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <HeaderNavigation />
-      <div style={{
-        maxWidth: 700,
-        margin: '0 auto',
-        padding: '1em'
-      }}>
+      <Container isNarrow={true}>
         {children}
-      </div>
-      <Footer />
+      </Container>
+      {/* <Footer /> */}
     </>
   );
 }

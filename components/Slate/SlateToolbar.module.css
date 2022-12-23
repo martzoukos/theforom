@@ -1,0 +1,80 @@
+.toolbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* display: none; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.toolbar.visible {
+  display: flex;
+}
+
+.topBar {
+  width: 100%;
+  display: flex;
+}
+
+.shadowContainer {
+  width: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+.shadowContainer::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 100%;
+  background: rgb(0,0,0);
+  background: linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+}
+
+:global(body.light) .shadowContainer::before {
+  background: rgb(255,255,255);
+  background: linear-gradient(270deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+}
+
+.toggleActions {
+  width: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+.toggleActions::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollableActions {
+  width: 100%;
+  white-space: nowrap;
+  padding-left: 1em;
+}
+
+.addAction {
+  width: 100%;
+}
+
+.button {
+  width: 2.7em;
+  line-height: 1.9em;
+  background-color: var(--black);
+  border-radius: 0.5em;
+  margin: 0.2em;
+}
+
+.button:hover,
+.button:focus,
+.buttonActive {
+  background-color: var(--dark-purple);
+  color: var(--white)
+}

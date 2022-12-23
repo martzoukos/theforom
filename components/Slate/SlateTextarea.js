@@ -52,6 +52,7 @@ export const SlateTextarea = ({editor}) => {
   }, [editor])
 
   return <Editable 
+    placeholder='Aa'
     renderLeaf={renderLeaf} 
     renderElement={renderElement}
     className={`

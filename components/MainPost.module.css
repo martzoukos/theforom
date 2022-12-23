@@ -1,6 +1,6 @@
 .bubble {
   background-color: var(--black);
-  border-radius: 1em;
+  border-radius: var(--border-radius);
   padding: 1.1em;
   margin-bottom: 0.7em;
 }

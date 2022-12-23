@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import SlateEditor, { useUploadedMedia } from "./Slate/SlateEditor"
-import Button from './Button';
+import styles from './PostReply.module.css'
 import Container from './Container';
+import Button from './Button'
 
 export const PostReply = ({thread}) => {
   const [post, setPost] = useState('')
+  const [focused, setFocused] = useState(false)
   const router = useRouter()
   const uploadedMedia = useUploadedMedia()
 
@@ -25,19 +27,29 @@ export const PostReply = ({thread}) => {
   }
 
   return (
-    <Container isNarrow={true}>
+    <div className={styles.postReply}>
       <form 
         action='/api/post'
         method='post'
         onSubmit={handleSubmit}
+        onFocus={() => {
+          setFocused(true)
+        }}
+        onBlur={() => {
+          setFocused(false)
+        }}
       >
-        <h2 className='as-h2'>Reply to this thread</h2>
-        <SlateEditor value={post} setValue={setPost} />
-        <br/>
+        <Container isNarrow={true}>
+          <SlateEditor 
+            value={post}
+            setValue={setPost}
+            focused={focused}
+          />
+        </Container>
         <Button>
           Add a post
         </Button>
       </form>
-    </Container>
+    </div>
   )
 }
