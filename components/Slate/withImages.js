@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import isUrl from 'is-url'
-import imageExtensions from'image-extensions'
 import {
   useSlateStatic,
   ReactEditor,
@@ -17,6 +15,7 @@ import { nanoid } from 'nanoid';
 import { resizeImage } from '../../lib/resizeImage';
 import { uploadFile } from '../../lib/uploadFile';
 import styles from './SlateEditor.module.css'
+import { isImageUrl } from '../../lib/isImageURL';
 
 export const withImages = editor => {
   const { insertData, isVoid } = editor
@@ -203,11 +202,4 @@ export const InsertImageButton = () => {
       <ImageIcon size={18} />
     </button>
   )
-}
-
-const isImageUrl = url => {
-  if (!url) return false
-  if (!isUrl(url)) return false
-  const ext = new URL(url).pathname.split('.').pop()
-  return imageExtensions.includes(ext)
 }

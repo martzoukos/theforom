@@ -1,14 +1,7 @@
 .toolbar {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 10;
   /* display: none; */
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
+  flex-direction: column;
 }
 
 .toolbar.visible {
@@ -77,4 +70,12 @@
 .buttonActive {
   background-color: var(--dark-purple);
   color: var(--white)
+}
+
+.buttonBlock {
+  display: flex;
+}
+
+.buttonBlock > svg {
+  width: 18px;
 }

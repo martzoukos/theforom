@@ -1,0 +1,14 @@
+.button {
+  width: 2.7em;
+  line-height: 1.9em;
+  background-color: var(--black);
+  border-radius: 0.5em;
+  margin: 0.2em;
+}
+
+.button:hover,
+.button:focus,
+.buttonActive {
+  background-color: var(--dark-purple);
+  color: var(--white)
+}

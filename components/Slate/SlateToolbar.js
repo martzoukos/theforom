@@ -23,15 +23,14 @@ import {
   CurlyBraces,
   Plus,
 } from "lucide-react"
-import { AddLinkButton, RemoveLinkButton, addLink } from './withInlines'
-import { InsertImageButton } from './withImages'
-import { InsertVideoButton } from './withVideos'
-import { InsertSocialButton } from './withSocials';
+import { addLink } from './withInlines'
 import styles from './SlateToolbar.module.css'
 import { BLOCK, INLINE, LIST_TYPES } from './constants';
+import SlateToolbarBlockActions from './SlateToolbarBlockActions';
 
 export const SlateToolbar =({ focused }) => {
-  const [blocksOpen, setBlocksOpen] = useState(false)
+  const [blocksPanelOpen, setBlocksPanelOpen] = useState(false)
+
   return (
     <div className={`
       ${styles.toolbar}
@@ -40,9 +39,12 @@ export const SlateToolbar =({ focused }) => {
       <div className={styles.topBar}>
         <button
           type='button'
-          className={styles.button}
+          className={`
+            ${styles.button}
+            ${blocksPanelOpen && styles.buttonActive}
+          `}
           onClick={() => {
-            setBlocksOpen(!blocksOpen)
+            setBlocksPanelOpen(!blocksPanelOpen)
           }} 
         >
           <Plus size={14} />
@@ -99,17 +101,7 @@ export const SlateToolbar =({ focused }) => {
           </div>
         </div>
       </div>
-      {blocksOpen &&
-        <div className={styles.addAction}>
-          <AddLinkButton />
-          <RemoveLinkButton />
-          <InsertImageButton />
-          <InsertVideoButton />
-          <InsertSocialButton provider='twitter' />
-          <InsertSocialButton provider='facebook' />
-          <InsertSocialButton provider='instagram' />
-        </div>
-      }
+      {blocksPanelOpen && <SlateToolbarBlockActions />}
     </div>
   )
 }
