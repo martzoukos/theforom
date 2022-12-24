@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import SlateEditor, { useUploadedMedia } from "./Slate/SlateEditor"
 import styles from './PostReply.module.css'
-import Button from './Button'
+import { Send } from 'lucide-react';
 
 export const PostReply = ({thread}) => {
   const [post, setPost] = useState('')
@@ -34,18 +34,17 @@ export const PostReply = ({thread}) => {
         onFocus={() => {
           setFocused(true)
         }}
-        onBlur={() => {
-          setFocused(false)
-        }}
       >
+        {focused &&
+          <button className={styles.button}>
+            <Send size={18} />
+          </button>
+        }
         <SlateEditor 
           value={post}
           setValue={setPost}
           focused={focused}
         />
-        <Button>
-          Add a post
-        </Button>
       </form>
     </div>
   )

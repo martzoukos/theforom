@@ -43,7 +43,7 @@ export const SlateToolbar =({ focused }) => {
             ${styles.button}
             ${blocksPanelOpen && styles.buttonActive}
           `}
-          onClick={() => {
+          onMouseDown={() => {
             setBlocksPanelOpen(!blocksPanelOpen)
           }} 
         >

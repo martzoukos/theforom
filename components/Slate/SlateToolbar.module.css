@@ -1,6 +1,5 @@
 .toolbar {
-  /* display: none; */
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 
