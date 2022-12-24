@@ -7,6 +7,7 @@ import { Send } from 'lucide-react';
 export const PostReply = ({thread}) => {
   const [post, setPost] = useState('')
   const [focused, setFocused] = useState(false)
+  const [cancelBlur, setCancleBlur] = useState(false)
   const router = useRouter()
   const uploadedMedia = useUploadedMedia()
 
