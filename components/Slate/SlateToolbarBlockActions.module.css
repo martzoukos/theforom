@@ -1,9 +1,43 @@
+.addAction {
+  padding: 1em 0;
+}
+
+.headline {
+  font-weight: normal;
+  margin: 0 0 1em;
+  font-size: var(--step-up-0);
+}
+
+.buttonsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 0.5em;
+  grid-row-gap: 0.5em;
+}
+
+@media only screen and (min-width: 600px) {
+  .buttonsContainer {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 .button {
-  width: 2.7em;
   line-height: 1.9em;
   background-color: var(--black);
+  font-size: var(--step-up-0);
   border-radius: 0.5em;
-  margin: 0.2em;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+
+:global(body.light) .button {
+  background-color: var(--white);
+}
+
+.label {
+  margin-left: 0.5em;
 }
 
 .button:hover,
@@ -11,4 +45,15 @@
 .buttonActive {
   background-color: var(--dark-purple);
   color: var(--white)
+}
+
+:global(body.light) .button:hover,
+:global(body.light) .button:focus,
+:global(body.light) .buttonActive {
+  background-color: var(--light-purple);
+  color: var(--black)
+}
+
+.formAddContainer {
+  padding: 1em 0;
 }

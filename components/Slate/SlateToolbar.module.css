@@ -34,7 +34,7 @@
 
 :global(body.light) .shadowContainer::before {
   background: rgb(255,255,255);
-  background: linear-gradient(270deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(270deg, rgba(230,239,253,0) 0%, rgba(230,239,253,1) 100%);
 }
 
 .toggleActions {
@@ -65,11 +65,22 @@
   margin: 0.2em;
 }
 
+:global(body.light) .button {
+  background-color: var(--white);
+}
+
 .button:hover,
 .button:focus,
 .buttonActive {
   background-color: var(--dark-purple);
-  color: var(--white)
+  color: var(--white);
+}
+
+:global(body.light) .button:hover,
+:global(body.light) .button:focus,
+:global(body.light) .buttonActive {
+  background-color: var(--light-purple);
+  color: var(--black);
 }
 
 .buttonBlock {

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import SlateEditor, { useUploadedMedia } from "./Slate/SlateEditor"
 import styles from './PostReply.module.css'
-import Container from './Container';
 import Button from './Button'
 
 export const PostReply = ({thread}) => {
@@ -39,13 +38,11 @@ export const PostReply = ({thread}) => {
           setFocused(false)
         }}
       >
-        <Container isNarrow={true}>
-          <SlateEditor 
-            value={post}
-            setValue={setPost}
-            focused={focused}
-          />
-        </Container>
+        <SlateEditor 
+          value={post}
+          setValue={setPost}
+          focused={focused}
+        />
         <Button>
           Add a post
         </Button>

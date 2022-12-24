@@ -88,16 +88,16 @@ export default function SlateToolbarBlockActions() {
 
   return(
     <div className={styles.addAction}>
-      <h6>Add any of these blocks in your text</h6>
+      <h6 className={styles.headline}>Add any of these blocks in your text</h6>
       <div className={styles.buttonsContainer}>
         {BLOCK_ACTIONS.map((button, i) => 
           <BlockButton type={button.type} key={i}>
             {button.icon}
-            <span>{button.label}</span>
+            <span className={styles.label}>{button.label}</span>
           </BlockButton>
         )}
       </div>
-      <div>
+      <div className={styles.formAddContainer}>
         {BLOCK_ACTIONS.map(action => {
           if (blockActions[action.type]) {
             return action.form

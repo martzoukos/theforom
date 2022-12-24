@@ -22,7 +22,7 @@ export default function Layout({ children }) {
       <Container isNarrow={true}>
         {children}
       </Container>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

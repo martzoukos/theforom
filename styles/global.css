@@ -11,6 +11,7 @@ body {
   font-weight: 400;
   background-color: var(--very-dark-purple);
   color: var(--white);
+  overflow-x: hidden;
   transition: background-color var(--ease) var(--slow-animation), 
               color var(--ease) var(--slow-animation);
 }
