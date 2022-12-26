@@ -33,6 +33,8 @@ export default function FormAddLinkedImage() {
       />
       <p className={styles.note}>
         Use this when you want to reference some image from the web that you know will be online for a while.
+        <br/>
+        You can also paste the URL of the image directly where you type.
       </p>
       {errors.url?.type === 'validate' && 
         <p className={styles.error}>{errors.url.message}</p>
@@ -44,9 +46,9 @@ export default function FormAddLinkedImage() {
         <Button
           disabled={isSubmitting} 
           type='button'
-          onClick={handleSubmit(url => {
+          onClick={handleSubmit(data => {
               const text = { text: '' }
-              const image = { type: BLOCK.IMG, url, children: [text] }
+              const image = { type: BLOCK.IMG, url: data.url, children: [text] }
               Transforms.insertNodes(editor, image)
             })
           }
