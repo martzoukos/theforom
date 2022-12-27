@@ -42,13 +42,28 @@ export default function FormAddLinkedImage() {
       {errors.url?.type === 'required' && 
         <p className={styles.error}>This field is required</p>
       }
+
+      <label className={styles.label} htmlFor='altText'>
+        Image description
+      </label>
+      <input 
+        className={styles.input}
+        id='altText'
+        {...register('altText')}
+      />
+
       <div className={styles.buttonContainer}>
         <Button
           disabled={isSubmitting} 
           type='button'
           onClick={handleSubmit(data => {
               const text = { text: '' }
-              const image = { type: BLOCK.IMG, url: data.url, children: [text] }
+              const image = { 
+                type: BLOCK.IMG, 
+                url: data.url, 
+                alt: data.altText,
+                children: [text] 
+              }
               Transforms.insertNodes(editor, image)
             })
           }

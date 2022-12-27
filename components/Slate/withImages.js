@@ -81,7 +81,12 @@ export const uploadAndInsertImage = async (editor, file, alt='') => {
 
 const insertImage = (editor, url) => {
   const text = { text: '' }
-  const image = { type: BLOCK.IMG, url, children: [text] }
+  const image = { 
+    type: BLOCK.IMG, 
+    url,
+    alt: url, 
+    children: [text] 
+  }
   Transforms.insertNodes(editor, image)
 }
 
@@ -100,7 +105,7 @@ export const Image = ({ attributes, children, element }) => {
       >
         <img
           src={element.url}
-          alt=''
+          alt={element.alt}
           style={{
             display: 'block',
             maxWidth: '100%',
