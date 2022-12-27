@@ -42,7 +42,7 @@ export const withImages = editor => {
   return editor
 }
 
-const uploadAndInsertImage = async (editor, file) => {
+export const uploadAndInsertImage = async (editor, file, alt='') => {
   const reader = new FileReader()
   const [mime] = file.type.split('/')
   if (mime === 'image') {
@@ -54,7 +54,10 @@ const uploadAndInsertImage = async (editor, file) => {
       const base64Img = reader.result
       const uploadedMedia = useUploadedMedia.getState()
       const id = nanoid()
-      uploadedMedia.upsertUploadedMedia(id, { url: base64Img });
+      uploadedMedia.upsertUploadedMedia(id, { 
+        url: base64Img, 
+        alt: alt
+      });
       const uploadedImageEmpty = { 
         id, 
         type: BLOCK.UPLOADEDIMG,
@@ -65,7 +68,10 @@ const uploadAndInsertImage = async (editor, file) => {
       //Upload to S3 and then replace the url
       const imageURL = await uploadFile(resizedFile, 'posts')
       if (imageURL) {
-        uploadedMedia.upsertUploadedMedia(id, { url: imageURL });
+        uploadedMedia.upsertUploadedMedia(id, { 
+          url: imageURL, 
+          alt: alt,
+        });
       } else {
         Transforms.removeNodes(editor);
       }
@@ -138,7 +144,7 @@ export const UploadedImage = ({ attributes, children, element }) => {
           style={{ position: 'relative' }}
         >
           <img 
-            alt='' 
+            alt={uploadedMedia.alt}
             src={uploadedMedia.url}
             style={{
               display: 'block',
