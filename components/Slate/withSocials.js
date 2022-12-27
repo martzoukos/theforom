@@ -5,9 +5,7 @@ import {
 import {
   Transforms
 } from 'slate'
-import { Facebook, Instagram, Twitter } from "lucide-react";
 import { BLOCK } from "./constants";
-import styles from './SlateEditor.module.css'
 import { FacebookEmbed, InstagramEmbed, TwitterEmbed } from 'react-social-media-embed';
 
 export const withSocials = editor => {
@@ -67,62 +65,6 @@ export const Social = ({ attributes, children, element }) => {
         </button>
       </div>
     </div>
-  )
-}
-
-export const InsertSocialButton = ({ provider }) => {
-  const editor = useSlateStatic()
-  return (
-    <button
-      type='button'
-      size='small'
-      className={styles.button}
-      onMouseDown={event => {
-        event.preventDefault()
-        let promptText = 'Enter the URL'
-        switch (provider ) {
-          case 'twitter':
-          promptText = 'Enter the URL of the Tweet'
-          break
-          case 'facebook':
-          promptText = 'Enter the URL of the Facebook Post'
-          break
-          break
-          case 'instagram':
-          promptText = 'Enter the URL of the Instagram Post'
-          break
-        }
-        const url = window.prompt(promptText)
-        const socialProvider = getSocialProvider(url)
-        if (url && (socialProvider !== provider)) {
-          let errorText = 'URL is not a valid'
-          switch (provider) {
-            case 'twitter':
-            errorText = 'Not a valid Twitter URL'
-            break
-            case 'facebook':
-            errorText = 'Not a valid Facebook URL'
-            break
-            case 'instagram':
-            errorText = 'Not a valid Instagram URL'
-            break
-          }
-          alert(errorText)
-          return
-        }
-        url && insertSocial(editor, url, socialProvider)
-      }}
-    >
-      {provider === 'twitter' &&
-        <Twitter size={18} />
-      }
-      {provider === 'facebook' &&
-        <Facebook size={18} />
-      }
-      {provider === 'instagram' &&
-        <Instagram size={18} />
-      }
-    </button>
   )
 }
 

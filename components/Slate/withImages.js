@@ -8,13 +8,12 @@ import {
 import {
   Transforms
 } from 'slate'
-import { Image as ImageIcon, Trash, UploadCloud } from 'lucide-react';
+import { Trash, UploadCloud } from 'lucide-react';
 import { BLOCK } from './constants';
 import { useUploadedMedia } from './SlateEditor';
 import { nanoid } from 'nanoid';
 import { resizeImage } from '../../lib/resizeImage';
 import { uploadFile } from '../../lib/uploadFile';
-import styles from './SlateEditor.module.css'
 import { isImageUrl } from '../../lib/isImageURL';
 
 export const withImages = editor => {
@@ -191,26 +190,4 @@ export const UploadedImage = ({ attributes, children, element }) => {
       {children}
     </p>
   }
-}
-
-export const InsertImageButton = () => {
-  const editor = useSlateStatic()
-  return (
-    <button
-      type='button'
-      size='small'
-      className={styles.button}
-      onMouseDown={event => {
-        event.preventDefault()
-        const url = window.prompt('Enter the URL of the image:')
-        if (url && !isImageUrl(url)) {
-          alert('URL is not an image')
-          return
-        }
-        url && insertImage(editor, url)
-      }}
-    >
-      <ImageIcon size={18} />
-    </button>
-  )
 }

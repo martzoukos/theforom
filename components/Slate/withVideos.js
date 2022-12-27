@@ -6,9 +6,7 @@ import {
 import {
   Transforms
 } from 'slate'
-import { Video as VideoIcon } from "lucide-react";
 import { BLOCK } from "./constants";
-import styles from './SlateEditor.module.css'
 import { getEmbedVideoURL } from "../BlockVideo";
 
 export const withVideos = editor => {
@@ -74,28 +72,6 @@ export const Video = ({ attributes, children, element }) => {
         </button>
       </div>
     </div>
-  )
-}
-
-export const InsertVideoButton = () => {
-  const editor = useSlateStatic()
-  return (
-    <button
-      type='button'
-      size='small'
-      className={styles.button}
-      onMouseDown={event => {
-        event.preventDefault()
-        const url = window.prompt('Enter the URL of the video:')
-        if (url && !isVideoUrl(url)) {
-          alert('URL is not an video')
-          return
-        }
-        url && insertVideo(editor, url)
-      }}
-    >
-      <VideoIcon size={18} />
-    </button>
   )
 }
 

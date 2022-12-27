@@ -9,7 +9,7 @@ import {
   useSelected 
 } from "slate-react"
 import isUrl from 'is-url'
-import { Link as Linkicon, Unlink } from 'lucide-react';
+import { Link as Linkicon } from 'lucide-react';
 import { INLINE } from './constants';
 import styles from './SlateEditor.module.css'
 
@@ -122,52 +122,9 @@ export const LinkComponent = ({ attributes, children, element }) => {
   )
 }
 
-// The Toolbar button to add a link
-export const AddLinkButton = () => {
-  const editor = useSlate()
-  return (
-    <button
-      type='button'
-      size='small'
-      active={isLinkActive(editor).toString()}
-      className={`
-        ${styles.button} 
-        ${isLinkActive(editor) && styles.buttonActive}
-      `}
-      onMouseDown={event => {
-        event.preventDefault()
-        addLink(editor)
-      }}
-    >
-      <Linkicon size={18} />
-    </button>
-  )
-}
-
 // The function to trigger the Add link flow
 export const addLink = (editor) => {
   const url = window.prompt('Enter the URL of the link:')
   if (!url) return
   insertLink(editor, url)
-}
-
-// The Toolbar button to remove the link
-export const RemoveLinkButton = () => {
-  const editor = useSlate()
-
-  return (
-    <button
-      type='button'
-      size='small'
-      active={isLinkActive(editor).toString()}
-      className={styles.button}
-      onMouseDown={event => {
-        if (isLinkActive(editor)) {
-          unwrapLink(editor)
-        }
-      }}
-    >
-      <Unlink size={18} />
-    </button>
-  )
 }
