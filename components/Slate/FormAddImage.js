@@ -3,6 +3,7 @@ import { uploadAndInsertImage } from "./withImages"
 import { useForm } from "react-hook-form"
 import styles from './FormAdd.module.css'
 import Button from '../Button'
+import FormAddField from "./FormAddField"
 
 export default function FormAddLinkedImage() {
   const editor = useSlateStatic()
@@ -16,31 +17,25 @@ export default function FormAddLinkedImage() {
   } = useForm()
   return(
     <div>
-      <label className={styles.label} htmlFor='uploadImage'>
-        Upload an image
-      </label>
-      <input 
-        className={styles.input}
+      <FormAddField 
+        id='imageFile'
+        label='Upload an image'
         type='file'
-        id='uploadImage'
-        {...register('imageFile', {
+        notes={[
+          'You can also paste the image directly where you type.'
+        ]}
+        register={register}
+        validations={{
           required: true
-        })}
+        }}
+        errors={errors}
       />
-      <p className={styles.note}>
-        You can also paste the image directly where you type.
-      </p>
-      {errors.imageFile?.type === 'required' && 
-        <p className={styles.error}>This field is required</p>
-      }
 
-      <label className={styles.label} htmlFor='altText'>
-        Image description
-      </label>
-      <input 
-        className={styles.input}
-        id='altText'
-        {...register('altText')}
+      <FormAddField 
+        id='imageAlt'
+        label='Image description'
+        register={register}
+        errors={errors}
       />
 
       <div className={styles.buttonContainer}>
@@ -48,7 +43,7 @@ export default function FormAddLinkedImage() {
           disabled={isSubmitting} 
           type='button'
           onClick={handleSubmit(data => {
-            uploadAndInsertImage(editor, data.imageFile[0], data.altText)
+            uploadAndInsertImage(editor, data.imageFile[0], data.imageAlt)
             })
           }
         >

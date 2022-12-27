@@ -5,6 +5,7 @@ import { INLINE } from "./constants"
 import { useForm } from "react-hook-form"
 import styles from './FormAdd.module.css'
 import Button from '../Button'
+import FormAddField from "./FormAddField"
 
 export default function FormAddLinkedImage() {
   const editor = useSlateStatic()
@@ -18,40 +19,32 @@ export default function FormAddLinkedImage() {
   } = useForm()
   return(
     <div>
-      <label className={styles.label} htmlFor='addLink'>
-        Add the URL
-      </label>
-      <input 
-        className={styles.input}
-        id='addLink'
-        {...register('url', {
+      <FormAddField 
+        id='linkURL'
+        label='Add the URL.'
+        notes={[
+          'If you paste the URL directly where you type, you will also get a Link.',
+        ]}
+        register={register}
+        validations={{
           required: true,
           validate: url => {
             return isUrl(url) || 'This doesn\'t seem to be a valid URL'
           }
-        })}
+        }}
+        errors={errors}
       />
-      <p className={styles.note}>
-        If you paste the URL directly where you type, you will also get a Link.
-      </p>
-      {errors.url?.type === 'validate' && 
-        <p className={styles.error}>{errors.url.message}</p>
-      }
-      {errors.url?.type === 'required' && 
-        <p className={styles.error}>This field is required</p>
-      }
       
-      <label className={styles.label} htmlFor='addLinkText'>
-        Optionally some text to be linked
-      </label>
-      <input 
-        className={styles.input}
-        id='addLinkText'
-        {...register('text')}
+      <FormAddField 
+        id='linkText'
+        label='Optionally some text to be linked.'
+        notes={[
+          'If you select some text and paste the URL your text will be linked.',
+        ]}
+        register={register}
+        errors={errors}
       />
-      <p className={styles.note}>
-        If you select some text and paste the URL your text will be linked.
-      </p>
+      
 
       <div className={styles.buttonContainer}>
         <Button
@@ -60,8 +53,8 @@ export default function FormAddLinkedImage() {
           onClick={handleSubmit(data => {
               const link = {
                 type: INLINE.LINK,
-                url: data.url,
-                children: data.text ? [{ text: data.text }] : [{ text: data.url }],
+                url: data.linkURL,
+                children: data.linkText ? [{ text: data.linkText }] : [{ text: data.linkURL }],
               }
               Transforms.insertNodes(editor, link)
             })

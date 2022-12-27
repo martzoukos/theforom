@@ -5,6 +5,7 @@ import { BLOCK } from "./constants"
 import { useForm } from "react-hook-form"
 import styles from './FormAdd.module.css'
 import Button from '../Button'
+import FormAddField from "./FormAddField"
 
 export default function FormAddLinkedImage() {
   const editor = useSlateStatic()
@@ -18,37 +19,30 @@ export default function FormAddLinkedImage() {
   } = useForm()
   return(
     <div>
-      <label className={styles.label} htmlFor='addVideoURL'>
-        Add the URL of the video.
-      </label>
-      <input 
-        className={styles.input}
-        id='addVideoURL'
-        {...register('url', {
+      <FormAddField 
+        id='videoURL'
+        label='Add the URL of the video.'
+        notes={[
+          'Allowed sources: Youtube, Vimeo, TikTok, Twitch, TED, Facebook, Loom.',
+          'You can also paste the URL of the image directly where you type.',
+        ]}
+        register={register}
+        validations={{
           required: true,
           validate: url => {
             return isVideoUrl(url) || 'This doesn\'t seem to be a video URL'
           }
-        })}
+        }}
+        errors={errors}
       />
-      <p className={styles.note}>
-        Allowed sources: Youtube, Vimeo, TikTok, Twitch, TED, Facebook, Loom.
-        <br/>
-        You can also paste the URL of the image directly where you type.
-      </p>
-      {errors.url?.type === 'validate' && 
-        <p className={styles.error}>{errors.url.message}</p>
-      }
-      {errors.url?.type === 'required' && 
-        <p className={styles.error}>This field is required</p>
-      }
+      
       <div className={styles.buttonContainer}>
         <Button
           disabled={isSubmitting} 
           type='button'
           onClick={handleSubmit(data => {
               const text = { text: '' }
-              const video = { type: BLOCK.VIDEO, url: data.url, children: [text] }
+              const video = { type: BLOCK.VIDEO, url: data.videoURL, children: [text] }
               Transforms.insertNodes(editor, video)
             })
           }

@@ -5,6 +5,7 @@ import { BLOCK } from "./constants"
 import { useForm } from "react-hook-form"
 import styles from './FormAdd.module.css'
 import Button from '../Button'
+import FormAddField from './FormAddField'
 
 export default function FormAddLinkedImage() {
   const editor = useSlateStatic()
@@ -18,40 +19,30 @@ export default function FormAddLinkedImage() {
   } = useForm()
   return(
     <div>
-      <label className={styles.label} htmlFor='addLinkedImageField'>
-        Add the URL of the image.
-      </label>
-      <input 
-        className={styles.input}
-        id='addLinkedImageField'
-        {...register('url', {
+      <FormAddField 
+        id='imageURL'
+        label='Add the URL of the image.'
+        notes={[
+          'Use this when you want to reference some image from the web that you know will be online for a while.',
+          'You can also paste the URL of the image directly where you type.',
+        ]}
+        register={register}
+        validations={{
           required: true,
           validate: url => {
             return isImageUrl(url) || 'This doesn\'t seem to be an image URL'
           }
-        })}
-      />
-      <p className={styles.note}>
-        Use this when you want to reference some image from the web that you know will be online for a while.
-        <br/>
-        You can also paste the URL of the image directly where you type.
-      </p>
-      {errors.url?.type === 'validate' && 
-        <p className={styles.error}>{errors.url.message}</p>
-      }
-      {errors.url?.type === 'required' && 
-        <p className={styles.error}>This field is required</p>
-      }
-
-      <label className={styles.label} htmlFor='altText'>
-        Image description
-      </label>
-      <input 
-        className={styles.input}
-        id='altText'
-        {...register('altText')}
+        }}
+        errors={errors}
       />
 
+      <FormAddField 
+        id='imageAlt'
+        label='Image description'
+        register={register}
+        errors={errors}
+      />
+      
       <div className={styles.buttonContainer}>
         <Button
           disabled={isSubmitting} 
@@ -60,8 +51,8 @@ export default function FormAddLinkedImage() {
               const text = { text: '' }
               const image = { 
                 type: BLOCK.IMG, 
-                url: data.url, 
-                alt: data.altText,
+                url: data.imageURL, 
+                alt: data.imageAlt,
                 children: [text] 
               }
               Transforms.insertNodes(editor, image)
