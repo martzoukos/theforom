@@ -3,9 +3,8 @@
 }
 
 .headline {
-  font-weight: normal;
   margin: 0 0 1em;
-  font-size: var(--step-up-0);
+  font-size: var(--step-up-1);
 }
 
 .buttonsContainer {
@@ -52,8 +51,4 @@
 :global(body.light) .buttonActive {
   background-color: var(--light-purple);
   color: var(--black)
-}
-
-.formAddContainer {
-  padding: 1em 0;
 }

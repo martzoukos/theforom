@@ -1,27 +1,36 @@
+.field {
+  margin: 1em 0 1.5em;
+}
+
 .label {
   font-size: var(--step-up-0);
   display: block;
-  margin-bottom: 0.5em;
-  margin-top: 1em;
+}
+
+.input {
+  margin: 0.5em 0;
+  
 }
 
 .note {
   font-size: var(--step-down-2);
-  margin: 0;
-  margin-top: 0.5em;
+  margin: 0 0 0.3em;
+  line-height: 1.1;
   color: var(--light-purple);
+  display: flex;
+  align-items: center;
 }
 
 :global(body.light) .note {
   color: var(--dark-purple);
 }
 
-.error {
-  font-size: var(--step-down-2);
-  margin: 0;
-  color: var(--red);
+.noteText {
+  margin-left: 0.3em;
 }
 
-.buttonContainer {
-  margin-top: 1em;
+.error {
+  font-size: var(--step-down-2);
+  margin: 0 0 0.3em;
+  color: var(--red);
 }

@@ -38,4 +38,16 @@
   border-radius: 0.7em;
   background-color: var(--blue);
   display: flex;
+  transition: background-color var(--ease) var(--fast-animation);
 }
+
+.button:hover,
+.button:focus {
+  color: var(--white);
+  background-color: var(--purple);
+}
+
+.button svg {
+  stroke: var(--white);
+}
+

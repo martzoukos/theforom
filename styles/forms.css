@@ -36,8 +36,8 @@ label {
 input,
 select, 
 textarea {
-  background-color: var(--white);
-  color: var(--disabled-grey);
+  background-color: var(--black);
+  color: var(--white);
   font-family: var(--sans-serif);
   font-size: 16px;
   line-height: 1.1;
@@ -47,9 +47,8 @@ textarea {
   margin: 0;
   max-width: 30rem;
   display: block;
-  border: 1px solid var(--grey-on-white);
-  transition: border-color var(--ease) var(--fast-animation),
-              color var(--ease) var(--fast-animation);
+  border: 0;
+  transition: color var(--ease) var(--fast-animation);
   border-radius: var(--border-radius)
 }
 
@@ -57,15 +56,11 @@ textarea {
   max-width: 40rem;
 }
 
-input:focus,
-select:focus, 
-textarea:focus {
+body.light input,
+body.light select, 
+body.light textarea {
+  background-color: var(--white);
   color: var(--black);
-  border-color: var(--grey-on-black);
-}
-
-:global(body.light) .nav {
-  border-color: var(--black);
 }
 
 input[type=file] {

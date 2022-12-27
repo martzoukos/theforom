@@ -3,7 +3,6 @@ import { useSlateStatic } from "slate-react"
 import { isImageUrl } from "../../lib/isImageURL"
 import { BLOCK } from "./constants"
 import { useForm } from "react-hook-form"
-import styles from './FormAdd.module.css'
 import Button from '../Button'
 import FormAddField from './FormAddField'
 
@@ -42,26 +41,24 @@ export default function FormAddLinkedImage() {
         register={register}
         errors={errors}
       />
-      
-      <div className={styles.buttonContainer}>
-        <Button
-          disabled={isSubmitting} 
-          type='button'
-          onClick={handleSubmit(data => {
-              const text = { text: '' }
-              const image = { 
-                type: BLOCK.IMG, 
-                url: data.imageURL, 
-                alt: data.imageAlt,
-                children: [text] 
-              }
-              Transforms.insertNodes(editor, image)
-            })
-          }
-        >
-          Insert the image
-        </Button>
-      </div>
+    
+      <Button
+        disabled={isSubmitting} 
+        type='button'
+        onClick={handleSubmit(data => {
+            const text = { text: '' }
+            const image = { 
+              type: BLOCK.IMG, 
+              url: data.imageURL, 
+              alt: data.imageAlt,
+              children: [text] 
+            }
+            Transforms.insertNodes(editor, image)
+          })
+        }
+      >
+        Insert the image
+      </Button>
     </div>
   )
 }

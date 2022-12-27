@@ -3,7 +3,6 @@ import { useSlateStatic } from "slate-react"
 import { getSocialProvider } from '../../lib/getSocialProvider'
 import { BLOCK } from "./constants"
 import { useForm } from "react-hook-form"
-import styles from './FormAdd.module.css'
 import Button from '../Button'
 import FormAddField from './FormAddField'
 
@@ -34,21 +33,19 @@ export default function FormAddLinkedImage() {
         }}
         errors={errors}
       />
-      
-      <div className={styles.buttonContainer}>
-        <Button
-          disabled={isSubmitting} 
-          type='button'
-          onClick={handleSubmit(data => {
-              const text = { text: '' }
-              const social = { type: BLOCK.SOCIAL, url: data.tweetURL, provider: getSocialProvider(data.tweetURL) , children: [text] }
-              Transforms.insertNodes(editor, social)
-            })
-          }
-        >
-          Insert the tweet
-        </Button>
-      </div>
+    
+      <Button
+        disabled={isSubmitting} 
+        type='button'
+        onClick={handleSubmit(data => {
+            const text = { text: '' }
+            const social = { type: BLOCK.SOCIAL, url: data.tweetURL, provider: getSocialProvider(data.tweetURL) , children: [text] }
+            Transforms.insertNodes(editor, social)
+          })
+        }
+      >
+        Insert the tweet
+      </Button>
     </div>
   )
 }

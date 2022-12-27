@@ -3,7 +3,6 @@ import { useSlateStatic } from "slate-react"
 import isUrl from 'is-url'
 import { INLINE } from "./constants"
 import { useForm } from "react-hook-form"
-import styles from './FormAdd.module.css'
 import Button from '../Button'
 import FormAddField from "./FormAddField"
 
@@ -44,25 +43,22 @@ export default function FormAddLinkedImage() {
         register={register}
         errors={errors}
       />
-      
-
-      <div className={styles.buttonContainer}>
-        <Button
-          disabled={isSubmitting} 
-          type='button'
-          onClick={handleSubmit(data => {
-              const link = {
-                type: INLINE.LINK,
-                url: data.linkURL,
-                children: data.linkText ? [{ text: data.linkText }] : [{ text: data.linkURL }],
-              }
-              Transforms.insertNodes(editor, link)
-            })
-          }
-        >
-          Insert the link
-        </Button>
-      </div>
+    
+      <Button
+        disabled={isSubmitting} 
+        type='button'
+        onClick={handleSubmit(data => {
+            const link = {
+              type: INLINE.LINK,
+              url: data.linkURL,
+              children: data.linkText ? [{ text: data.linkText }] : [{ text: data.linkURL }],
+            }
+            Transforms.insertNodes(editor, link)
+          })
+        }
+      >
+        Insert the link
+      </Button>
     </div>
   )
 }

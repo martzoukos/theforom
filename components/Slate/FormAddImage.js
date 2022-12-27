@@ -1,7 +1,6 @@
 import { useSlateStatic } from "slate-react"
 import { uploadAndInsertImage } from "./withImages"
 import { useForm } from "react-hook-form"
-import styles from './FormAdd.module.css'
 import Button from '../Button'
 import FormAddField from "./FormAddField"
 
@@ -38,18 +37,16 @@ export default function FormAddLinkedImage() {
         errors={errors}
       />
 
-      <div className={styles.buttonContainer}>
-        <Button
-          disabled={isSubmitting} 
-          type='button'
-          onClick={handleSubmit(data => {
-            uploadAndInsertImage(editor, data.imageFile[0], data.imageAlt)
-            })
-          }
-        >
-          Insert the image
-        </Button>
-      </div>
+      <Button
+        disabled={isSubmitting} 
+        type='button'
+        onClick={handleSubmit(data => {
+          uploadAndInsertImage(editor, data.imageFile[0], data.imageAlt)
+          })
+        }
+      >
+        Insert the image
+      </Button>
     </div>
   )
 }
