@@ -57,7 +57,11 @@ export default function Thread() {
               setCategories={setCategories}
             />
             <div style={{ marginBottom: '1.5em' }}>
-              <Editor value={richTextContent} setValue={setRichTextContent}/>
+              <Editor 
+                value={richTextContent}
+                setValue={setRichTextContent}
+                toolbarVisible={true}
+              />
             </div>
             <Button 
               type='submit' 

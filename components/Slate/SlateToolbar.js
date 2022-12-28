@@ -28,13 +28,13 @@ import styles from './SlateToolbar.module.css'
 import { BLOCK, INLINE, LIST_TYPES } from './constants';
 import SlateToolbarBlockActions from './SlateToolbarBlockActions';
 
-export const SlateToolbar =({ focused }) => {
+export const SlateToolbar =({ visible }) => {
   const [blocksPanelOpen, setBlocksPanelOpen] = useState(false)
 
   return (
     <div className={`
       ${styles.toolbar}
-      ${focused && styles.visible}
+      ${visible && styles.visible}
     `}>
       <div className={styles.topBar}>
         <button

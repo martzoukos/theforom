@@ -44,7 +44,7 @@ export const PostReply = ({thread}) => {
         <SlateEditor 
           value={post}
           setValue={setPost}
-          focused={focused}
+          toolbarVisible={focused}
         />
       </form>
     </div>
