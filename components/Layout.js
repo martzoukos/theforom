@@ -19,7 +19,7 @@ export default function Layout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <HeaderNavigation />
-      <Container isNarrow={true}>
+      <Container>
         {children}
       </Container>
       <Footer />

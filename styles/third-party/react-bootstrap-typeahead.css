@@ -1,16 +1,19 @@
 .rbt {
   display: flex;
   flex-wrap: wrap;
-  background-color: var(--white);
-  padding: 0.2em 0.7em;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 0.3em 0.7em;
   min-height: 1.8em;
-  border: 1px solid var(--grey-on-white);
-  transition: border-color var(--ease) var(--fast-animation),
-              color var(--ease) var(--fast-animation);
   border-radius: var(--border-radius);
   z-index: 100;
   position: relative;
   cursor: text;
+}
+
+body.light .rbt {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 .rbt-override .rbt-input-multi {
@@ -21,16 +24,13 @@
   height: 1.8em;
 }
 
-.rbt-input-wrapper {
-  background-color: var(--white);
-}
-
 .rbt-input-main:disabled {
   font-style: italic;
 }
 
 .rbt-menu {
-  background-color: var(--white);
+  background-color: var(--black);
+  color: var(--white);
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
   z-index: 100;
@@ -40,22 +40,25 @@
 
 body.light .rbt-menu {
   box-shadow: 0em 0.3em 0.5em var(--very-light-purple);
+  background-color: var(--white);
+  color: var(--black);
 }
 
 .dropdown-item {
   display: block;
-  color: var(--black);
   font-size: 16px;
   line-height: 1.1;
   padding: 0.7em 1em;
 }
 
-.dropdown-item:hover {
-  color: var(--black);
-  background-color: var(--very-light-purple);
+.dropdown-item:hover,
+.dropdown-item.active {
+  background-color: var(--blue);
+  color: var(--white)
 }
 
-.dropdown-item.active {
+body.light .dropdown-item:hover,
+body.light .dropdown-item.active {
   background-color: var(--blue);
   color: var(--white)
 }
