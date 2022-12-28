@@ -5,7 +5,7 @@ import HeaderNavigation from './HeaderNavigation';
 
 export const siteTitle = 'the forom';
 
-export default function Layout({ children }) {
+export default function Layout({ children, layout }) {
   return (
     <>
       <Head>
@@ -19,7 +19,7 @@ export default function Layout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <HeaderNavigation />
-      <Container>
+      <Container isNarrow={layout === 'narrow'}>
         {children}
       </Container>
       <Footer />

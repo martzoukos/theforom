@@ -13,7 +13,7 @@ import { Editor, Node, Transforms } from 'slate';
 import { BLOCK, HOTKEYS, INLINE, MARKDOWN_SHORTCUTS } from './constants'
 import { Social } from './withSocials';
 
-export const SlateTextarea = ({editor}) => {
+export const SlateTextarea = ({ editor, expanded }) => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
 
@@ -57,6 +57,7 @@ export const SlateTextarea = ({editor}) => {
     renderElement={renderElement}
     className={`
       ${styles.editable}
+      ${expanded && styles.editableExpanded}
       typography
     `}
     onDOMBeforeInput={handleDomBeforeInput}

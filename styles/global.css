@@ -34,7 +34,7 @@ body.light::before {
 }
 
 body.light {
-  background-color: var(--white);
+  background-color: var(--off-white);
   color: var(--black);
 }
 

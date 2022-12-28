@@ -14,15 +14,16 @@
 }
 
 .postReply::before {
-  content: '';
-  position: absolute;
-  top: 0; 
-  left: -100%;
   background-color: var(--very-dark-purple);
+  content: '';
   display: block;
-  height: 100%;
-  width: 300%;
+  position: absolute;
   z-index: -1;
+  top: 0; 
+  left: 50%;
+  margin-left: -50vw;
+  width: 100vw;
+  height: 100%;
 }
 
 :global(body.light) .postReply::before {

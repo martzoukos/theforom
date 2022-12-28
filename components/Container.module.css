@@ -1,6 +1,6 @@
 .container {
   max-width: var(--container-width);
-  margin: 0 auto;
+  margin: 2em auto;
   padding: 0 1em;
   box-sizing: content-box;
 }

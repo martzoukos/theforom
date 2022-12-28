@@ -57,10 +57,14 @@ export default function Thread() {
               setCategories={setCategories}
             />
             <div style={{ marginBottom: '1.5em' }}>
+              <label style={{ 
+                display: 'block',
+                marginBottom: '0.5em' 
+              }}>Your Content</label>
               <Editor 
                 value={richTextContent}
                 setValue={setRichTextContent}
-                toolbarVisible={true}
+                expanded={true}
               />
             </div>
             <Button 

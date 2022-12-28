@@ -6,6 +6,10 @@
   overflow-y: auto;
 }
 
+.editableExpanded {
+  height: 20em;
+}
+
 .editable::-webkit-scrollbar {
   display: none;
 }

@@ -65,7 +65,7 @@ export async function getServerSideProps(context) {
 const Thread = ({ thread }) => {  
   const { data: session } = useSession()
   return (
-    <Layout>
+    <Layout layout='narrow'>
       <Head>
         <title>{thread.subject} - {siteTitle}</title>
       </Head>
