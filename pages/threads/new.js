@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import Editor, { useUploadedMedia } from '../../components/Slate/SlateEditor';
 import { useSession, signIn } from 'next-auth/react';
 import Button from '../../components/Button';
-import Container from '../../components/Container';
 import FieldRow from '../../components/FieldRow';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -44,40 +43,38 @@ export default function Thread() {
         <Head>
           <title>Create your Thread - {siteTitle}</title>
         </Head>
-        <Container isNarrow={true}>
-          <form  onSubmit={handleSubmit(onSubmit)}>
-            <h1 className='as-h2'>Create your Thread</h1>
-            <FieldRow
-              label='Thread Title'
-              name='subject'
-              registerFunc={register}
+        <form  onSubmit={handleSubmit(onSubmit)}>
+          <h1 className='as-h2'>Create your Thread</h1>
+          <FieldRow
+            label='Thread Title'
+            name='subject'
+            registerFunc={register}
+          />
+          <CategoriesInput 
+            categories={categories}
+            setCategories={setCategories}
+          />
+          <div style={{ marginBottom: '1.5em' }}>
+            <label style={{ 
+              display: 'block',
+              marginBottom: '0.5em' 
+            }}>Your Content</label>
+            <Editor 
+              value={richTextContent}
+              setValue={setRichTextContent}
+              expanded={true}
             />
-            <CategoriesInput 
-              categories={categories}
-              setCategories={setCategories}
-            />
-            <div style={{ marginBottom: '1.5em' }}>
-              <label style={{ 
-                display: 'block',
-                marginBottom: '0.5em' 
-              }}>Your Content</label>
-              <Editor 
-                value={richTextContent}
-                setValue={setRichTextContent}
-                expanded={true}
-              />
-            </div>
-            <Button 
-              type='submit' 
-              disabled={loading}
-            >
-              {loading 
-                ? <span>...</span> 
-                : <span>Publish your Thread</span>
-              }
-            </Button>
-          </form>
-        </Container>
+          </div>
+          <Button 
+            type='submit' 
+            disabled={loading}
+          >
+            {loading 
+              ? <span>...</span> 
+              : <span>Publish your Thread</span>
+            }
+          </Button>
+        </form>
       </Layout>
     )
   } else {
@@ -86,14 +83,12 @@ export default function Thread() {
         <Head>
           <title>Create your Thread</title>
         </Head>
-        <Container isNarrow={true}>
           <div style={{
-            margin: '2em auto',
-            textAlign: 'center'
-          }}>
-            <Button onClick={() => signIn()}>Connect to create a Thread</Button>    
-          </div>
-        </Container>
+          margin: '2em auto',
+          textAlign: 'center'
+        }}>
+          <Button onClick={() => signIn()}>Connect to create a Thread</Button>    
+        </div>
       </Layout>
     )
   }
