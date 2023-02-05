@@ -3,7 +3,6 @@ import Layout, { siteTitle } from '../../components/Layout';
 import { prisma } from '../../lib/prisma'
 import Button from '../../components/Button';
 import Container from '../../components/Container';
-import { useSession, signIn } from 'next-auth/react';
 import ThreadsTable from '../../components/ThreadsTable';
 import { useRouter } from 'next/router'
 
@@ -59,7 +58,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({ allThreads }) {
-  const { data: session } = useSession()
+  const session = null //replace with clerk
   const router = useRouter()
   const { categoryName } = router.query
   return (
@@ -77,7 +76,7 @@ export default function Home({ allThreads }) {
             { session ?
               <Button href='/threads/new'>Create a new Thread</Button>
               :  
-              <Button onClick={() => signIn()}>Connect to create a Thread</Button>
+              <Button>Connect to create a Thread</Button>
             }
           </div>
         </>

@@ -1,9 +1,8 @@
 import { prisma } from '../../../../lib/prisma';
-import { getSession } from "next-auth/react";
 
 export default async function handler(req, res) {
   const { uid, image  } = req.body
-  const session = await getSession({ req });
+  const session = null  //replace with clerk
   if (session === null) {
     res.status(401).json({ error: 'user is not logged in' })
     return

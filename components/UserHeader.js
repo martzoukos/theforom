@@ -4,11 +4,10 @@ import Image from 'next/image';
 import Container from './Container';
 import styles from './UserHeader.module.css';
 import ReactTimeAgo from 'react-time-ago';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
 export const UserHeader = ({ user }) => {
-  const { data: session } = useSession()
+  const session = null //replace with clerk 
   return (
     <Container isNarrow={true}>
       <div className={styles.topRow}>

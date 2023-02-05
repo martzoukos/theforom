@@ -1,10 +1,9 @@
-import { useSession, signIn, signOut } from "next-auth/react"
 import Link from "next/link"
 import Avatar from "./Avatar"
 import styles from './LoginBtn.module.css'
 
 export default function LogInBtn() {
-  const { data: session } = useSession()
+  const session = null //replace with clerk
   const possibleFirstName = session?.user?.name?.split(' ')[0]
   if (session) {
     return (
@@ -23,14 +22,14 @@ export default function LogInBtn() {
         (
           <Link href='/settings'>Settings</Link>
           &nbsp;&middot;&nbsp;
-          <button onClick={() => signOut()}>Log out</button>
+          <button>Log out</button>
         )
       </div>
     )
   }
   return (
     <div className={styles.container}>
-      <button onClick={() => signIn()}>Sign in</button>
+      <button>Sign in</button>
     </div>
   )
 }

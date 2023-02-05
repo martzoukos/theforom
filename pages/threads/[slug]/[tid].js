@@ -3,7 +3,6 @@ import Layout, { siteTitle } from '../../../components/Layout';
 import Head from 'next/head';
 import Post from '../../../components/Post';
 import { PostReply } from '../../../components/PostReply';
-import { useSession, signIn } from 'next-auth/react';
 import Button from '../../../components/Button';
 import Container from '../../../components/Container';
 import MainPost from '../../../components/MainPost';
@@ -63,7 +62,7 @@ export async function getServerSideProps(context) {
 }
 
 const Thread = ({ thread }) => {  
-  const { data: session } = useSession()
+  const session = null //replace with clerk
   return (
     <Layout layout='narrow'>
       <Head>
@@ -90,7 +89,7 @@ const Thread = ({ thread }) => {
         <PostReply thread={thread}/>
       :
         <Container>
-          <Button onClick={() => signIn()}>Connect to post a reply</Button>
+          <Button>Connect to post a reply</Button>
         </Container>
       }
     </Layout>

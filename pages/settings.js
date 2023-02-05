@@ -3,8 +3,6 @@ import Layout, { siteTitle } from '../components/Layout';
 import { prisma } from '../lib/prisma'
 import Container from '../components/Container';
 import Avatar from '../components/Avatar';
-import { unstable_getServerSession } from "next-auth/next";
-import { authOptions } from "./api/auth/[...nextauth]";
 import { useState } from 'react';
 import { uploadFile } from '../lib/uploadFile';
 import { resizeImage } from '../lib/resizeImage';
@@ -14,11 +12,7 @@ import axios from 'axios';
 import Button from '../components/Button';
 
 export async function getServerSideProps(context) {
-  const session = await unstable_getServerSession(
-    context.req,
-    context.res,
-    authOptions,
-  )
+  const session = null //replace with clerk
   const user = session ?
     await prisma.user.findUnique({
       where: {

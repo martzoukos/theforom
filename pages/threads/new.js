@@ -3,7 +3,6 @@ import Layout, { siteTitle } from '../../components/Layout'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Editor, { useUploadedMedia } from '../../components/Slate/SlateEditor';
-import { useSession, signIn } from 'next-auth/react';
 import Button from '../../components/Button';
 import FieldRow from '../../components/FieldRow';
 import { useForm } from 'react-hook-form';
@@ -15,7 +14,7 @@ export default function Thread() {
   const [richTextContent, setRichTextContent] = useState('')
   const [categories, setCategories] = useState([])
   const router = useRouter()
-  const { data: session } = useSession()
+  const session = null //replace with clerk
   const uploadedMedia = useUploadedMedia()
   const { register, handleSubmit } = useForm();
 
@@ -87,7 +86,7 @@ export default function Thread() {
           margin: '2em auto',
           textAlign: 'center'
         }}>
-          <Button onClick={() => signIn()}>Connect to create a Thread</Button>    
+          <Button>Connect to create a Thread</Button>    
         </div>
       </Layout>
     )

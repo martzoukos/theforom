@@ -10,13 +10,21 @@ import '../styles/third-party/react-bootstrap-typeahead.css'
 
 
 import { useEffect } from "react";
-import { SessionProvider } from "next-auth/react"
 import { useUIModeStore } from '../lib/UIModeStore'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
-import { GoogleAnalytics } from "nextjs-google-analytics";
+import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
+import { useRouter } from 'next/router';
 
 TimeAgo.addDefaultLocale(en)
+
+//  List pages you want to be publicly accessible, or leave empty if
+//  every page requires authentication. Use this naming strategy:
+//   "/"              for pages/index.js
+//   "/foo"           for pages/foo/index.js
+//   "/foo/bar"       for pages/foo/bar.js
+//   "/foo/[...bar]"  for pages/foo/[...bar].js
+const publicPages = [];
 
 export default function App({ 
   Component, 
@@ -36,10 +44,26 @@ export default function App({
     document.body.className = targetValue
   }, [storeMode, storeModeToggle])
 
+  // Get the pathname
+  const { pathname } = useRouter();
+
+  // Check if the current route matches a public page
+  const isPublicPage = publicPages.includes(pathname);
+
   return(
-    <SessionProvider session={session}>
-      <GoogleAnalytics trackPageViews />
-      <Component {...pageProps} />
-    </SessionProvider>
+    <ClerkProvider {...pageProps} >
+      {isPublicPage ? (
+          <Component {...pageProps} />
+        ) : (
+          <>
+            <SignedIn>
+              <Component {...pageProps} />
+            </SignedIn>
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+      )}
+    </ClerkProvider>
   )
 }

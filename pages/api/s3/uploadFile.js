@@ -1,5 +1,4 @@
 import S3 from "aws-sdk/clients/s3";
-import { getSession } from "next-auth/react";
 
 const s3 = new S3({
   region: process.env.S3_UPLOAD_REGION,
@@ -9,7 +8,7 @@ const s3 = new S3({
 });
 
 export const uploadFile = async (req, res) => {
-  const session = await getSession({ req });
+  const session = null //replace with clerk
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
