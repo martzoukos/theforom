@@ -1,34 +1,112 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TheForom
+
+A modern, feature-rich forum platform built with Next.js, TypeScript, and Prisma.
+
+## Features
+
+- 🔐 Authentication with NextAuth.js
+- 📝 Rich text editor with Slate.js
+- 🖼️ Image uploads with AWS S3
+- 🌙 Dark mode support
+- 📱 Responsive design
+- 🔍 Advanced search capabilities
+- 📊 Google Analytics integration
+- 📧 Email notifications
+- 🎨 Modern UI with Lucide icons
+
+## Tech Stack
+
+- **Framework:** Next.js 13
+- **Language:** TypeScript
+- **Database:** Prisma ORM
+- **Authentication:** NextAuth.js
+- **State Management:** Zustand
+- **Rich Text Editor:** Slate.js
+- **File Storage:** AWS S3
+- **Styling:** CSS Modules
+- **Form Handling:** React Hook Form
+- **Analytics:** Google Analytics
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+- AWS account (for S3 storage)
+- Database (configured through Prisma)
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/theforom.git
+cd theforom
+```
 
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Set up environment variables:
+Create a `.env` file in the root directory with the following variables:
+```env
+DATABASE_URL="your-database-url"
+NEXTAUTH_SECRET="your-nextauth-secret"
+NEXTAUTH_URL="http://localhost:3000"
+AWS_ACCESS_KEY_ID="your-aws-access-key"
+AWS_SECRET_ACCESS_KEY="your-aws-secret-key"
+AWS_REGION="your-aws-region"
+AWS_BUCKET_NAME="your-bucket-name"
+```
+
+4. Run database migrations:
+```bash
+npx prisma migrate dev
+```
+
+5. Start the development server:
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npx prisma generate` - Generate Prisma client
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Project Structure
 
-## Learn More
+```
+theforom/
+├── components/     # React components
+├── lib/           # Utility functions and shared logic
+├── pages/         # Next.js pages and API routes
+├── prisma/        # Database schema and migrations
+├── public/        # Static assets
+└── styles/        # Global styles and CSS modules
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Support
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For support, please open an issue in the GitHub repository or contact the maintainers.
